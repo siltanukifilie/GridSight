@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="330" viewBox="0 0 1200 330" role="img" aria-labelledby="title desc">
+  <title id="title">GridSight</title>
+  <desc id="desc">See demand before you build. Mini-grid planning for developers and investors. Developed by the GridSight Team.</desc>
+  <rect width="1200" height="330" rx="24" fill="#f4f5ef"/>
+  <rect x="26" y="26" width="1148" height="278" rx="18" fill="#183f32"/>
+  <g fill="none" stroke="#47715d" stroke-width="1" opacity=".5">
+    <path d="M800 60v210M860 60v210M920 60v210M980 60v210M1040 60v210M1100 60v210M770 90h360M770 150h360M770 210h360M770 270h360"/>
+  </g>
+  <path d="M795 242L864 211L923 220L984 152L1050 163L1114 91" fill="none" stroke="#b7d496" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#eaf3dd" stroke="#183f32" stroke-width="4">
+    <circle cx="795" cy="242" r="8"/><circle cx="864" cy="211" r="8"/><circle cx="923" cy="220" r="8"/>
+    <circle cx="984" cy="152" r="8"/><circle cx="1050" cy="163" r="8"/><circle cx="1114" cy="91" r="8"/>
+  </g>
+  <rect x="66" y="65" width="42" height="42" rx="12" fill="#c9dcae"/>
+  <path d="M78 94l17-17m-13 0h13v13" stroke="#183f32" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="123" y="99" font-family="Arial, sans-serif" font-weight="700" font-size="36" fill="#fff">GridSight<tspan fill="#c9dcae">.</tspan></text>
+  <text x="66" y="166" font-family="Arial, sans-serif" font-weight="700" font-size="42" fill="#fff">See demand before you build.</text>
+  <text x="66" y="205" font-family="Arial, sans-serif" font-size="20" fill="#d5e3d5">Mini-grid planning for developers and investors</text>
+  <text x="66" y="266" font-family="Arial, sans-serif" font-size="16" fill="#c9dcae">Developed by the GridSight Team</text>
+</svg>

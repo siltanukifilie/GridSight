@@ -1,5 +1,8 @@
 # GridSight decision log
 
+Historical decisions, including superseded scope choices. See the
+[current documentation](../README.md) for the released application.
+
 ## 1 November 2026 — prepared evidence integration (local review)
 
 - Keep the deployed green/light app, roles, eight-country location hierarchy and

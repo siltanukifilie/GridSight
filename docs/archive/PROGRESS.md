@@ -1,5 +1,8 @@
 # GridSight progress tracker
 
+Historical development log. Deployment and verification statements below are
+dated milestones, not current status. See [verification](../TEST_REPORT.md).
+
 ## v1.12 publication requested — 1 November 2026
 
 The user requested running the updated app on the existing Render service.

@@ -22,3 +22,17 @@ data/operator/
 
 # Public query access is not a redistribution licence. Keep this local only.
 data/rwanda/electricity.json
+
+# Generated reports can contain project inputs; keep them local.
+reports/examples/
+reports/planning_review/
+reports/screening_review/
+
+# Local tooling and build artifacts.
+.coverage
+htmlcov/
+.ruff_cache/
+node_modules/
+*.egg-info/
+dist/
+build/

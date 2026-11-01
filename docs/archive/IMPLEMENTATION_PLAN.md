@@ -1,5 +1,8 @@
 # GridSight implementation plan
 
+Historical planning record, not the current setup or feature-status guide.
+See the [judge guide](../JUDGES_GUIDE.md) and [current documentation](../README.md).
+
 Prepared 30 October 2026. Requirements expanded 31 October 2026 with the user's 13-item product-success checklist. The synthetic prototype has automated verification; browser QA, real-data validation and commercial validation remain separate open gates.
 
 Build a working mini-grid demand planning prototype using synthetic data. The user's latest instruction authorizes completing the product in this session while retaining the numbered plan and evidence. Demo recording, pitch deck, one-page summary, and final disclosure are deferred. The team has three members.
@@ -65,7 +68,7 @@ Build a working mini-grid demand planning prototype using synthetic data. The us
 
 ## Previous extension — Rwanda public-data dashboard (v1.4)
 
-Latest user instruction supersedes the eight-country active release: Rwanda now, East Africa later. [Exact data pipeline](RWANDA_DATA_PIPELINE.md).
+Latest user instruction supersedes the eight-country active release: Rwanda now, East Africa later. [Exact data pipeline](../RWANDA_DATA_PIPELINE.md).
 
 1. **Scope — complete:** Rwanda-only visible selector; preserve future-country architecture and two roles.
 2. **Collect — partial, explicitly recorded:** import 4,251,978 Google building detections, 2,232 OSM facility/shop objects and 236 MININFRA historical records. Preserve dates/checksums/licences. VIIRS, GridFinder, EAE, MTF, cost benchmark extraction and metered labels remain uncollected; GEP download requires login.

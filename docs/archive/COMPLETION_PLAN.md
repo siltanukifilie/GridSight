@@ -1,5 +1,7 @@
 # Completing the decision-support MVP — 31 October 2026
 
+Archived milestone plan. See the [judge guide](../JUDGES_GUIDE.md) for current scope.
+
 Current request: include the five pictured deliverables and fix early post-connection demand growth within the Rwanda-only automatic dashboard. East Africa remains future scope. Follow the v1.5 extension in IMPLEMENTATION_PLAN.md and the connection method in FEASIBILITY_METHODS.md. The numbered features below remain implemented. Preserve the existing two roles, local app, short copy, synthetic-data notices, and existing calculations/exports unless explicitly extended below.
 
 1. Add separately defined Low / Expected / High demand cases, with editable demand factors and comparable three-year demand, cash, repayment and capacity results. Keep these scenarios distinct from calibrated prediction bounds.

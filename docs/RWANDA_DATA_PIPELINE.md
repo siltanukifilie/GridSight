@@ -1,6 +1,11 @@
-# Rwanda data pipeline — v1.4
+# Rwanda geographic-data pipeline
 
-31 October 2026. Active country: Rwanda. East Africa remains future scope.
+The collection details below record the v1.4 pipeline from 31 October 2026.
+The current app has eight EAC country selectors and Rwanda-focused source
+coverage. Added Bugesera sector context is documented in
+[prepared evidence](PREPARED_EVIDENCE.md) and the [data catalogue](../data/README.md).
+The MININFRA extract below is local-only and is **not included in GitHub or
+public downloads**. Earlier UI/feature descriptions are historical.
 
 ## What was actually collected
 

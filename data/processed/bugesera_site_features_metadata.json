@@ -1,0 +1,16 @@
+{
+  "table": "bugesera_site_features.csv",
+  "grain": "one row per Bugesera sector/site candidate",
+  "rows": 15,
+  "columns": 78,
+  "source_table": "data/prepared/bugesera_sectors.csv",
+  "measured_demand_rows": 0,
+  "public_context_only": true,
+  "missing_value_policy": "preserve missing values; do not replace with zero",
+  "notes": [
+    "OSM counts are mapped-object proxies, not complete inventories.",
+    "GridFinder distance is a dated reference-point context variable.",
+    "Nighttime-light values are indirect/unverified where indicated by status.",
+    "Operator demand and peak-demand fields remain unavailable."
+  ]
+}

@@ -5,7 +5,7 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const path=require('node:path');
 const root=path.join(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
-const example=JSON.parse(read('reports/examples/rw-demo-02.json'));
+const example=JSON.parse(read('tests/fixtures/rw-demo-02.json'));
 const configs=JSON.parse(read('config/countries.json'));
 function harness(){
   const nodes=new Map(),requests=[],saved={};

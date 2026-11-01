@@ -1,0 +1,16 @@
+{
+  "version": "2026-11-01",
+  "maintainer": "GridSight Team",
+  "scope": "Judge-facing index; source-specific rights and units remain authoritative",
+  "datasets": [
+    {"path": "processed/bugesera_site_features.csv", "rows": 15, "columns": 78, "kind": "public_context", "grain": "Bugesera administrative sector", "documentation": "processed/bugesera_site_features_metadata.json"},
+    {"path": "processed/bugesera_site_priority_ranking.csv", "rows": 15, "kind": "derived_screening_score", "grain": "Bugesera administrative sector", "documentation": "../docs/PREPARED_EVIDENCE.md"},
+    {"path": "prepared/bugesera_sectors.csv", "rows": 15, "columns": 71, "kind": "public_context", "grain": "Bugesera administrative sector", "documentation": "prepared/README.txt"},
+    {"path": "operational/operational_features.csv", "rows": 1540, "kind": "measured_target_with_derived_features", "grain": "site and hourly forecast origin", "documentation": "operational/README.txt"},
+    {"path": "operational/predictions.csv", "rows": 4216, "kind": "model_outputs_with_observed_targets", "grain": "site, model, split and hourly forecast origin", "documentation": "../docs/OPERATIONAL_EVIDENCE.md"},
+    {"path": "operational/metrics.csv", "rows": 48, "kind": "measured_study_metrics", "grain": "site, model and split", "documentation": "../docs/OPERATIONAL_EVIDENCE.md"},
+    {"path": "transfer_uncertainty/held_out_predictions.csv", "rows": 237, "kind": "model_outputs_with_qualified_operational_targets", "grain": "held-out site, monthly forecast origin and horizon", "documentation": "../docs/TRANSFER_AND_PLANNING_SCENARIOS.txt"},
+    {"path": "synthetic_sites.csv", "rows": 500, "kind": "synthetic", "grain": "fictional site", "documentation": "../docs/DATA_CARD.md"},
+    {"path": "synthetic_monthly.csv", "rows": 18000, "kind": "synthetic", "grain": "fictional site and simulated month", "documentation": "../docs/DATA_CARD.md"}
+  ]
+}

@@ -30,7 +30,7 @@ def main():
         'grain': 'one row per Bugesera sector/site candidate',
         'rows': int(len(df)),
         'columns': int(len(df.columns)),
-        'source_table': str(SOURCE),
+        'source_table': SOURCE.relative_to(ROOT).as_posix(),
         'measured_demand_rows': 0,
         'public_context_only': True,
         'missing_value_policy': 'preserve missing values; do not replace with zero',

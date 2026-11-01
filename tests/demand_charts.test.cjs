@@ -89,7 +89,7 @@ for (const monthly of [0, .125, 3650]) {
 
 for (const id of ['01','02','03']) {
   test(`all chart horizons agree with the stored model analysis for RW-DEMO-${id}`, () => {
-    const result = JSON.parse(fs.readFileSync(path.join(__dirname, `../reports/examples/rw-demo-${id}.json`), 'utf8'));
+    const result = JSON.parse(fs.readFileSync(path.join(__dirname, `fixtures/rw-demo-${id}.json`), 'utf8'));
     for (const period of Object.keys(DEMAND_VIEWS)) {
       const view = demandChartData(result, period);
       close(view.series.central.reduce((sum,v,i)=>sum+v*view.durations[i],0), view.total);

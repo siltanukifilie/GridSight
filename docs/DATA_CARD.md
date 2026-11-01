@@ -1,5 +1,9 @@
 # GridSight synthetic data card
 
+Scope: the original fictional dataset only. For current public context and
+measured experiments, see the [data catalogue](../data/README.md). Historical
+version notes below do not describe the full current app.
+
 Dataset version 1.0.0. Seed 20261030. All 500 sites and all 18,000 monthly observations are generated. No real customer records or operator consumption data were used.
 
 ## v1.5 connection inputs (not new measurements)

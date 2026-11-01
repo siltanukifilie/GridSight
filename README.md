@@ -1,174 +1,166 @@
+<p align="center">
+  <img src="docs/assets/gridsight-banner.svg" alt="GridSight — See demand before you build. Developed by the GridSight Team." width="100%">
+</p>
+
+<p align="center">
+  <a href="https://gridsight-0al3.onrender.com/">Open the live app</a> ·
+  <a href="docs/JUDGES_GUIDE.md">Judge's guide</a> ·
+  <a href="data/README.md">Explore the data</a> ·
+  <a href="docs/README.md">Documentation</a>
+</p>
+
+[![GridSight checks](https://github.com/siltanukifilie/GridSight/actions/workflows/checks.yml/badge.svg)](https://github.com/siltanukifilie/GridSight/actions/workflows/checks.yml)
+
 # GridSight
 
-See demand before you build.
+**Mini-grid demand planning for developers and investors.** Estimate electricity
+needs, explore growth and productive use, and understand financial risks before
+committing to a project.
 
-**[Open the live GridSight demo](https://gridsight-0al3.onrender.com/)**  
-Free Render hosting may need about a minute to wake after inactivity.
+Built for the **Global Energy Hackathon, Brief 03: Predict mini-grid demand before
+building**. The current release is **v1.12**. Rwanda has the richest public-data
+coverage, including all **15 Bugesera sectors**. Location selectors cover the eight
+EAC countries; data depth and local validation are not equal across them.
 
-## Deploy the full app
+> **Evidence boundary:** the planning dashboard uses a transparent engineering
+> calculation and editable scenarios. Its low / expected / high range is **not a
+> calibrated confidence interval**. Real measured-data experiments are available
+> separately; they do not validate a new Rwanda site or its three-year growth.
 
-GitHub repository: [siltanukifilie/GridSight](https://github.com/siltanukifilie/GridSight).
-The included `render.yaml` deploys one **free Render web service**. See
-[deployment instructions](docs/DEPLOYMENT.md) for setup, checks and privacy limits.
-Forecasts and report downloads run on the server; operator-meter uploads stay
-disabled on the public demo until secure access is implemented. Those tools
-remain available locally. The government electricity extract is local-only
-pending redistribution terms; other permitted public snapshots are included.
+## Try it in five minutes
 
-GridSight is a Python web app, available locally and as a public planning demo, for **Mini-grid developers** and **Investors / lenders**. **East Africa: the eight EAC countries selected by the user.** Choose Country → District → Sector → Cell (source-supported local equivalents outside Rwanda), with no map or coordinate-entry UI. New projects use a transparent 20-input engineering estimate; Rwanda building/facility proxies can initialize the counts. Other-country and missing-record inputs are labelled assumptions. The legacy nine-feature synthetic-trained model is retained, not retrained on these new inputs.
+1. [Open GridSight](https://gridsight-0al3.onrender.com/). Free hosting may take
+   about a minute to wake.
+2. Choose **Mini-grid developer**. Select Rwanda → Bugesera District → a sector
+   → a cell, or use a clearly labelled synthetic demo.
+3. Review the service-area assumptions in **Community**, then update the dashboard.
+4. Compare daily, weekly, monthly and yearly energy, the 36-month demand curve,
+   productive-use scenarios and financial stress in **Overview / Feasibility**.
+5. Switch to **Investor / lender**, inspect **Evidence**, then download a report.
 
-## Start here
+Use non-confidential inputs only. This public demo has no secure user accounts;
+the role switch changes the workspace, not access permissions.
 
-- [Implementation plan](docs/IMPLEMENTATION_PLAN.md): scope, architecture, data approach, numbered steps, and completion checks.
-- [Progress tracker](docs/PROGRESS.md): completed work, current step, evidence, blockers, and the next action.
-- [Decision log](docs/DECISIONS.md): choices and assumptions to preserve between sessions.
+## What each user gets
 
-The implementation plan now includes the user's complete **13-item product-success checklist (R01–R13)**. Public-context integration, guided missing-input assumptions and eight country configurations are implemented. Measured-site accuracy, country transfer performance and paying-customer evidence remain open. The commercial model is proposed, not proven traction.
+| Mini-grid developer | Investor / lender |
+| --- | --- |
+| Location-based public context and editable service-area inputs | Read-only review of the same demand inputs |
+| Expected energy, illustrative peak and low / expected / high scenarios | Forecast assumptions, drivers and evidence limitations |
+| Three-year connection, appliance and business-growth scenarios | Downside demand, affordability and repayment stress |
+| Productive-use opportunities and sizing warnings | Financial screening and downloadable review reports |
 
-Feature v1.11: **Bugesera public context and completed real-data hourly model comparisons**. Evidence now includes 1,540 measured hourly examples, results from five ML families and three baselines, actual-versus-predicted previews and downloadable CSVs. See [operational model evidence](docs/OPERATIONAL_EVIDENCE.md) and [prepared-evidence scope](docs/PREPARED_EVIDENCE.md). These are supporting experiments, not validation or replacement of the monthly planning calculation. Original branding, roles and public upload guards are unchanged.
+## How it works
 
-Deployed milestone: **v1.10 — interactive dashboard redesign.** Original green/light colours restored at the user’s request, simpler overview, linked low/expected/high and Year 1–3 filters, daily/weekly/monthly/yearly energy cards, and a clickable 36-month curve with cash/debt/supply drill-down. Both developer and lender workspaces retain all specialist tools. This is a Power BI–style experience in the existing Python app, not a Microsoft Power BI connection. Historical v1.10 checks passed; see the latest verification entry for current counts. Focused desktop, mobile and chart-keyboard checks passed. Full release QA remains open. Financial evidence and controlled real-data update workflows from v1.9 remain available. No model/data rebuild or empirical accuracy/savings claim. See [Verification record](docs/TEST_REPORT.md), [Financial evidence](docs/FINANCIAL_EVIDENCE.md) and [Real-data updates](docs/REAL_DATA_UPDATES.md).
-
-## Continue the project
-
-At the beginning of each working session, read the progress tracker and decision log. The latest user instruction is to complete the product now and defer the demo recording, deck, one-page summary and final disclosure. The team has three members. Preserve a numbered record of completed artifacts, checks and remaining work.
-
-Record actual artifacts and checks before marking a step complete. Keep unfinished items and limits visible. Log changes to scope in the decision log. Preserve existing work and treat all files in the parent project's `sources/` folder as read-only reference material.
-
-The application runs locally at **http://127.0.0.1:8050/** while its server is running. The public Render demo is linked above. Local edits do not update it until a separately approved push/deployment; submission remains a separate step.
-
-## Five deliverables — one review and download
-
-Open **Evidence → Five deliverables** (also linked from Overview). Each requirement has a status, scope, next action and direct route to its tool. **Download deliverables** exports a ZIP; extract it and open **START_HERE.html** for the offline five-part review.
-
-- Demand: low / expected / high for day, week, month and year, conserving forecast-Year-1 scenario energy.
-- Growth: all 36 forecast months with actual service-age labels. An older connected site's forward forecast is not relabelled as its first years.
-- Validation: the current-model monthly comparison and observed-growth/confidence tools, blank input/meter/study templates and protocols. No measured results are invented or attached.
-- Explanation: the applied project's plain-language lender explanation and customer-group energy contributions.
-- Safe sharing: the operator aggregation/holdout/retention proposal plus a blank handover worksheet (not authorization or a secure portal).
-
-The pack also preserves the full existing feasibility report, exact applied inputs, financial tables, provenance and an input fingerprint. Separate upload studies must be downloaded and reviewed separately; they never automatically certify the selected project. **Authentic held-out metered-site validation, measured confidence coverage and calibrated growth remain pending.** Historical deliverables verification included desktop checks in both roles, browser ZIP download/integrity and exported HTML/chart review. Current integration results are recorded at the top of docs/TEST_REPORT.md. Print/PDF and full release acceptance remain separate.
-
-## Run the prepared project
-
-The environment, model, dataset and RAMP profiles are already present. From this folder:
-
-```bash
-bash run.sh
+```mermaid
+flowchart LR
+    A[Country → district → sector → cell] --> B[Public context and source notes]
+    B --> C[Review service-area inputs]
+    C --> D[20-input engineering calculation]
+    D --> E[Low / expected / high scenarios]
+    E --> F[36-month demand and financial screening]
+    F --> G[Developer and lender dashboards]
+    G --> H[Downloadable reports]
+    I[Measured-data experiments] --> J[Separate evidence panel]
+    J --> G
+    classDef green fill:#eef4e8,stroke:#2d6b50,color:#183f32;
+    class A,B,C,D,E,F,G,H,I,J green;
 ```
 
-Choose your role, then Country → District → Sector → Cell. The detailed input workspace opens automatically. Review assumptions in its green collapsible panel and press **Update dashboard**. Review results in Overview; enter capacity, costs and financing in Scenarios. If a source lacks lower-level records, enter the administrative names; no coordinates or local observations are inferred. **Explore demo** remains a separate, labelled synthetic option.
+Whole-sector statistics are **not** copied into a small mini-grid's customer
+counts. Measured studies remain separate from the planning equation. Missing
+observations remain unavailable, not invented zeros.
 
-- **Primary — Mini-grid developer:** edit Community, test Scenarios, inspect uncertainty and export a planning analysis.
-- **Secondary — Investor / lender:** review the read-only Project view, edit Finance, inspect lower/faster demand and Evidence, and export an investment-screening review.
+## Data you can inspect
 
-Switching roles preserves the current analyzed scenario. Run any changed inputs before switching. The role choice is remembered locally; Save keeps one scenario in the browser, restorable from the developer workspace. Exports include exact inputs, JSON, CSV tables and a printable HTML report.
+The data used by the released app is committed to this repository with source
+notes, units, scope and checksum inventories. No account or training run is
+needed to inspect the following CSVs.
 
-Open **Feasibility** in either role to compare Low / Expected / High cases, 36-month growth, productive-use opportunities, capacity risks and cash. Enter optional capital/support budgets for cost exposure, support payback and a limited three-year NPV screen. Unknown costs stay unknown. Use **Download report** for the standalone HTML feasibility report or **Print / PDF** for browser printing. Apply changed inputs before leaving a form or exporting.
+| Dataset | What is included | What it establishes |
+| --- | --- | --- |
+| [Bugesera features](data/processed/bugesera_site_features.csv) | 15 sectors, 78 fields; census, buildings, services and derived context | Screening context, **not metered demand** |
+| [Sector ranking](data/processed/bugesera_site_priority_ranking.csv) | 15 candidate sectors and score components | A relative shortlist, not feasibility or verified off-grid status |
+| [Hourly measured features](data/operational/operational_features.csv) | 1,540 qualified examples from Rwanda, DR Congo and Haiti | Existing-site operational power, in kW |
+| [Hourly model predictions](data/operational/predictions.csv) | 4,216 validation/test prediction rows | Eight approaches compared on later hours, not unseen sites |
+| [Kenya/Nigeria held-out predictions](data/transfer_uncertainty/held_out_predictions.csv) | 237 site/horizon/month predictions | Operational transfer-error evidence requiring prior consumption |
+| [Synthetic sites](data/synthetic_sites.csv) and [monthly records](data/synthetic_monthly.csv) | 500 fictional sites and 18,000 simulated months | Reproducible demos and legacy reference-model tests |
 
-This is a local audience switch, **not secure accounts or permissions**. Both workspaces share one scenario, including financial edits. Investors' adjustments are not private. Multi-user ownership, authentication, reviewer access, audit records and separate review scenarios remain future work.
+See the [data catalogue](data/README.md) for geographic snapshots, dictionaries,
+provenance, exclusions and source-specific reuse terms. Haiti and Nigeria are
+external study references, not extra countries in the location selector.
 
-## Current detailed-input workflow (v1.6)
+## Deliverables and honest limits
 
-1. **Choose location:** eight EAC countries only. Rwanda uses actual ADM4 cell records, not settlements relabelled as cells. Other countries display available local equivalents. Source gaps remain visible.
-2. **Review the 20 features:** households, connection rate, elapsed service months, income, tariff, fee; appliance ownership/power/hours; businesses, mills, pumps, productive power/hours; schools, clinics; agricultural cycle, new connections, appliance adoption and business growth.
-3. **Apply:** counts × power × hours determine energy. New connections are capped by the service-area household count. Growth and a 12-month agricultural cycle shape 36 months from the entered time since connection.
-4. **Review both roles:** developers edit the demand inputs; investors/lenders review them and can edit shared financial assumptions. Income/fee show household affordability; tariff sets bills/revenue. No untrained income/price elasticity is assumed.
-5. **Save/export:** exact applied inputs appear in browser save/restore, analysis JSON, monthly CSV and both HTML reports. Old saved projects keep legacy math until **Open detailed inputs** is selected.
+| Brief 03 deliverable | Current implementation | Remaining evidence gap |
+| --- | --- | --- |
+| Demand estimate with a range | Location workflow, 20 inputs and scenario bands | Matched pre-construction inputs and metered outcomes; calibrated uncertainty |
+| Growth after connection | 36-month connection, appliance and productive-use scenarios | Observed first-years histories for calibration |
+| Held-out metered-site validation | Separate operational transfer study and local validation tools | Validation of the **current Rwanda pre-build model** |
+| Plain-language explanation | Customer-group contributions, assumptions and lender report | Field verification of assumptions |
+| Safe meter-data sharing proposal | Operator pilot, blank templates and governance gates | Partner approval and a secure hosted transfer workflow |
 
-Low / expected / high are editable scenarios, **not calibrated confidence intervals**. The legacy household-growth percentage, appliance index and S-curve are not double-counted in detailed mode. All defaults, prices and growth rates require field review. Actual hourly operating schedules, motor starts, crop/weather forecasts, country calibration and real meter validation remain outside this screen. See [methods](docs/FEASIBILITY_METHODS.md).
+No paying customer, avoided-capital saving, investment approval or nationwide
+prediction accuracy is claimed. [Read the review guide](docs/JUDGES_GUIDE.md).
 
-## Historical connection-growth mode (v1.5; retained for legacy saves)
+## Run locally
 
-New Rwanda projects and explicit demos enable a 36-service-month connection curve. In **Feasibility → Start from connection**, set an optional connection month, initial connection/appliance/non-household fractions and the month adoption reaches its target. The default 35% / 60% / 50% initial fractions and Month 24 maturity are editable design assumptions, not measured Rwanda rates. A one-month ramp means immediate full use. Old saved projects retain the previous calculation until this feature is enabled.
-
-The frozen synthetic-trained estimate is used as an **assumed mature reference**, not an observed mature load. The connection ramp determines Year 1 energy, all four period cards, daily profile, annual projections, monthly-cap cash flow and reports. First-year totals are not normalized back to the reference. Annual expansion applies in addition to adoption; avoid double counting. Calendar labels locate standard 365/12-day energy months, not exact calendar billing totals.
-
-**Evidence** now contains all five requested deliverables: Rwanda location estimate/range; first-years curve; held-out meter comparison **pending authentic operator data**; plain-language lender explanation; and a downloadable safe meter-sharing proposal. The annual CSV tool compares the frozen reference model; it does **not** validate the connection ramp. A monthly independent holdout study is still needed. Proposed hosted security/transfer controls are not implemented.
-
-Both roles share the same results. Developers edit connection assumptions; lenders review them. Either Feasibility update button applies both connection and financial-planning forms, avoiding lost edits. Saved scenarios, report, print view and ZIP retain the applied connection inputs.
-
-## Rwanda data workflow (v1.4 sources, retained in v1.6)
-
-Read [Data pipeline and coverage](docs/RWANDA_DATA_PIPELINE.md) for the exact source counts, assumptions, licences and missing layers. Imported: 4,251,978 country-clipped Google building detections, 2,232 OSM facility/shop objects and 236 historical Bugesera electricity records. The existing Rwanda gazetteer has 12,808 administrative/place records, of which 9,788 settlements pass the rural-first filter. These are dated public snapshots, not live meter feeds.
-
-1. **Select a Rwanda cell.** Country → District → Sector → Cell. These building/facility sources currently cover Rwanda only, not every EAC country.
-2. **Open the dashboard automatically.** Query the local 500 m radius; prepare building/facility proxies plus explicit placeholders. Never inherit the prior project's counts or finances.
-3. **Review evidence.** Original suggestions, current inputs, source dates and missing layers stay visible in Locations and the report. Existing grid status starts unknown; historical sector records are not current village coverage.
-4. **Refine the project.** Review households, equipment, growth, supply, tariff and financing. The nominal model range does not include proxy-input uncertainty. All money defaults are illustrative, not extracted ESMAP/AMDA benchmarks.
-5. **Export.** Reports and analysis ZIP retain the profile; download the compact source pack and the separate numerical building-point dataset in Locations. Metered validation, VIIRS/GridFinder/EAE/MTF layers and cost calibration remain open.
-
-To refresh deliberately: `.venv/bin/python scripts/collect_rwanda.py electricity facilities buildings boundary`, rerun tests, then restart the app. The building tile download is about 576 MB. Preserve old snapshots before a refresh needed for report reproduction. Selection works offline after import.
-
-## Historical location-first workflow (v1.3, superseded by v1.4)
-
-The following records the earlier eight-country/manual-review flow. v1.6 above is the current user scope and default interaction. The following map and coordinate workflows are historical, not available in the current UI.
-
-1. **Find a site.** Browse public place records for all eight countries. Rwanda uses district → sector → settlement; other countries use source-supported local equivalents. Missing or older subdivisions are disclosed, not invented. Country-wide settlement search and surveyed-coordinate entry are fallbacks.
-2. **Add customers.** Inputs start blank for each new place. A household estimate is required. Unknowns can be filled with explicitly reviewed planning placeholders; zero is not automatically inferred from missing data.
-3. **Check grid access.** Default: unknown. Reported unserved, planned and connected claims require a source note and date and remain user-reported. Connected sites are flagged outside the unserved-site focus. Search excludes capitals/admin seats, urban-labelled administrative areas and their linked descendants, and known large settlements; it does not verify rural character or absence of a grid.
-4. **Build the dashboard.** Keep day/week/month/year estimates, Low / expected / high cases, three-year growth, productive uses, explanations, sizing risks, financial stress and downloadable reports. New projects reset all money budgets and supply limits; enter capacity, tariff, costs and financing before interpreting cash. Currency labels never convert amounts.
-5. **Review the evidence.** Load the map only by choice; fetch World Bank national context separately. Compare genuinely measured, permissioned annual site aggregates in Evidence. Public geography and national statistics do not calibrate the model or validate village demand.
-
-The default selector runs offline from 101,142 public administrative/place records downloaded on 31 October 2026, stored in `data/locations/{country}.json`. The filtered settlement list is smaller. [GeoNames](https://download.geonames.org/export/dump/readme.txt), CC BY 4.0; source URLs, fetch times, modification dates and source ZIP hashes are preserved. Administrative coverage is uneven, especially lower-level Kenya/South Sudan records and older Burundi divisions. This is a dated gazetteer snapshot, not a current utility map or live meter feed.
-
-To deliberately refresh all eight public extracts, run `.venv/bin/python scripts/import_locations.py`, rerun geography tests, then restart the app. The script sends no project data and validates all downloads before replacing outputs. Do not refresh during report reproduction without retaining the old snapshot.
-
-Historical v1.3 behavior below (maps and device-position controls were removed in v1.6). Public statistics require internet; geography browsing does not. World Bank snapshots are memory-cached up to 24 hours and may need refetching after a restart. Save keeps one project in this browser; reports include its coordinates and provenance. Device location is optional, one-shot, rounded and draft-only under **Correct this project’s coordinates**; it is never assumed to be the project site. Correcting coordinates clears previous grid-access claims. Use **Find another site** for a different project; no counts or costs are silently copied.
-
-## Reproduce on another machine
-
-Tested on Linux with Python 3.14.4. The lock file records the full tested dependency set.
+Tested with **Python 3.14.4**. Use **Node.js 22** for the JavaScript tests.
+The committed data and frozen reference model are sufficient to start the app;
+**do not retrain or download raw data to run the demo**.
 
 ```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements-lock.txt
-.venv/bin/python build.py
-.venv/bin/python build_profiles.py
-.venv/bin/python -m pytest -q
-node tests/workspaces.test.cjs
-node tests/demand_charts.test.cjs
-node tests/feasibility.test.cjs
-node tests/discovery.test.cjs
-bash run.sh
+git clone https://github.com/siltanukifilie/GridSight.git
+cd GridSight
+python3.14 -m venv .venv
+.venv/bin/python -m pip install -r requirements-web.txt
+GRIDSIGHT_PUBLIC_DEMO=1 GRIDSIGHT_LOW_MEMORY=1 bash run.sh
 ```
 
-RAMP 0.5 requires the pinned NumPy 2.3.5 and pandas 2.3.3 versions. Keep those pins unless its integration is upgraded and retested. Set `GRIDSIGHT_PORT` to change the default port. The Flask development server binds to localhost; public hosting would require a production server and appropriate access controls.
+Open [localhost:8050](http://127.0.0.1:8050/). The public-demo flag keeps meter
+uploads disabled. Omit it only for a permissioned, private local study; do not
+disable it on a public server. [Deployment and privacy](docs/DEPLOYMENT.md).
 
-Generate local example analysis reports with `.venv/bin/python export_examples.py`.
+### Test
 
-## Implemented capabilities
+```bash
+.venv/bin/python -m pip install pytest==9.2.0
+GRIDSIGHT_LOW_MEMORY=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m pytest -q
+node --test tests/*.test.cjs
+.venv/bin/gunicorn --config gunicorn.conf.py --check-config 'app:create_app()'
+```
 
-- Short dashboard copy and expandable “How it works” explanations; detailed exported reports remain unchanged.
-- Two role-specific dashboards with six areas each, a shared forecast, and role-specific exports.
-- Central demand estimates per day, week, month and year in both overviews and exports. These are Year 1 average equivalents using 365 days/year, 12 months/year and 7 days/week; seasonal patterns and future growth are not applied to these conversions. Financial calculations remain monthly.
-- Daily / Weekly / Monthly / Yearly chart tabs in both overviews. Daily shows illustrative hourly power; week/month show average daily energy. Yearly displays the next 12 monthly estimates and preserves their annual total. The average-month view explicitly weights its partial final day. Keyboard navigation is supported.
-- 500 synthetic communities and 18,000 monthly observations; three editable demonstration cases.
-- Baseline and trained gradient-boosting forecasts, calibrated ranges, and site-separated testing.
-- Actual RAMP integration for seven appliance-based daily load shapes.
-- Three-year growth, productive equipment additions, revenue stress tests, break-even energy and debt coverage.
-- Explicit Low / Expected / High cases; 36-month cash and capacity calculations; independent mill/pump/cold-room opportunity comparisons with optional developer support payback; over-/under-sizing screens and optional capital exposure. All methods and evidence limits are visible.
-- Full feasibility-screening HTML report, print/PDF action and reproducible CSV/JSON package. Optional three-year NPV is before financing/tax, not whole-life project valuation.
-- Served-energy constraints, extrapolation notices, explanations and portable analysis exports.
-- Investor/lender downside overview, financial-only editing, read-only technical profile, and an explicit missing-evidence checklist.
-- 361 Python calculation/data/API/report tests and 84 interface-logic tests; real-browser visual checks remain pending.
+GitHub Actions runs the backend, interface-logic and production-configuration
+checks. See the [verification record](docs/TEST_REPORT.md) for tested scope and
+browser limitations. Software tests are not measured forecasting accuracy.
 
-See [data card](docs/DATA_CARD.md), [model card](docs/MODEL_CARD.md), [verification record](docs/TEST_REPORT.md), [data-sharing proposal](docs/DATA_SHARING.md), and [third party notices](THIRD_PARTY_NOTICES.md).
+## Repository map
 
-See [feasibility methods](docs/FEASIBILITY_METHODS.md) and the [completion plan](docs/COMPLETION_PLAN.md) for the newly completed features and their scope.
+```text
+GridSight/
+├── app.py                 Flask API and report routes
+├── src/                   Demand, finance, evidence and validation logic
+├── static/                Dashboard JavaScript, CSS and brand assets
+├── templates/             App and printable report templates
+├── config/                Country and planning assumptions
+├── data/                  Public context, measured studies and synthetic demos
+├── models/                Frozen synthetic reference model
+├── reports/               Reproducible synthetic evaluation results
+├── scripts/               Collection, preparation and review utilities
+├── tests/                 Backend and interface tests; synthetic fixtures
+├── docs/                  Judge guide, architecture and methods
+│   └── archive/           Clearly labelled development history
+└── render.yaml            Existing free Render deployment configuration
+```
 
-## Data and export contracts
+## Team, contribution and reuse
 
-Feature v1.6 adds nested `detailed` inputs, `affordability`, a 20-feature inventory, service-month horizon and monthly component totals. `/api/geography?kind=cells&parent=…` selects actual lower administrative records. `/api/location-project` now accepts all eight EAC countries; manually entered names use no coordinates. New projects enable detailed mode; missing/disabled detailed settings preserve prior calculations.\n\nFeature v1.3 adds canonical public-location identifiers/provenance and user-reported grid evidence to project context. The local geography endpoints are `/api/geography` and `/api/geography/location`. Selecting a place does not change model features. Feature v1.2 added project `context` and optional `public_data` to analysis JSON. Monetary feasibility keys formerly suffixed `_rwf` now use `_amount` (for example `extra_revenue_amount_month`); monetary CSV rows include a `currency` column. No calculations or exchange rates are changed by the denomination. A fetched public snapshot adds `public_context.json` to the export ZIP.
+**Developed by the GridSight Team.** See [team and acknowledgements](AUTHORS.md).
+AI-assisted implementation and remaining submission work are described in the
+[disclosure](docs/DISCLOSURE.md).
 
-Public-provider notices and commercial-hosting limits are in [third party notices](THIRD_PARTY_NOTICES.md). The legacy Open-Meteo geocoder endpoint remains for compatibility and its hosted terms still apply; the default selector uses attributed offline GeoNames data. The public app uses the existing free Render hosting. This evidence update adds no paid service or public meter-upload permission. Publication checks are recorded in [the verification log](docs/TEST_REPORT.md).
-
-## Evidence boundary
-
-On 100 held-out synthetic sites, MAE is 1,294.73 kWh/month and weighted absolute error is 10.55%. The nominal 80% interval covers 91% of test outcomes. The baseline MAE is 2,236.26 kWh/month. These values measure performance inside a simulation, not actual Rwanda forecasting accuracy.
-
-Validation of the current monthly estimator and growth curve remains pending. A separate exploratory KIT hourly-power benchmark is included locally; it does not validate this estimator. Growth and financial assumptions are illustrative. The supply screen is not a solar/battery dispatch model or engineering design, and results are not a lending recommendation. Focused browser checks have been performed; full release, accessibility and print/PDF acceptance remain open.
-
-### v1.4 API additions
-
-`GET /api/rwanda-data` reports source status; `POST /api/location-project` accepts a Rwanda location and returns fresh provisional inputs; analysis adds `location_profile` generated from local sources. Selecting a new place now initializes model features from explicit proxies/placeholders. Correcting an existing point alone still preserves the user’s inputs. The analysis ZIP includes `location_profile.json`; `/api/rwanda-data/download` supplies the compact source pack, and `/api/rwanda-data/buildings` supplies the numerical detection dataset.
+Contributions should preserve source attribution, privacy protections and
+measured-versus-synthetic distinctions. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Data retains its original, mixed licences; the repository does not grant a
+blanket software or data licence. See [reuse and attribution](docs/REUSE.md) and
+[third-party notices](THIRD_PARTY_NOTICES.md).

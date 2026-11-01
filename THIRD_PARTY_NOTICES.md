@@ -31,7 +31,7 @@ The preparation-only status in older snapshots describes that earlier stage;
 the separate hourly experiment has now been trained, as documented in
 `docs/OPERATIONAL_EVIDENCE.md`. Monthly/growth validation is still pending.
 
-## Prepared evidence integration (1 November 2026; local review)
+## Prepared evidence integration (1 November 2026)
 
 The new `data/prepared/` summaries have mixed source rights. Preserve their
 README, field dictionaries, source manifest and original/bundled hash inventory.
@@ -75,12 +75,15 @@ GridSight uses open-source dependencies installed into an isolated Python enviro
 
 Transitive dependencies retain their own licenses. The installed distribution metadata contains their full notices. RAMP is used through its published API without modifying the package. Appliance configurations, monthly generator, frontend, scenario calculations and integration code in this project are newly authored work.
 
-External references provide methodology and context. The generated dataset does not contain copied operator data. AI assistance was used in implementation and documentation; the later submission disclosure should include this work and its actual timing.
+External references provide methodology and context. The synthetic dataset does
+not contain copied operator data; separate public measured-study derivatives
+are credited above. AI assistance was used in implementation and documentation;
+see the [development disclosure](docs/DISCLOSURE.md).
 ## Public context services (v1.2)
 
 - **World Bank, World Development Indicators:** national population `SP.POP.TOTL` and electricity access `EG.ELC.ACCS.ZS`. The indicator pages identify CC BY 4.0 licensing: [population](https://data.worldbank.org/indicator/SP.POP.TOTL), [electricity access](https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS). The app retains the latest non-null value per series, source year/URL and retrieval time; it does not alter values or use them as local demand labels. [API documentation](https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures).
 - **Open-Meteo / GeoNames:** on-demand country-filtered place-name and coordinate lookup. [Geocoding documentation](https://open-meteo.com/en/docs/geocoding-api); [GeoNames dataset licence](https://download.geonames.org/export/dump/readme.txt), CC BY 4.0. Place labels are combined with administrative names; no customer/financial inputs are sent. The free hosted endpoint is for non-commercial prototyping. A paid/commercial release needs an appropriate provider arrangement or replacement; no subscription was purchased. [Provider terms/pricing](https://open-meteo.com/en/pricing).
-- **OpenStreetMap contributors:** opt-in embedded map, visibly attributed and linked to [copyright/ODbL](https://www.openstreetmap.org/copyright). No tiles are prefetched or downloaded for offline use. Map requests are made by the visitor only after choosing to load/open the map. [Service policy](https://operations.osmfoundation.org/policies/tiles/).
+- **OpenStreetMap contributors:** historical v1.2 opt-in map referenced [copyright/ODbL](https://www.openstreetmap.org/copyright) and the [tile policy](https://operations.osmfoundation.org/policies/tiles/). The current location interface has no map or tile loading. The separate OSM data extract is credited below.
 
 Public context is not consumed by the prediction model. The synthetic dataset and model retain their original provenance. Internet/provider availability is not guaranteed; failures are surfaced without fabricated replacement data.
 
@@ -90,7 +93,7 @@ The new default selector reads locally imported **GeoNames Gazetteer** country e
 
 This derivative keeps selected administrative and populated-place fields, excludes seats/historical features, maps zero population to unknown, constructs code-based hierarchy and applies disclosed rural-first search filters. Each country JSON carries its source URL, fetch time and source ZIP checksum; each record keeps its modification date. Geographic data is provided as-is with no accuracy, timeliness or completeness warranty. Preserve this attribution and transformation notice with redistribution.
 
-The default selector does not use the hosted Open-Meteo endpoint; that legacy API remains available for compatibility with its original provider restrictions. Map tiles are still loaded only on a visitor's explicit action. Country scope follows the user's eight-country choice and the [EAC partner-state list](https://www.eac.int/eac-partner-states); geographic naming is not an assertion about disputed jurisdiction.
+The default selector does not use the hosted Open-Meteo endpoint; that legacy API remains available for compatibility with its original provider restrictions. The current interface has no map. Country scope follows the eight-country configuration; geographic naming is not an assertion about disputed jurisdiction.
 
 ## Rwanda local evidence (v1.4)
 
@@ -100,4 +103,8 @@ The default selector does not use the hosted Open-Meteo endpoint; that legacy AP
 - **MININFRA**, Bugesera Connection to electricity layer, 2022 description: [public service](https://infrastructure.space.gov.rw/server/rest/services/Connection_to_electricity/MapServer/0). Reuse licence is not stated by the service. Raw records are retained locally for review but deliberately omitted from downloadable public-source packs pending terms verification. No current site grid-access or household-count assertion is derived.
 - **Shapely 2.2.0**, Shapely contributors, BSD-3-Clause, and bundled GEOS with its own licence. Used to clip point detections and check the imported country geometry; distribution metadata retains full notices.
 
-VIIRS, GridFinder, WRI EAE, MTF, ESMAP/AMDA cost tables and GEP settlement/scenario data are references or pending inputs, not included collected datasets. No meter data is present. The original synthetic model remains unchanged. The v1.4 source/proxy distinction supersedes the earlier blanket statement that public context never affects inputs; only explicit local proxies initialize a new preliminary screen.
+At v1.4 these additional layers and measured studies were still pending. The
+current release adds the separately credited prepared, operational and transfer
+evidence above; see the [data catalogue](data/README.md) for actual coverage.
+The original synthetic model remains unchanged. Explicit geographic proxies
+can initialize a preliminary screen, but they do not become consumption labels.

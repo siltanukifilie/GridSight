@@ -6,7 +6,7 @@ const vm=require('node:vm');
 const path=require('node:path');
 const {analyticsSelection,analyticsMonthlyLabel}=require('../static/analytics.js');
 const read=file=>fs.readFileSync(path.join(__dirname,'..',file),'utf8');
-const example=JSON.parse(read('reports/examples/rw-demo-02.json'));
+const example=JSON.parse(read('tests/fixtures/rw-demo-02.json'));
 const script=read('static/analytics.js');
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} vs ${b}`);
 

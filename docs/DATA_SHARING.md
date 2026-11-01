@@ -1,6 +1,10 @@
 # Proposed operator data integration
 
-The current MVP uses generated data and contains no customer meter records. The next evidence phase should obtain explicit operator permission and agree on purpose, permitted users, retention, and publication of aggregate results.
+The public MVP separates synthetic demos from attributed public measured-study
+summaries and contains no confidential customer meter records. Validation of the
+current pre-construction model still requires operator-approved matched inputs
+and outcomes. Agree on purpose, permitted users, retention and publication of
+aggregate results before collecting those records.
 
 Start with site-level monthly or hourly aggregates, stable anonymous site identifiers, connection date, customer-group totals, pre-construction surveys, service availability, metering coverage, and documented units. Preserve a distinction between observed energy and estimated unserved demand.
 

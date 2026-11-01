@@ -6,7 +6,7 @@ const vm=require('node:vm');
 const path=require('node:path');
 const root=path.join(__dirname,'..');
 const read=file=>fs.readFileSync(path.join(root,file),'utf8');
-const example=JSON.parse(read('reports/examples/rw-demo-02.json'));
+const example=JSON.parse(read('tests/fixtures/rw-demo-02.json'));
 const app=read('static/app.js').split("document.querySelectorAll('.nav-item').forEach(b=>b.addEventListener")[0];
 
 function harness(role='developer', modern=false) {
@@ -239,7 +239,7 @@ test('thin-data suggestions need explicit review and a second submit before anal
   await h.context.submitCommunity(event);
   assert.equal(analyzeCalls,1);assert.equal(s.site.mills,0);assert.equal(s.context.input_origin,'user_entered');
 });
-const rampExample=JSON.parse(read('reports/examples/connection-ramp.json'));
+const rampExample=JSON.parse(read('tests/fixtures/connection-ramp.json'));
 function connected(role='developer'){
   const h=harness(role),s=h.state(),r=structuredClone(rampExample);
   Object.assign(s,{result:r,site:r.site,assumptions:r.assumptions,planning:r.planning,
@@ -344,7 +344,7 @@ test('investor financial edits leave connection assumptions unchanged',async()=>
   assert.equal(s.connection,previous);assert.equal(s.planning.project_capex,1000);
 });
 
-const detailedExample=JSON.parse(read('reports/examples/detailed-inputs.json'));
+const detailedExample=JSON.parse(read('tests/fixtures/detailed-inputs.json'));
 function detailedHarness(role='developer'){
   const h=harness(role),r=structuredClone(detailedExample),s=h.state();
   Object.assign(s,{result:r,site:r.site,context:r.context,detailed:r.detailed,connection:r.connection,assumptions:r.assumptions,planning:r.planning});

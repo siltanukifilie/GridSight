@@ -1,0 +1,84 @@
+{
+  "version": "2026-11-01.1",
+  "scope": "Existing-site hourly delivered power; no monthly or growth validation",
+  "files": [
+    {
+      "bundled": "metrics.csv",
+      "original": "GridSight_Model_Comparison_20261101/results/metrics.csv",
+      "sha256": "ed9a9372446fc9a5a83e7e3d1e5bcf4861a9fbbc4d836c417384260562eed5c3",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "selected_models_test.csv",
+      "original": "GridSight_Model_Comparison_20261101/results/selected_models_test.csv",
+      "sha256": "e1d7821a49c59ddc763cce0a99a5c8bb962c1cae6279a79bc331231627d03ab4",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "split_summary.csv",
+      "original": "GridSight_Model_Comparison_20261101/results/split_summary.csv",
+      "sha256": "ffd9cc98da9236a6ffeeb61ee0c1165f51459ddfd719f83e1606d518e084f775",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "operational_features.csv",
+      "original": "GridSight_Model_Comparison_20261101/inputs/features/operational_forecasting.csv",
+      "sha256": "8c6ddcdcd3e471621fbe678bcf13e827ec79f418dae1efed47f6ede77d69d763",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "predictions.csv",
+      "original": "GridSight_Model_Comparison_20261101/results/predictions.csv",
+      "sha256": "39d01c46992aedbe31c6c3c8be2df04c8cda746a3a13bd338705648d904d039a",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "protocol.json",
+      "original": "GridSight_Model_Comparison_20261101/protocol.json",
+      "sha256": "2736fb83caa8a8b5a056bc27365b7ee82f3fdad5e80258e233c557b634c2325b",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "run_summary.json",
+      "original": "GridSight_Model_Comparison_20261101/run_summary.json",
+      "sha256": "d2966492cc20caf01913afd60e84475ab77b569281e1d9823bf55c6a42d98512",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "selection_lock.json",
+      "original": "GridSight_Model_Comparison_20261101/selection_lock.json",
+      "sha256": "35aa5dd6d4dd32a861db159a3319e4078b40a6647d0e9784c2b902e68f5d4e64",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "verification.json",
+      "original": "GridSight_Model_Comparison_20261101/verification.json",
+      "sha256": "d7c902d9dc89e188349488d73993025f39bf0cbdb3db1a999bf25d496c3fb5e5",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "feature_dictionary.csv",
+      "original": "GridSight_Model_Comparison_20261101/inputs/metadata/operational_feature_dictionary.csv",
+      "sha256": "66fd943a35ca4dbd794db0fef77e081cc2f7c60de3b0d96d50c82226f414ff90",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "source_manifest.csv",
+      "original": "GridSight_Model_Comparison_20261101/inputs/metadata/meter_source_manifest.csv",
+      "sha256": "0dc2c7fcd99f07ea1fad29d6cbc82896254b17c5447cb58b0f19e86dc4713472",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "source_notes.txt",
+      "original": "GridSight_Model_Comparison_20261101/inputs/metadata/KIT_source_notes.txt",
+      "sha256": "86f880959eeabf0b35bd01ac267e3af5c9c0395d1915c0df9f33004280bd33fe",
+      "transformation": "Unmodified public experiment snapshot"
+    },
+    {
+      "bundled": "RESULTS.txt",
+      "original": "GridSight_Model_Comparison_20261101/RESULTS.txt",
+      "sha256": "3bdf08bae57454649ccf093dd1445d4a7d74ff5220f8eb0b991f572f4f852649",
+      "transformation": "Unmodified public experiment snapshot"
+    }
+  ]
+}

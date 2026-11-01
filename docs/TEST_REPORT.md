@@ -1,8 +1,41 @@
 # GridSight verification record
 
-Updated 1 November 2026 for local feature v1.10. Earlier sections retain historical verification details.
+## v1.11 prepublication checks — real hourly data and comparisons
 
-## Current v1.10 verification — five-deliverable review and pack
+- **625 Python tests pass; all ten JavaScript test files pass.** These include
+  the earlier Bugesera/context integration and twelve new backend checks plus
+  four new interface checks for the completed model comparison. Dependencies
+  have no broken requirements; changed JavaScript parses; diff whitespace passes.
+- Checks cover real snapshot scores (including Random Forest/Gradient Boosting),
+  1,540 actual target rows, 4,216 prediction rows, UTC preview alignment, missing
+  versus zero, fixed validation choices, hash linkage, CSV/ZIP/report provenance,
+  source attribution, corrupted/missing snapshots and HTTP 503 download behavior.
+- Both roles retain identical planning forecasts/finance when hourly evidence
+  is removed. Current monthly-model validation stays pending and public meter
+  uploads remain blocked. The synthetic model and original datasets are unchanged.
+- One initial full-suite failure was an outdated export-file inventory expectation;
+  it now accounts for the deliberately added operational_models folder, with its
+  own explicit content/integrity checks. The subsequent full suite passed.
+- Browser preview at localhost could not run because the admin-enforced browser
+  security-check service was unavailable. No browser protection was bypassed.
+  Current visual/mobile/download-click acceptance is not claimed. API, template
+  and interface-logic checks do not establish those visual results.
+- The user explicitly authorized publishing after tests. These are prepublication
+  checks; hosted verification must be recorded after deployment.
+
+Updated 1 November 2026 for the local prepared-evidence integration. Earlier sections retain historical verification details.
+
+## Current local verification — prepared public evidence (not deployed)
+
+- **613 Python tests pass; all ten JavaScript test files pass.** Final full runs used the low-memory path and the existing dependencies. `git diff --check` passes. These are software checks, not field-validation evidence.
+- Backend checks include all 15 actual Bugesera GeoNames sector joins, a sector/cell hierarchy, wrong-area/country rejection, manual-location warnings, null preservation, kW/kWh separation, actual benchmark scores, preparation splits, forged evidence rejection, unchanged forecasts and finances for both roles, HTML/JSON/CSV/ZIP provenance, public upload restrictions, and unavailable/tampered snapshots.
+- Desktop Chrome on temporary localhost port 8053 in public-demo mode: Rwanda → Bugesera District → Gashora → Biryogo; both developer and investor/lender workspaces; Project/Community sector context; Evidence benchmark and preparation sections. Biryogo's 56 assumed service-area households remained separate from Gashora's 8,393 census households. Existing green/light styling retained.
+- The generated feasibility report was inspected in the browser, including the whole-sector evidence section, units, source limitations and pending-model-validation notice. This is screen QA, not printed-PDF verification. The separate deliverables report is covered by automated rendering checks, not an additional browser review.
+- The compact evidence download endpoint and ZIP contents pass API tests. Chrome blocked the direct download with `ERR_BLOCKED_BY_CLIENT`; no browser-generated file was verified and no protection was bypassed. Manual browser download acceptance remains pending.
+- All 15 source-file hashes and all 15 bundled snapshot hashes match the inventory (30 checks). The frozen model and both original synthetic datasets retain their previous SHA-256 hashes. No model was trained, no source original was edited, and no commit, push or Render deployment occurred.
+- No multi-year consumption labels, current-model validation scores or calibrated confidence bounds were created. Comprehensive mobile, assistive-technology, real-upload, download and print acceptance remain open. The temporary preview server was used only for local review; the existing user server and hosted application were not replaced.
+
+## Historical v1.10 verification — five-deliverable review and pack
 
 - **735 automated checks pass:** 582 Python + 153 interface logic. Added 16 packaging/status checks and 7 interface checks; all existing suites still pass. Stylesheet parses. Frozen model and both original synthetic-data SHA-256 values are unchanged.
 - Backend coverage: both roles; detailed Months 1–36 and 19–54; enabled legacy connection curve and disabled adoption; period/annual conservation; exact monthly scenario reuse; null unavailable empirical scores; no role-dependent input fingerprint; forged evidence ignored; invalid inputs; escaped names; intact ZIP; blank meter templates and permission worksheet; original analysis-export file list preserved.

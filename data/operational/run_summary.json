@@ -1,0 +1,21 @@
+{
+  "status": "TRAINED_EXPLORATORY_NOT_DEPLOYED",
+  "sites": [
+    "RW_ECOS",
+    "CD_IDJWI",
+    "HT_BEAUMONT"
+  ],
+  "families_per_site": 8,
+  "ml_candidate_fits": 66,
+  "selected_family_artifacts": 24,
+  "selection_lock_sha256": "35aa5dd6d4dd32a861db159a3319e4078b40a6647d0e9784c2b902e68f5d4e64",
+  "test_rows_per_model_all_sites": 260,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.7.2",
+    "scipy": "1.16.3",
+    "joblib": "1.5.2"
+  }
+}

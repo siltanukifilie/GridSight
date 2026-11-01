@@ -1,5 +1,15 @@
 # GridSight forecasting model
 
+This card describes the **legacy synthetic-trained reference model**, not the
+current 20-input engineering estimator. The latter uses counts × power × hours
+and assumption-based growth. The prepared Bugesera context and separate KIT
+power benchmark do not retrain or validate either estimator. See
+PREPARED_EVIDENCE.md for their targets, units, scope and remaining data needs.
+
+The completed real-data hourly models are a separate experiment documented in
+OPERATIONAL_EVIDENCE.md. Their results/data are displayed, but their executable
+weights are not loaded by this application and do not replace this reference model.
+
 Version 1.0.0 predicts first-year average monthly customer demand in kWh/month. All model training, calibration, and evaluation use synthetic data.
 
 The model uses seven customer-group counts, expected household uptake, and an appliance index. It excludes district names, site IDs, future monthly outcomes, latent generator parameters, and realized growth.

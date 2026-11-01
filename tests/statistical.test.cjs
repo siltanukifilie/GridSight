@@ -85,7 +85,7 @@ test('rendered controls retain the settings behind a cached result',()=>{
 });
 test('study starter describes separate splits and first-two-year restriction',()=>{
   const h=harness(),html=h.c.confidenceStudyHtml();
-  for(const text of ['9 calibration sites','2 test sites','First 24 months','cannot validate Year 3','No built-in measured dataset','study starter pack'])assert.ok(html.includes(text));
+  for(const text of ['9 calibration sites','2 test sites','First 24 months','cannot validate Year 3','No built-in measured monthly-history dataset','study starter pack'])assert.ok(html.includes(text));
 });
 test('study rendering escapes data, reports actual coverage and small-sample interval',()=>{
   const h=harness();h.c.fixture=study();vm.runInContext('confidenceResult=fixture;renderConfidenceResult()',h.c);

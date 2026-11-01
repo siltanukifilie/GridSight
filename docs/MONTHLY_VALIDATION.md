@@ -7,11 +7,11 @@
 3. **Pending:** obtain genuinely measured customer-side site totals AND documented pre-connection inputs with suitable reuse permission. Public-source findings are in `data/validation/source_catalog.json`.
 4. **Pending:** external review of provenance, alias-free independent sites, representativeness and forecast accuracy. The software never assigns an automatic validation pass.
 
-This does not retrain the old model. No real dataset is supplied with this release, and no real-site accuracy score has been calculated. Automated test fixtures are invented software checks and are not field evidence.
+This does not retrain the old model. No matched monthly-consumption dataset is supplied, and no real-site accuracy score for the current monthly model has been calculated. The separately displayed KIT hourly-power benchmark is exploratory supporting evidence, not validation of this model. Automated test fixtures are invented software checks and are not field evidence.
 
 ## In the app
 
-Open **Evidence → Test the current forecast**. Download the starter pack, complete its site manifest and monthly CSV, then upload both. Results are a separate batch comparison, not certification of the selected dashboard location. Download the JSON report and predicted-versus-actual CSV. Uploads and results are not saved to the server or local storage, and are not sent to external providers.
+In a locally run app, open **Evidence → Test the current forecast**. Download the starter pack, complete its site manifest and monthly CSV, then upload both. Public Render meter uploads are disabled. Results are a separate batch comparison, not certification of the selected dashboard location. Download the JSON report and predicted-versus-actual CSV. Local uploads and results are not saved to the server or local storage, and are not sent to external providers.
 
 The starter pack has **blank fields, not invented measurements**. Do not use proxy/default dashboard values as though they were independently observed inputs.
 

@@ -1,0 +1,40 @@
+GRIDSIGHT MODEL COMPARISON — RESULTS
+
+Eight approaches, trained/evaluated separately at three operating sites.
+Models were chosen using validation MAE, before test scoring.
+
+FROZEN VALIDATION CHOICES, SCORED ON LATER TEST HOURS
+Site             Selected approach          Test hours    MAE kW    WAPE
+Rwanda ECOS      Ridge regression                 64       0.0395    1.25%
+Congo Idjwi      Last-hour persistence             86       0.1998    6.67%
+Haiti Beaumont   Extra Trees                      110       0.0401   28.31%
+
+MAE is mean absolute error, in kW. WAPE is total absolute prediction error divided
+by total absolute observed power. It is not '100 minus accuracy'. Lower is better.
+WAPE reflects the total level and errors during the scored test hours, not every
+hour of the site campaign. Haiti's low mean load makes relative error sizable.
+
+INTERPRETATION
+Rwanda: Ridge reduces test MAE by 3.93% versus the last-hour baseline. This is a
+modest result on only 64 test hours; no significance or deployment claim is made.
+Congo: none of the five ML families beats last-hour persistence in validation.
+Persistence also outperforms every tested ML family on this test period. Keep
+the baseline as the exploratory choice instead of forcing a complex model.
+Haiti: Extra Trees reduces test MAE by 25.79% versus persistence, but test WAPE
+is still 28.31%, so the remaining relative error must stay visible.
+
+All approaches used the same site-specific rows. No test-based reselection or
+retraining took place. The model choices happened also to have the lowest test MAE
+in these runs, but they remain choices made on validation, not on test rankings.
+
+WHAT THIS DOES NOT SHOW
+No prediction for an unbuilt Bugesera mini-grid, no validated monthly kWh forecast,
+no learned annual growth and no calibrated uncertainty interval. This is later-hour
+testing at already-observed operating sites, NOT validation against held-out sites.
+The campaigns were previously inspected, so this is exploratory evidence.
+
+NEXT STEP
+Review the Rwanda Ridge prototype for a separately labelled operating-site module.
+Retain the app's engineering monthly-demand estimates and growth scenarios until
+matched, longer operator records support the intended pre-construction model.
+Do not replace or publish the planning model automatically from these results.

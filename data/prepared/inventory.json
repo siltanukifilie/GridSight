@@ -1,0 +1,112 @@
+{
+  "version": "2026-11-01.1",
+  "prepared_on": "2026-11-01",
+  "purpose": "Context and exploratory benchmark only; no model training or deployment",
+  "files": [
+    {
+      "original": "GridSight_Training_Preparation_20261101/features/bugesera_screening_UNLABELLED.csv",
+      "bundled": "bugesera_sectors.csv",
+      "original_sha256": "1ac9e83a6c373a70605ffb7b0f6eba68236e9d2c459322d8b2f33de5f7719002",
+      "bundled_sha256": "1ac9e83a6c373a70605ffb7b0f6eba68236e9d2c459322d8b2f33de5f7719002",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/metadata/bugesera_source_dictionary.csv",
+      "bundled": "source_dictionary.csv",
+      "original_sha256": "783e7e0012bd34fcee161be15a28c40419a0f0c1ace03d7df215d2c9323ba3eb",
+      "bundled_sha256": "783e7e0012bd34fcee161be15a28c40419a0f0c1ace03d7df215d2c9323ba3eb",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/metadata/bugesera_engineered_feature_dictionary.csv",
+      "bundled": "engineered_dictionary.csv",
+      "original_sha256": "8f1b50456d374c08e94e6cacc4433c8abed90cfe734bb8042c7553039f51825f",
+      "bundled_sha256": "8f1b50456d374c08e94e6cacc4433c8abed90cfe734bb8042c7553039f51825f",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/metadata/bugesera_source_manifest.csv",
+      "bundled": "source_manifest.csv",
+      "original_sha256": "216b50a5b0dfd432c7476561f1e987f398a43d573310772c4af2f93264a4ceb7",
+      "bundled_sha256": "a0e991de9896078ebba8b28ab85a4b7e3bf7c72fbb9dd41cfb3f1d6870bb3fc9",
+      "transformation": "Selected nine relevant source records; omitted unrelated sources. Line endings normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/metadata/original_20_feature_coverage.csv",
+      "bundled": "original_20_feature_coverage.csv",
+      "original_sha256": "dffb51af42f330089b76fd2d9062dc0925e3b54b412a58447e476bbe01d08394",
+      "bundled_sha256": "8d07f82e3a28893c48298330c578567a3e821f08000a317f24d9625b6729ffc1",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/metadata/preparation_report.json",
+      "bundled": "preparation_report.json",
+      "original_sha256": "46f36351d46c4c8f8b5c3a646fa9faa84d32eedf1b7b6098ccc703638122f034",
+      "bundled_sha256": "c296e119221c042c6c3c503fa751c8210c0da301cd39fc07f65e514a4cbda11e",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/metadata/preparation_summary.csv",
+      "bundled": "preparation_summary.csv",
+      "original_sha256": "ef0ebb45faa04f53dbe874ca3ebacd9269ecb2ee7dd295a44f6e92c2bc080cf1",
+      "bundled_sha256": "ef0ebb45faa04f53dbe874ca3ebacd9269ecb2ee7dd295a44f6e92c2bc080cf1",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/training_contract.json",
+      "bundled": "training_contract.json",
+      "original_sha256": "066d1225cf9755db40c88874a988bf1ecad158e52c079933891afda55a5cafcc",
+      "bundled_sha256": "4a2af09eda31ef852a63b9338d76c8c9116fd778149a74d23762c4052e5924f6",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/metadata/operational_feature_dictionary.csv",
+      "bundled": "operational_feature_dictionary.csv",
+      "original_sha256": "66fd943a35ca4dbd794db0fef77e081cc2f7c60de3b0d96d50c82226f414ff90",
+      "bundled_sha256": "66fd943a35ca4dbd794db0fef77e081cc2f7c60de3b0d96d50c82226f414ff90",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_HeldOut_Evaluation_20261101/results/site_metrics.csv",
+      "bundled": "benchmark_metrics.csv",
+      "original_sha256": "6731044269647cd8d9b7c705d8cd65b67ee2031425a827a40b13c0177740bc8b",
+      "bundled_sha256": "6731044269647cd8d9b7c705d8cd65b67ee2031425a827a40b13c0177740bc8b",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_HeldOut_Evaluation_20261101/results/data_quality_summary.csv",
+      "bundled": "benchmark_quality.csv",
+      "original_sha256": "152e8aa2cae9261c2ba55a1f058b73ede8ae52fb1b1791d81245921c28279ea9",
+      "bundled_sha256": "152e8aa2cae9261c2ba55a1f058b73ede8ae52fb1b1791d81245921c28279ea9",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_HeldOut_Evaluation_20261101/protocol.json",
+      "bundled": "benchmark_protocol.json",
+      "original_sha256": "ebeadbd8e8e15b583d6528e3065c2615cd7e5443d5f0e6cbd1654d39ce984672",
+      "bundled_sha256": "ebeadbd8e8e15b583d6528e3065c2615cd7e5443d5f0e6cbd1654d39ce984672",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_HeldOut_Evaluation_20261101/RESULTS.txt",
+      "bundled": "BENCHMARK_RESULTS.txt",
+      "original_sha256": "ada731c729be804ad95272074d53cabe7edf462c1b493251f44cf27c5e5006d4",
+      "bundled_sha256": "ada731c729be804ad95272074d53cabe7edf462c1b493251f44cf27c5e5006d4",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_HeldOut_Evaluation_20261101/README.txt",
+      "bundled": "BENCHMARK_METHOD.txt",
+      "original_sha256": "36ac78bee5c1cc409cbf7864f4871a97792acac0aae7b42b1a7e87c73323a4b0",
+      "bundled_sha256": "36ac78bee5c1cc409cbf7864f4871a97792acac0aae7b42b1a7e87c73323a4b0",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    },
+    {
+      "original": "GridSight_Training_Preparation_20261101/metadata/meter_site_catalog.csv",
+      "bundled": "meter_site_catalog.csv",
+      "original_sha256": "11b5c900de47f26c8ed563a5bc4c9a768d1df0ec54534b74ffc8802760980e77",
+      "bundled_sha256": "11b5c900de47f26c8ed563a5bc4c9a768d1df0ec54534b74ffc8802760980e77",
+      "transformation": "Copied snapshot; line endings/final newline normalised."
+    }
+  ]
+}

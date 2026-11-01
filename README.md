@@ -15,7 +15,7 @@ disabled on the public demo until secure access is implemented. Those tools
 remain available locally. The government electricity extract is local-only
 pending redistribution terms; other permitted public snapshots are included.
 
-GridSight is a local Python web app for **Mini-grid developers** and **Investors / lenders**. **East Africa: the eight EAC countries selected by the user.** Choose Country → District → Sector → Cell (source-supported local equivalents outside Rwanda), with no map or coordinate-entry UI. New projects use a transparent 20-input engineering estimate; Rwanda building/facility proxies can initialize the counts. Other-country and missing-record inputs are labelled assumptions. The legacy nine-feature synthetic-trained model is retained, not retrained on these new inputs.
+GridSight is a Python web app, available locally and as a public planning demo, for **Mini-grid developers** and **Investors / lenders**. **East Africa: the eight EAC countries selected by the user.** Choose Country → District → Sector → Cell (source-supported local equivalents outside Rwanda), with no map or coordinate-entry UI. New projects use a transparent 20-input engineering estimate; Rwanda building/facility proxies can initialize the counts. Other-country and missing-record inputs are labelled assumptions. The legacy nine-feature synthetic-trained model is retained, not retrained on these new inputs.
 
 ## Start here
 
@@ -25,7 +25,9 @@ GridSight is a local Python web app for **Mini-grid developers** and **Investors
 
 The implementation plan now includes the user's complete **13-item product-success checklist (R01–R13)**. Public-context integration, guided missing-input assumptions and eight country configurations are implemented. Measured-site accuracy, country transfer performance and paying-customer evidence remain open. The commercial model is proposed, not proven traction.
 
-Current milestone: **v1.10 — interactive dashboard redesign.** Original green/light colours restored at the user’s request, simpler overview, linked low/expected/high and Year 1–3 filters, daily/weekly/monthly/yearly energy cards, and a clickable 36-month curve with cash/debt/supply drill-down. Both developer and lender workspaces retain all specialist tools. This is a Power BI–style experience in the existing Python app, not a Microsoft Power BI connection. **566 Python + 146 interface-logic checks pass (712 total)**; focused desktop, mobile and chart-keyboard checks pass. Full release QA remains open. Financial evidence and controlled real-data update workflows from v1.9 remain available. No model/data rebuild or empirical accuracy/savings claim. See [Verification record](docs/TEST_REPORT.md), [Financial evidence](docs/FINANCIAL_EVIDENCE.md) and [Real-data updates](docs/REAL_DATA_UPDATES.md).
+Feature v1.11: **Bugesera public context and completed real-data hourly model comparisons**. Evidence now includes 1,540 measured hourly examples, results from five ML families and three baselines, actual-versus-predicted previews and downloadable CSVs. See [operational model evidence](docs/OPERATIONAL_EVIDENCE.md) and [prepared-evidence scope](docs/PREPARED_EVIDENCE.md). These are supporting experiments, not validation or replacement of the monthly planning calculation. Original branding, roles and public upload guards are unchanged.
+
+Deployed milestone: **v1.10 — interactive dashboard redesign.** Original green/light colours restored at the user’s request, simpler overview, linked low/expected/high and Year 1–3 filters, daily/weekly/monthly/yearly energy cards, and a clickable 36-month curve with cash/debt/supply drill-down. Both developer and lender workspaces retain all specialist tools. This is a Power BI–style experience in the existing Python app, not a Microsoft Power BI connection. Historical v1.10 checks passed; see the latest verification entry for current counts. Focused desktop, mobile and chart-keyboard checks passed. Full release QA remains open. Financial evidence and controlled real-data update workflows from v1.9 remain available. No model/data rebuild or empirical accuracy/savings claim. See [Verification record](docs/TEST_REPORT.md), [Financial evidence](docs/FINANCIAL_EVIDENCE.md) and [Real-data updates](docs/REAL_DATA_UPDATES.md).
 
 ## Continue the project
 
@@ -33,7 +35,7 @@ At the beginning of each working session, read the progress tracker and decision
 
 Record actual artifacts and checks before marking a step complete. Keep unfinished items and limits visible. Log changes to scope in the decision log. Preserve existing work and treat all files in the parent project's `sources/` folder as read-only reference material.
 
-The application runs locally at **http://127.0.0.1:8050/** while its server is running. Publishing and submission belong to the later delivery stage. No public site exists yet.
+The application runs locally at **http://127.0.0.1:8050/** while its server is running. The public Render demo is linked above. Local edits do not update it until a separately approved push/deployment; submission remains a separate step.
 
 ## Five deliverables — one review and download
 
@@ -45,7 +47,7 @@ Open **Evidence → Five deliverables** (also linked from Overview). Each requir
 - Explanation: the applied project's plain-language lender explanation and customer-group energy contributions.
 - Safe sharing: the operator aggregation/holdout/retention proposal plus a blank handover worksheet (not authorization or a secure portal).
 
-The pack also preserves the full existing feasibility report, exact applied inputs, financial tables, provenance and an input fingerprint. Separate upload studies must be downloaded and reviewed separately; they never automatically certify the selected project. **Authentic held-out metered-site validation, measured confidence coverage and calibrated growth remain pending.** Latest verification: 582 Python + 153 interface checks (735 total), desktop checks in both roles, real browser ZIP download/integrity check, and screen review of the exported HTML/chart. Print/PDF and full release acceptance remain separate.
+The pack also preserves the full existing feasibility report, exact applied inputs, financial tables, provenance and an input fingerprint. Separate upload studies must be downloaded and reviewed separately; they never automatically certify the selected project. **Authentic held-out metered-site validation, measured confidence coverage and calibrated growth remain pending.** Historical deliverables verification included desktop checks in both roles, browser ZIP download/integrity and exported HTML/chart review. Current integration results are recorded at the top of docs/TEST_REPORT.md. Print/PDF and full release acceptance remain separate.
 
 ## Run the prepared project
 
@@ -55,7 +57,7 @@ The environment, model, dataset and RAMP profiles are already present. From this
 bash run.sh
 ```
 
-Choose your role, then Country → District → Sector → Cell. The detailed input workspace opens automatically. Review assumptions in its dark collapsible panel and press **Update dashboard**. Review results in Overview; enter capacity, costs and financing in Scenarios. If a source lacks lower-level records, enter the administrative names; no coordinates or local observations are inferred. **Explore demo** remains a separate, labelled synthetic option.
+Choose your role, then Country → District → Sector → Cell. The detailed input workspace opens automatically. Review assumptions in its green collapsible panel and press **Update dashboard**. Review results in Overview; enter capacity, costs and financing in Scenarios. If a source lacks lower-level records, enter the administrative names; no coordinates or local observations are inferred. **Explore demo** remains a separate, labelled synthetic option.
 
 - **Primary — Mini-grid developer:** edit Community, test Scenarios, inspect uncertainty and export a planning analysis.
 - **Secondary — Investor / lender:** review the read-only Project view, edit Finance, inspect lower/faster demand and Evidence, and export an investment-screening review.
@@ -159,13 +161,13 @@ See [feasibility methods](docs/FEASIBILITY_METHODS.md) and the [completion plan]
 
 Feature v1.6 adds nested `detailed` inputs, `affordability`, a 20-feature inventory, service-month horizon and monthly component totals. `/api/geography?kind=cells&parent=…` selects actual lower administrative records. `/api/location-project` now accepts all eight EAC countries; manually entered names use no coordinates. New projects enable detailed mode; missing/disabled detailed settings preserve prior calculations.\n\nFeature v1.3 adds canonical public-location identifiers/provenance and user-reported grid evidence to project context. The local geography endpoints are `/api/geography` and `/api/geography/location`. Selecting a place does not change model features. Feature v1.2 added project `context` and optional `public_data` to analysis JSON. Monetary feasibility keys formerly suffixed `_rwf` now use `_amount` (for example `extra_revenue_amount_month`); monetary CSV rows include a `currency` column. No calculations or exchange rates are changed by the denomination. A fetched public snapshot adds `public_context.json` to the export ZIP.
 
-Public-provider notices and commercial-hosting limits are in [third party notices](THIRD_PARTY_NOTICES.md). The legacy Open-Meteo geocoder endpoint remains for compatibility and its hosted terms still apply; the new default selector uses attributed offline GeoNames data. No hosted account, paid subscription or public deployment was created.
+Public-provider notices and commercial-hosting limits are in [third party notices](THIRD_PARTY_NOTICES.md). The legacy Open-Meteo geocoder endpoint remains for compatibility and its hosted terms still apply; the default selector uses attributed offline GeoNames data. The public app uses the existing free Render hosting. This evidence update adds no paid service or public meter-upload permission. Publication checks are recorded in [the verification log](docs/TEST_REPORT.md).
 
 ## Evidence boundary
 
 On 100 held-out synthetic sites, MAE is 1,294.73 kWh/month and weighted absolute error is 10.55%. The nominal 80% interval covers 91% of test outcomes. The baseline MAE is 2,236.26 kWh/month. These values measure performance inside a simulation, not actual Rwanda forecasting accuracy.
 
-No real metered-site validation has been performed. Growth and financial assumptions are illustrative. The supply screen is not a solar/battery dispatch model or engineering design, and the results are not a lending recommendation. Browser interaction and visual checks remain pending; API and calculation tests are not substitutes for those checks.
+Validation of the current monthly estimator and growth curve remains pending. A separate exploratory KIT hourly-power benchmark is included locally; it does not validate this estimator. Growth and financial assumptions are illustrative. The supply screen is not a solar/battery dispatch model or engineering design, and results are not a lending recommendation. Focused browser checks have been performed; full release, accessibility and print/PDF acceptance remain open.
 
 ### v1.4 API additions
 

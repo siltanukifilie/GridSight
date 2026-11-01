@@ -4,7 +4,7 @@ let updateResult = null;
 function maintenanceHtml() {
   return `<article class="card"><div class="card-head"><div><h2>Keep the model accountable</h2><p>New data → candidate → quality checks → review</p></div><span class="tag">No automatic deployment</span></div>
     <p>Version real-data updates. Catch worse forecasts before approving a candidate.</p>
-    <p class="subtle-note">Recalibrates growth and prediction ranges—not a new 20-input ML model. No genuine operator dataset is bundled. This browser check is exploratory; formal updates must freeze the protocol in the private local registry before outcomes are reviewed.</p>
+    <p class="subtle-note">Recalibrates growth and prediction ranges—not a new 20-input ML model. No matched monthly operator dataset is bundled; the published power reference is separate. This browser check is exploratory; formal updates must freeze the protocol in the private local registry before outcomes are reviewed.</p>
     <a class="button secondary" href="/api/update-template">Get update & review pack ↓</a>
     <details><summary>Check an update candidate</summary><p>Use fresh whole-site fit, calibration and test groups. Choose acceptance thresholds before inspecting outcomes. Reusing test results for tuning invalidates an independent test.</p>
     <form id="update-form"><div class="compact-grid">

@@ -1,0 +1,5 @@
+source_id,title,url,licence,access_date,status
+KIT_THREE_SITES,High-Resolution Real-World Electricity Data from Three Microgrids in the Global South,https://doi.org/10.35097/1305,CC BY 4.0,2026-11-01,Three primary measurement CSVs and source dictionary downloaded and processed
+KIT_ORIGINAL_RECORD,Related KITopen record,https://publikationen.bibliothek.kit.edu/1000143466,CC BY 4.0,2026-11-01,Record verified
+LORENZONI_61,Classification and modeling of load profiles of isolated mini-grids,https://doi.org/10.1016/j.esd.2020.10.001,Data reuse terms not verified,2026-11-01,Publication verified; spreadsheet download HTTP 403; observations NOT included
+ALLEE_TANZANIA_14,Predicting initial electricity demand in off-grid Tanzanian communities,https://doi.org/10.1016/j.esd.2021.03.008,Raw data terms not verified,2026-11-01,Publication verified; raw download not confirmed; observations NOT included

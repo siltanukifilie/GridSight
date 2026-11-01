@@ -87,8 +87,11 @@ def test_actual_collected_sources_are_not_synthetic_templates(client):
     else:
         assert rows["electricity"]["records"] is None
         assert rows["electricity"]["status"] == "Not collected"
-    for key in ("meters", "viirs", "gep", "costs"):
+    for key in ("meters", "viirs", "costs"):
         assert rows[key]["records"] is None
+    for key in ("gep", "gridfinder", "eae", "bugesera_prepared"):
+        assert rows[key]["records"] == 15
+    assert "exact VIIRS year unresolved" in rows["gep"]["use"]
     assert rows["meters"]["status"] == "Partner needed"
     b = rd.read_layer("buildings.meta.json")
     assert b["source_rows"] == 22106220 and b["confidence_threshold"] == .738

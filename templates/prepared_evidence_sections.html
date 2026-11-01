@@ -1,0 +1,37 @@
+{% if r.prepared_evidence %}
+{% set e = r.prepared_evidence %}{% set s = e.sector_context %}{% set b = e.benchmark %}{% set p = e.preparation %}
+<h2>Prepared public evidence — separate from the forecast</h2>
+<p class="notice">Current pre-construction/monthly model validation is pending. {{ e.model_status.range }}. {{ e.model_status.growth }}. {{ e.model_status.integration }}.</p>
+{% set o = e.operational_models %}
+{% if o %}
+<h3>Completed real-data hourly model comparison</h3><p class="notice">{{ o.notice }}</p>
+{% if o.status == 'trained_exploratory' %}
+<p>{{ o.data_rows }} real hourly examples: {{ o.counts.train }} training, {{ o.counts.validation }} validation and {{ o.counts.test }} test. Five ML families and three baselines at each site, with {{ o.candidate_fits }} candidate model fits. {{ o.selection }}</p>
+<table><thead><tr><th>Site</th><th>Validation-selected approach</th><th>Test hours</th><th>MAE kW</th><th>RMSE kW</th><th>WAPE %</th><th>MAE gain vs last hour %</th></tr></thead><tbody>{% for site in o.sites %}<tr><td>{{ site.label }}</td><td>{{ site.selected.model_name }}</td><td>{{ site.counts.test }}</td><td>{{ '%.4f'|format(site.selected.mae_kw) }}</td><td>{{ '%.4f'|format(site.selected.rmse_kw) }}</td><td>{{ '%.2f'|format(site.selected.wape_pct) }}</td><td>{{ '%.1f'|format(site.selected.mae_improvement_vs_persistence_pct) }}</td></tr>{% endfor %}</tbody></table>
+<p>Lower MAE and WAPE are better. WAPE is prediction error, not accuracy. Rwanda's modest improvement is based on only 64 test hours. No hourly model weights replace the planning calculation.</p>
+<details><summary>All approaches on the same test hours</summary><table><thead><tr><th>Site</th><th>Approach</th><th>MAE kW</th><th>RMSE kW</th><th>WAPE %</th><th>R squared</th></tr></thead><tbody>{% for m in o.test_metrics %}<tr><td>{{ m.site_id }}</td><td>{{ m.model_name }}</td><td>{{ '%.4f'|format(m.mae_kw) }}</td><td>{{ '%.4f'|format(m.rmse_kw) }}</td><td>{{ '%.2f'|format(m.wape_pct) }}</td><td>{{ '%.3f'|format(m.r2) }}</td></tr>{% endfor %}</tbody></table></details>
+<ul>{% for note in o.limitations %}<li>{{ note }}</li>{% endfor %}</ul>
+<p class="muted"><a href="{{ o.source.url }}">{{ o.source.attribution }}</a>. {{ o.source.license }}. The operational_models folder includes unchanged hourly feature and prediction CSVs, scores, split counts, protocol, feature dictionary, provenance and hashes. Actual readings and model outputs are separate columns. Executable models are not included in the app download.</p>
+{% else %}<p>{{ o.reason }}</p>{% endif %}
+{% endif %}
+{% if s.status == 'available' %}
+<h3>{{ s.sector }} — whole-sector context</h3><p>{{ s.scope }}. {{ s.match_basis }}. {{ s.notice }}</p>
+<p>Not-grid-connected does not mean unelectrified. Phone/TV-owning household estimates are not device counts. Historical grid proxies do not verify current service. Nightlights are indirect GEP inputs with exact VIIRS year unverified.</p>
+<div class="report-scroll"><table><thead><tr><th>Field</th><th>Value</th><th>Unit</th><th>Evidence / period</th><th>Source / limitation</th></tr></thead><tbody>{% for f in s.features %}<tr><td>{{ f.field }}</td><td>{{ f.value if f.value is not none else 'Unavailable' }}</td><td>{{ f.unit }}</td><td>{{ f.evidence_type }}<br>{{ f.reference_period }}</td><td>{{ f.source_ids }}<br>{{ f.limitation }}</td></tr>{% endfor %}</tbody></table></div>
+<h3>Sector sources and reuse</h3>{% for source in s.sources %}<p class="muted">{{ source.source_id }}: {% if source.source_url %}<a href="{{ source.source_url }}">{{ source.title }}</a>{% else %}{{ source.title }}{% endif %}. {{ source.publisher }}. {{ source.reference_period }}. {{ source.license_or_access_terms }}.</p>{% endfor %}
+{% else %}<p>Sector context: {{ s.reason }}</p>{% endif %}
+<h3>Published measured-power reference / exploratory benchmark</h3><p class="notice">{{ b.notice }}</p>
+{% if b.status == 'available' %}
+<p>{{ b.target }}. {{ b.qualified_hours }} of {{ b.calendar_hours }} calendar hours qualified. {{ b.interpretation }}</p>
+<table><thead><tr><th>Held-out site</th><th>Model</th><th>Hours</th><th>MAE kW</th><th>RMSE kW</th><th>Bias kW</th><th>WAPE %</th></tr></thead><tbody>{% for m in b.metrics %}<tr><td>{{ m.country }} / {{ m.test_site }}</td><td>{{ m.model }}</td><td>{{ m.test_hours }}</td><td>{{ '%.3f'|format(m.mae_kw) }}</td><td>{{ '%.3f'|format(m.rmse_kw) }}</td><td>{{ '%.3f'|format(m.bias_kw) }}</td><td>{{ '%.1f'|format(m.wape_percent) }}</td></tr>{% endfor %}</tbody></table>
+<p>Each held-out site is predicted using only the other two sites. Primary model: equal-site local-hour profile. Comparison: equal-site constant. Both fixed baselines are reported, without test-score tuning.</p>
+<table><thead><tr><th>Site</th><th>Qualified / calendar hours</th><th>Excluded hours</th><th>Duplicate rows removed</th></tr></thead><tbody>{% for q in b.quality %}<tr><td>{{ q.site_id }}</td><td>{{ q.eligible_hours }} / {{ q.calendar_hours }}</td><td>{{ q.excluded_hours }}</td><td>{{ q.duplicate_rows_excluded }}</td></tr>{% endfor %}</tbody></table>
+{% for site in b.sites %}<p class="muted">{{ site.site_id }}: {{ site.first_timestamp_utc }} to {{ site.last_timestamp_utc }}. {{ site.operating_conditions }}.</p>{% endfor %}
+<ul>{% for note in b.limitations %}<li>{{ note }}</li>{% endfor %}</ul>
+{% else %}<p>{{ b.reason }}</p>{% endif %}
+<p class="muted"><a href="{{ b.source.url }}">{{ b.source.attribution }}</a>. {{ b.source.license }}. Accessed {{ b.source.accessed_on }}. GridSight transformations, not author endorsement.</p>
+<h3>Preparation-stage record and input coverage</h3>
+{% if o and o.status == 'trained_exploratory' %}<p>The preparation record below predates the completed hourly training experiment above. Its original no-training status describes that earlier stage only.</p>{% endif %}
+{% if p.status == 'prepared_not_trained' %}<p>{{ p.notice }}</p><table><thead><tr><th>Site</th><th>Train / validation / test</th><th>Retained predictors</th><th>Total columns including missingness flags</th></tr></thead><tbody>{% for site in p.sites %}<tr><td>{{ site.site_id }}</td><td>{{ site.train_rows }} / {{ site.validation_rows }} / {{ site.test_rows }}</td><td>{{ site.retained_features }}</td><td>{{ site.model_input_columns }}</td></tr>{% endfor %}</tbody></table><p>Congo omits four all-missing 24-hour rolling predictors. No monthly billing targets, calibrated intervals or multi-year growth labels were created. These are not fresh blinded test campaigns.</p>{% else %}<p>{{ p.reason }}</p>{% endif %}
+<p class="muted">The analysis ZIP includes prepared_evidence/summary.json, selected-sector CSV with units/dates/scope, source dictionaries, source manifest, unrounded benchmark results and the unchanged preparation contract. Source licences remain separate. Raw telemetry, restricted datasets and confidential operator records are not included.</p>
+{% endif %}

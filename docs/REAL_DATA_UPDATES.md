@@ -4,7 +4,12 @@
 
 The update workflow recalibrates the current detailed engineering model's aggregate post-connection growth correction and whole-site uncertainty band using `src.statistical.confidence_study`. It does **not** retrain a new 20-input ML estimator, rebuild synthetic data, replace the frozen reference model, or automatically change live estimates/finance. No genuine operator data or real-data release is bundled. Candidate metrics are not authenticated field validation.
 
-The Evidence page offers an **exploratory in-memory check** and downloadable diagnostics. It cannot approve or deploy a release. Repeatedly exploring the same test outcomes invalidates their independence; do not later present those sites as untouched tests.
+The local Evidence page offers an **exploratory in-memory check** and downloadable diagnostics. Meter-processing uploads are disabled on the public Render demo. Neither mode can approve or deploy a release. Repeatedly exploring the same test outcomes invalidates their independence; do not later present those sites as untouched tests.
+
+The 1 November local integration also displays a separate published KIT power
+benchmark and completed hourly-data preparation. These summaries are not a
+monthly-model release or eligible growth-calibration dataset. No new model was
+trained, and promotion/deployment behaviour is unchanged. See PREPARED_EVIDENCE.md.
 
 ## 1. Agree the protocol before outcomes are examined
 

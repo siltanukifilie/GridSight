@@ -1,0 +1,114 @@
+GRIDSIGHT — PRELIMINARY HELD-OUT-SITE EVALUATION OF MEASURED POWER
+1 November 2026
+
+SCOPE
+This is a retrospective, three-site baseline transfer experiment using KIT data.
+It is NOT validation of a pre-construction 20-feature model, Bugesera monthly
+demand, annual growth, capacity sizing, or calibrated uncertainty intervals.
+Many measurement rows do not replace independent sites: the site count is THREE.
+No synthetic observations were generated. Predictions are labelled separately.
+
+OPEN FIRST
+RESULTS.txt: interpretation, exact scope and honest presentation wording.
+GridSight_HeldOut_Results.xlsx: six evaluated runs and row-level predictions.
+plots/held_out_power.png: observed and predicted power for all three test sites.
+results/site_metrics.csv: unrounded per-site results for both fixed baselines.
+inputs/hourly_quality.csv: all hours in each recording window, including gaps.
+metadata/feature_dictionary.csv: definitions and roles of evaluation fields.
+
+DESIGN FIXED BEFORE FITTING
+Fold 1: train Congo + Haiti; test Rwanda.
+Fold 2: train Rwanda + Haiti; test Congo.
+Fold 3: train Rwanda + Congo; test Haiti.
+The primary model is an equal-site local-hour profile. For each local hour, take
+the mean of qualified measurements separately for each training site, then the
+mean of those two site means. Predict that value at the held-out site's local hour.
+The comparison model predicts the mean of the two training-site overall means.
+Each training site contributes equal weight regardless of its number of hours.
+If either training site lacks an hour-of-day value, use the constant baseline.
+There is no tuning or model selection based on held-out performance. Both models
+are reported even if the more detailed one is worse. No test-site history, mean,
+peak, appliance counts, voltage or frequency enters either model.
+The original source summaries were already inspected. This is not a blinded or
+externally preregistered study. Protocol settings and input hashes are preserved.
+
+TARGET AND UNITS
+Target = arithmetic mean of available active-power samples in an eligible UTC
+hour, converted from W to kW by division by 1000. It is not a time integral.
+Do not sum these power means and claim verified monthly kWh. Duplicate and gap
+handling is explicit, but neither exact energy accounting nor billing validation
+has been established. Local time is checked against publisher timestamps.
+
+QUALITY RULES
+Remove every member of a duplicate timestamp group (48 Congo rows).
+Retain finite power samples. Do not fill missing samples/hours with zero.
+Use source median cadences fixed before evaluation: 60s Rwanda, 5s Congo, 60s Haiti.
+An eligible hour must have 90–110% of expected samples, no internal sample gap
+greater than two cadences, and first/last sample within two cadences of its hour
+boundaries. Rules apply identically to training and held-out sites.
+All calendar hours from first to last timestamp are logged, including completely
+missing hours. Exclusion reasons and fractions are reported. Scores apply only
+to retained hours, not the excluded periods. Missingness may be non-random.
+No filtering by target magnitude or favorable prediction error is used.
+
+METRICS
+For each accepted hour, error = predicted kW minus observed kW.
+MAE = mean absolute error, kW. Lower is better.
+RMSE = square root of mean squared error, kW. Sensitive to large errors.
+Bias = mean error, kW. Positive means overprediction; negative means underprediction.
+WAPE = 100 x sum(abs(error)) / sum(abs(actual)), percent. It may exceed 100% and
+is not an accuracy percentage. Near-zero site demand can produce very large WAPE.
+The macro file averages each metric across sites with equal site weight; it is
+not a pooled-hour result and the mean RMSE is not a pooled RMSE. Prefer per-site
+results when assessing these highly different sites. No calibrated intervals,
+p-values or statistical significance claims are produced from three sites.
+Metrics are independently checked using scikit-learn, then reconciled against
+Excel formulas. A target-poisoning test verifies held-out outcomes cannot change
+the fitted baseline parameters. Original dataset files are not modified.
+
+LIMITATIONS THAT MATTER
+The recording campaigns cover about 18 days Rwanda, 36 days Congo and 31 days Haiti.
+The campaigns are not simultaneous. Training data can postdate the test campaign,
+so this is not a chronological deployment backtest.
+Rwanda and Congo have publisher-documented damaged/broken equipment and frequency
+or voltage constraints. Delivered power is not necessarily unconstrained demand.
+Haiti's inverter voltage setting changed during its campaign. Systems and served
+loads differ. Transfer error mixes model weakness and differences among systems.
+Matched household/business counts, tariffs and pre-connection features are absent.
+No Bugesera sector covariates are joined to foreign or unrelated metered labels.
+Kigeme is not added to these folds: it is a different institutional case requiring
+its own measurement/provenance and comparability assessment.
+These findings cannot support a claim that GridSight predicts unbuilt sites well.
+The next substantive data need is multiple comparable mini-grids with matched
+pre-connection site characteristics and long, quality-controlled consumption data.
+
+SOURCE AND LICENCE
+Luh, Matthias; Phipps, Kaleb; Britto, Anthony; Wolf, Matthias; Lutz, Marek;
+Kraft, Johann. High-Resolution Real-World Electricity Data from Three Microgrids
+in the Global South. KIT / RADAR4KIT. CC BY 4.0.
+https://doi.org/10.35097/1305
+https://creativecommons.org/licenses/by/4.0/
+Source downloaded 2026-11-01. Derived hourly tables and results are new processing
+by GridSight; no endorsement by the original authors is implied. Source-file
+hashes and original operating-condition notes are in metadata/.
+Method references:
+https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.LeaveOneGroupOut.html
+https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html
+
+REPRODUCE
+Install Python libraries in requirements.txt. Run python evaluate.py to reproduce
+predictions, metrics and plots from the included compact hourly input.
+To rebuild hourly input from the original KIT pack:
+python evaluate.py --source-dir ../GridSight_KIT_Metered_Reference_20261101
+The original 151 MB KIT ZIP is not duplicated here. This compact pack contains
+all hourly inputs needed to reproduce the evaluation results, not raw telemetry.
+Recreate Excel with Node and @oai/artifact-tool: node build_workbook.mjs
+Excel error/metric formulas recalculate from its fixed prediction table. Editing
+Excel cells does not retrain the baselines; use the Python workflow for a new run.
+Run python package.py to regenerate the ZIP and per-file integrity inventory.
+Run python verify.py to check reproduction, fold separation and scores. Optional:
+python verify.py --source-dir ../GridSight_KIT_Metered_Reference_20261101
+also verifies that original normalized telemetry files remain unchanged.
+The copied site_catalog.csv is source-pack metadata: its hourly_eligible_rows
+column counts source samples, NOT scored hours. Use results/data_quality_summary.csv
+for this evaluation's stricter hourly coverage and eligibility counts.

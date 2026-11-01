@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-01",
+  "python": "3.12.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "calendar_hours": 2035,
+  "qualified_target_hours": 1620,
+  "prepared_operational_rows": 1540,
+  "candidate_features": 20,
+  "bugesera_sectors": 15,
+  "new_bugesera_features": 12,
+  "trained_models": 0,
+  "growth_label_rows": 0,
+  "scope": "PREPARATION_ONLY_NO_MODEL_TRAINED"
+}

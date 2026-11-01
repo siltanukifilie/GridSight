@@ -1,0 +1,21 @@
+requested_feature,status,available_field_or_file,source_ids,limitation_or_next_step
+Number of households in service area,PARTIAL,households_2022,NISR_CENSUS_2022,Sector totals only; define actual service-area boundaries before use.
+Expected household connection rate,MISSING,,,Historical grid connection percentage is not future mini-grid uptake.
+Time since electricity connection,MISSING,,PARTNER_METERS,Need commissioning and customer connection dates; do not substitute registration dates without confirmation.
+Household income,NOT_JOINED,,MTF_RW_2016,Survey sample cannot be expanded to all sectors without survey-design assessment.
+Electricity tariff,REFERENCE_ONLY,processed/rwanda_grid_tariff_reference.csv,RW_GRID_TARIFF,National-grid tariff is not a mini-grid tariff or future agreed price.
+Connection fee,MISSING,,PARTNER_METERS,Request actual or proposed operator fee and subsidy treatment.
+Appliance ownership by type,PARTIAL,processed/mtf_appliance_sample_statistics_2016.csv,MTF_RW_2016,Use available appliance tables; sample holdings are not service-area totals.
+Appliance power ratings,MISSING,,,Obtain device specifications or labelled engineering assumptions.
+Daily appliance operating hours,NOT_JOINED,,MTF_RW_2016,Inspect survey variables and validate locally before deriving typical use.
+Number of businesses,PARTIAL,shop_count_osm,OSM_RW,Mapped shops only; incomplete and not all businesses.
+Number of milling facilities,MISSING,milling_places_total,,"Blank, not zero."
+Number of irrigation pumps,MISSING,,,Survey sample cannot establish service-area total.
+Productive equipment power ratings,MISSING,,,Device inventory and specifications required.
+Productive equipment operating hours,MISSING,,,Business survey and seasonal schedules required.
+Number of schools,PARTIAL,school_count_osm,OSM_RW,Mapped objects only; no guaranteed completeness or service-area match.
+Number of clinics,PARTIAL,clinic_count_osm,OSM_RW,Mapped clinics only; hospitals are a separate column.
+Agricultural seasonality,PROXY,processed/nasa_monthly_climate_2022_2025.csv,NASA_POWER;NISR_CENSUS_2022,"Rainfall and agricultural household context, not measured crop or equipment schedules."
+Expected new connections per year,MISSING,,PARTNER_METERS,Need rollout plan and historical connection cohorts.
+Appliance adoption rate,MISSING,,,Need repeated household observations; do not infer from one survey wave.
+Business growth rate,MISSING,,,Need repeated business inventories or agreed scenario assumptions.

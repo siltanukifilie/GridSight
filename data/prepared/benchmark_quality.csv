@@ -1,0 +1,4 @@
+site_id,country,calendar_hours,observed_hours,eligible_hours,duplicate_rows_excluded,excluded_hours,eligible_calendar_fraction
+CD_IDJWI,DR Congo,856,582,463,48,393,0.5408878504672897
+HT_BEAUMONT,Haiti,752,752,745,0,7,0.9906914893617021
+RW_ECOS,Rwanda,427,417,412,0,15,0.9648711943793911

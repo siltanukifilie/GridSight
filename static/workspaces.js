@@ -21,7 +21,7 @@ const WORKSPACES = {
       community: ['Know the project.', 'Review its customers and assumptions.'],
       scenarios: ['Stress-test the numbers.', 'Change costs. See the impact.'],
       feasibility: ['Check the complete case.', 'Compare scenarios and download the feasibility screen.'],
-      evidence: ['Trust needs evidence.', 'Synthetic results. Real validation still needed.'],
+      evidence: ['Trust needs evidence.', 'Published evidence. Current-model validation still needed.'],
       locations: ['Know the location.', 'Review the site and public country context.']
     }
   }

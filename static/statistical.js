@@ -73,7 +73,7 @@ function confidenceStudyHtml() {
       <div class="field"><label for="confidence-meters">Monthly measured kWh · CSV</label><input id="confidence-meters" name="meters" type="file" accept=".csv,text/csv" required></div>
       <div class="field"><label for="confidence-plan">Predeclared site split & settings · JSON</label><input id="confidence-plan" name="plan" type="file" accept=".json,application/json" required></div>
     </div><button class="button primary" type="submit">Fit, calibrate & test</button></form>
-    <p class="subtle-note">No built-in measured dataset. Upload only approved anonymous site aggregates. In-memory processing; no server storage or outside transfer. Results stay separate from your selected project.</p>
+    <p class="subtle-note">No built-in measured monthly-history dataset. The separate hourly-power benchmark cannot calibrate this growth study. Upload only approved anonymous site aggregates. In-memory processing; no server storage or outside transfer. Results stay separate from your selected project.</p>
     <details><summary>What the growth fit can explain</summary><p>It learns the overall energy trajectory, not separate connection, appliance or business effects. Those need dated customer counts, appliance surveys and business records. A 24-month fit cannot validate Year 3. Real growth can fall as well as rise.</p></details>
     <p id="confidence-error" role="alert"></p><div id="confidence-results" aria-live="polite"></div></article>`;
 }

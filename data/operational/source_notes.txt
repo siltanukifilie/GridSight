@@ -1,0 +1,97 @@
+GRIDSIGHT — KIT THREE-SITE MEASURED-POWER REFERENCE
+Prepared 1 November 2026. Separate supplement, not a replacement for Bugesera.
+
+CONFIRMED AND INCLUDED
+Three complete published measurement CSVs and the original units/notes workbook:
+Rwanda ECOS demand: 24,856 rows, 21 November–9 December 2021.
+DR Congo Idjwi main distribution: 399,644 rows, 16 January–21 February 2022.
+Haiti Beaumont: 44,928 rows, 25 November–26 December 2021.
+Total: 469,428 source rows across three distinct microgrids.
+Dates above are UTC. These are short campaigns, NOT multi-year histories.
+Raw source files remain unchanged. No synthetic measurements are included.
+
+SOURCE AND LICENCE
+Luh, Matthias; Phipps, Kaleb; Britto, Anthony; Wolf, Matthias; Lutz, Marek;
+Kraft, Johann. High-Resolution Real-World Electricity Data from Three Microgrids
+in the Global South. KIT / RADAR4KIT.
+Dataset landing page: https://radar.kit.edu/radar/en/dataset/PxzzPHZdpMnlkMDH
+Repository DOI shown on download page: https://doi.org/10.35097/1305
+Related KIT record: https://publikationen.bibliothek.kit.edu/1000143466
+Licence: Creative Commons Attribution 4.0 International.
+https://creativecommons.org/licenses/by/4.0/
+Access date: 2026-11-01. Retain attribution and identify these processed tables
+as transformations. No endorsement by the authors is implied.
+
+START
+Open GridSight_KIT_Summary.xlsx for the site overview and hourly sample summaries.
+processed/site_catalog.csv gives source coverage and quality diagnostics.
+processed/*_power.csv preserves source order and selected measurements.
+processed/hourly_sample_summaries.csv groups valid timestamps into UTC hours.
+raw/ contains the three complete original CSV files and source dictionary.
+metadata/ contains definitions, checks, hashes and proposed site-level folds.
+
+MEANING OF THE MEASUREMENTS
+The source dictionary defines P as mean active power in watts. It is not a
+consumer monthly kWh bill. Rwanda power is P_1+P_2+P_3, Congo is P_tot, Haiti P_1.
+Rwanda's branches are connected to one generator phase, per publisher notes.
+No voltage-current shortcut or guessed power factor is used.
+No monthly kWh, growth rate, uncertainty bounds or demand forecasts are invented.
+
+PROCESSING AND QUALITY
+Original timestamps parsed with DD.MM.YYYY HH:MM:SS. UTC values checked against
+Unix timestamps. Missing numeric readings are not filled with zero.
+Congo has 24 extra duplicate timestamps (48 rows in affected groups) and one
+backward timestamp step. All source rows are retained; all 48 ambiguous rows
+are excluded from hourly summaries. Other sites have no duplicate timestamps.
+Hourly summaries are arithmetic sample means/minima/maxima, NOT time-weighted
+energy. Missing hours are absent, not zero. Partial hours remain in the table.
+Sample count ratio is valid samples divided by 3600/median spacing; it is only
+a sample-count diagnostic, not validated time coverage or an energy correction.
+Site-level means/maxima describe all published rows, including duplicate rows.
+No clipping, smoothing, outlier removal or additional imputation was performed.
+Maximum gaps: about 11.5 hours Rwanda, 95.3 hours Congo, 48.4 minutes Haiti.
+The publisher may have preprocessed measurements; these are not claimed to be
+unmodified sensor telemetry. See the original source notes for excluded channels.
+
+CRITICAL OPERATING CONDITIONS
+Rwanda: damaged generator windings and broken electronic load controller.
+Congo: broken load controller, voltage/frequency limitations, diesel switching.
+Haiti: nominal PV inverter voltage changed on 29 November.
+Measured supplied power under these conditions need not equal unconstrained
+electricity demand. Do not silently interpret low power as low consumer need.
+
+HELD-OUT SITE VALIDATION
+The fold CSV proposes three leave-one-site-out partitions: one entire site for
+testing and the other two for training. It is a protocol, NOT evaluation results.
+Never split hourly rows at random and claim testing on unseen sites.
+Sites differ in country, technology, served loads and operating conditions.
+Three sites are inadequate for robust validation of a 20-feature model; matched
+pre-connection household and business features are not supplied here. This pack
+supports data-pipeline checks and exploratory transfer experiments only.
+The short records cannot validate first-years growth or annual growth rates.
+Rwanda ECOS is NOT Bugesera, and Haiti is NOT East Africa. Do not join outcomes
+to Bugesera sectors or treat foreign-site tests as Rwanda-wide validation.
+No model was trained or evaluated in preparing this dataset.
+
+OTHER LEADS NOT INCLUDED
+Lorenzoni 61-site study: existence confirmed, linked spreadsheet download returned
+HTTP 403. No observation values or spreadsheet from that study are in this pack.
+https://doi.org/10.1016/j.esd.2020.10.001
+Tanzania 14-site study: publication confirmed; open raw-data download unconfirmed.
+https://doi.org/10.1016/j.esd.2021.03.008
+Renewvia: no authorized operator files received.
+
+REPRODUCTION
+With Python plus pandas/numpy/openpyxl installed, run: python prepare.py
+This rebuilds processed CSVs and metadata from the included raw files.
+The source serves a TAR stream (not a ZIP) at:
+https://radar.kit.edu/radar/de/dataset/PxzzPHZdpMnlkMDH/datasetBinaryTreeStream
+To refresh, download to KIT.tar and run: python prepare.py --archive KIT.tar
+The collector selected only the three primary measurement files and dictionary;
+the complete repository contains additional generation/branch/device files.
+Selected file lengths were checked against their TAR entry sizes. Per-file
+SHA-256 hashes identify the local snapshot. These are not publisher-certified
+checksums; the repository's BagIt archive MD5 does not apply to a TAR stream.
+The partial/full transport archive is not part of this selected-file release.
+Workbook rebuilding requires Node and @oai/artifact-tool: node build_workbook.mjs
+Run python package.py after rebuilding to create the distribution ZIP.

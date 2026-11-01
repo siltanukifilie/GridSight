@@ -27,7 +27,7 @@ def deliverable_status(connection):
     return [
         {"name": "Location demand estimate + range", "status": "Implemented for Rwanda screening", "detail": "Mapped locations or validated Rwanda points; proxies and missing inputs are labelled. Not a guarantee of local accuracy."},
         {"name": "First-years post-connection curve", "status": "Active" if connection["enabled"] else "Available — enable in Feasibility", "detail": "36 service months, connection month, connection/appliance/use ramp and low/expected/high scenarios. Assumption-based, not metered validation."},
-        {"name": "Validation on held-out metered sites", "status": "Pending genuine operator data", "detail": "Frozen annual-average comparison tool available. No authentic meter dataset supplied; neither reference forecast nor ramp is field-validated."},
+        {"name": "Validation on held-out metered sites", "status": "Pending genuine operator data", "detail": "Frozen annual-average comparison tool available. No matched monthly meter dataset supplied; the separate KIT power benchmark does not validate this reference forecast or ramp."},
         {"name": "Plain-language lender explanation", "status": "Implemented", "detail": "Demand drivers, adoption assumptions, downside risk and evidence gaps; baseline drivers are not causal ML attribution."},
         {"name": "Safe meter-data sharing proposal", "status": "Available — proposal only", "detail": "Operator-side aggregation, disclosure review, independent holdouts, restricted transfer and retention. Hosted security controls are not implemented."},
     ]
@@ -98,7 +98,7 @@ def delivery_summary(r):
     ) if active else "36 forecast months use legacy expansion assumptions, not a post-connection adoption curve."
     items[2]["detail"] = ("The monthly comparison tests the current 20-input calculation. The separate observed-history "
                            "study fits growth, calibrates ranges and tests untouched sites. No independently reviewed metered study is attached. "
-                           "Synthetic accuracy and uploaded batch results do not validate this location.")
+                           "Synthetic accuracy, the separate KIT hourly-power benchmark and uploaded batch results do not validate this location.")
     periods = []
     for period, label, divisor, unit in (("day", "Daily", 365, "kWh/day"), ("week", "Weekly", 365 / 7, "kWh/week"),
                                          ("month", "Monthly", 12, "kWh/month"), ("year", "Yearly", 1, "kWh/year")):

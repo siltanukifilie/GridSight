@@ -72,6 +72,7 @@ def nearby(index, lat, lon, radius=RADIUS_M):
 
 
 def source_summary():
+    from .prepared_evidence import sector_catalog
     buildings = read_layer("buildings.meta.json")
     facilities = read_layer("facilities.json")
     electricity = read_layer("electricity.json")
@@ -87,8 +88,25 @@ def source_summary():
         {"id": "costs", "name": "Cost & performance benchmarks", "provider": "ESMAP / AMDA", "url": "https://www.esmap.org/mini-grids", "status": "Source identified", "records": None, "date": None, "license": "Report-specific", "use": "No extracted cost benchmark used. Tariff, supply, costs and debt are editable illustrative defaults."},
         {"id": "gep", "name": "Electrification planning", "provider": "World Bank / ESMAP GEP", "url": "https://energydata.info/dataset/rwanda-global-electrification-platform-gep", "status": "Download requires login", "records": None, "date": "Catalog updated 2025-06-12", "license": "CC BY 4.0", "use": "Settlement/scenario download is gated by sign-in. No scenario data collected or substituted."},
     ]
-    return {"scope": "Rwanda now · East Africa later", "radius_m": RADIUS_M, "layers": rows,
-            "notice": "Collected public geography and remote-sensing detections are separate from the synthetic demand model. No real-site validation or financial viability is established."}
+    prepared = sector_catalog()
+    by_id = {row["id"]: row for row in rows}
+    by_id["meters"]["use"] = "Matched monthly readings and pre-connection inputs are still needed for the current model. KIT measured-power reference status is shown separately in Evidence; it does not validate this forecast."
+    by_id["costs"].update(status="Regional references available", use="Regional AMDA benchmarks are in Feasibility, not local quotations. Tariff, supply, costs and debt remain editable assumptions.")
+    if prepared["status"] == "available":
+        updates = {
+            "gridfinder": ("Historical sector summaries", "2019 study / 2020 archive", "CC BY 4.0", "15 Bugesera sector reference-point distances. Historical predicted/mapped lines, not current utility coverage or service-area grid distance."),
+            "eae": ("Selected OSM-derived summaries", "2026 catalog", "ODbL 1.0", "15 Bugesera sector summaries of major roads and financial services. Restricted ministry/utility layers are not included."),
+            "gep": ("Sector context collected", "GEP Climate 2022 archive; input years vary", "CC BY 4.0", "15 Bugesera sector summaries. Model settlement and indirect nightlight inputs, not measured consumption; exact VIIRS year unresolved."),
+        }
+        for key, (status, date, license_text, use) in updates.items():
+            by_id[key].update(status=status, date=date, license=license_text, use=use, records=15)
+        by_id["viirs"]["use"] = "No direct NOAA raster collected. Indirect GEP nightlight summaries are available for Bugesera, with exact VIIRS vintage unverified."
+    rows.append({"id": "bugesera_prepared", "name": "Bugesera sector context", "provider": "NISR and selected public sources",
+                 "url": "/api/prepared-evidence/download", "status": "15 sectors available" if prepared["status"] == "available" else "Prepared files unavailable",
+                 "records": len(prepared["sectors"]) if prepared["status"] == "available" else None, "date": "Prepared 2026-11-01; mixed source years",
+                 "license": "Mixed source terms; see manifest", "use": "Census, maps and derived features; no matched consumption labels. Whole sectors, not cell/service-area inputs."})
+    return {"scope": "Eight EAC location selectors; Rwanda public proxies; Bugesera sector context", "radius_m": RADIUS_M, "layers": rows,
+            "notice": "Public context and the separate KIT power benchmark do not validate the current monthly estimate, growth scenarios or financial viability. Prepared evidence is inspectable and downloadable from Evidence."}
 
 
 def historical_grid(location):

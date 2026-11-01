@@ -1,5 +1,45 @@
 # GridSight progress tracker
 
+## v1.11 release candidate — real hourly data and model comparisons
+
+The user approved publication after tests on 1 November 2026. This entry
+supersedes the earlier preparation-only/local-review status below.
+
+- Added 1,540 measured hourly feature rows, 4,216 saved prediction rows and all
+  eight approaches' results for each of three separately fitted sites.
+- Evidence and reports show validation-selected Ridge (Rwanda ECOS), persistence
+  (Congo Idjwi) and Extra Trees (Haiti Beaumont), with errors and scope limitations.
+- Dedicated public data/results download plus existing project ZIP integration.
+  No executable model deployment or change to monthly calculations/growth scenarios.
+- Local verification: 625 Python checks and all ten JavaScript test files pass.
+  Dependencies, JavaScript syntax, source hashes and unchanged frozen-model inputs
+  checked. Current browser preview is blocked by a security-check service failure;
+  no visual acceptance or bypass is claimed. See TEST_REPORT.md.
+- Publication is explicitly authorized. GitHub/Render release verification follows
+  the local checks; this entry alone is not proof of a completed hosted deployment.
+
+## Latest local integration — 1 November 2026
+
+Prepared Bugesera context and KIT measured-power evidence are integrated locally.
+**Not pushed or deployed; the live Render demo remains unchanged.** This current
+entry supersedes older deployment/status wording in the historical log below.
+
+- Completed: inspectable 15-sector context, exact district/sector joins, null
+  preservation, source/date/unit/scope labels and separation from service inputs.
+- Completed: separate published KIT three-site power benchmark (both baselines,
+  actual errors, exclusions and faults), hourly preparation counts and original
+  20-input coverage. No new model trained; no Bugesera/KIT label joins.
+- Completed: integration into Locations, Community/Project, Evidence and
+  JSON/CSV/ZIP/HTML exports. Public meter uploads remain blocked.
+- Pending: matched monthly kWh labels for the current pre-construction model,
+  real first-years histories, calibrated confidence coverage and release review.
+- Source originals are unchanged; only reviewed compact summaries are bundled.
+  See PREPARED_EVIDENCE.md and the latest TEST_REPORT.md entry for actual checks.
+
+The public Render demo exists. The local real-data update registry still does
+not deploy models. Historical P05 completion below refers only to the synthetic
+reference model, never the prepared operational features or current 20-input model.
+
 Last updated: 1 November 2026.
 
 Current stage: v1.10 deliverables follow-up adds a prominent five-item Evidence review and a single offline deliverables ZIP. **582 Python + 153 interface-logic checks pass (735 total).** Desktop checks cover both roles, the validation link, an actual ZIP download and exported HTML/growth-chart layout. Genuine operator histories remain unavailable; no authentic validation, calibrated real-data coverage/growth or real-data release is claimed. Forecast calculations and frozen model/data remain unchanged.

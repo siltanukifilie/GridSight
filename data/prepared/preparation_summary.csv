@@ -1,0 +1,4 @@
+site_id,country,calendar_hours,qualified_target_hours,prepared_rows,train_rows,validation_rows,test_rows,candidate_features,retained_features,model_input_columns,dropped_features
+RW_ECOS,Rwanda,427,412,408,280,64,64,20,20,35,
+CD_IDJWI,DR Congo,856,463,391,215,90,86,20,16,27,power_mean_24h_kw;power_std_24h_kw;power_min_24h_kw;power_max_24h_kw
+HT_BEAUMONT,Haiti,752,745,741,518,113,110,20,20,35,

@@ -1,0 +1,64 @@
+GRIDSIGHT — WHAT THIS EVALUATION TELLS US
+1 November 2026
+
+BOTTOM LINE
+We completed an exploratory whole-site holdout test on real published electrical
+power measurements. The two simple baselines do not transfer reliably across
+these very different systems. This is useful evidence of a limitation, not proof
+that a Bugesera pre-construction demand forecaster is ready.
+
+Measured data source: KIT, https://doi.org/10.35097/1305, CC BY 4.0.
+No synthetic measurements were added. Predictions are separate model outputs.
+
+PRIMARY BASELINE: EQUAL-SITE LOCAL-HOUR PROFILE
+At each local hour, predict the average of the other two sites' hour profiles.
+The target is hourly sample-mean active power in kW, NOT monthly energy in kWh.
+
+Held-out site       Scored hours   Actual mean   MAE     RMSE    Bias     WAPE
+Rwanda / ECOS       412            3.088 kW      1.243   1.293  -1.243     40.3%
+DR Congo / Idjwi    463            3.508 kW      2.047   2.630  -1.903     58.3%
+Haiti / Beaumont    745            0.127 kW      3.192   3.210  +3.192   2503.9%
+
+MAE, RMSE and bias are in kW. WAPE is an error measure, not model accuracy;
+values above 100% are possible. No "100 minus WAPE" accuracy claim is valid.
+The Haiti baseline predicts 3.320 kW on average for measured mean 0.127 kW.
+The mismatch in site scale is substantial; extra hours do not solve this.
+
+COMPARISON BASELINE: CONSTANT FROM THE OTHER TWO SITE MEANS
+MAE: Rwanda 1.270 kW; DR Congo 2.045 kW; Haiti 3.171 kW.
+The local-hour model slightly improves Rwanda MAE but not the other two sites.
+Rwanda RMSE also increases, so even that improvement is metric-dependent.
+These comparisons are descriptive, not statistically significant model rankings.
+Both baselines were fixed before the first scoring run; neither was tuned to
+improve the held-out errors. Fold training sets overlap, and hourly observations
+are correlated. The folds and hours must not be counted as independent trials.
+
+DATA QUALITY
+1,620 of 2,035 calendar hours are scored. The other 415 are excluded, not zero.
+Rwanda: 412/427 hours (96.5%). Congo: 463/856 (54.1%). Haiti: 745/752 (99.1%).
+48 rows belonging to duplicate Congo timestamp groups were removed.
+Scores describe retained hours only. Large Congo gaps limit representativeness.
+Source notes document equipment problems and different operating conditions;
+measured delivered power need not equal unconstrained customer demand.
+
+WHAT WE CAN CLAIM TO THE JUDGES
+"We implemented a leakage-controlled, leave-one-site-out evaluation on three
+published microgrid measurement campaigns. Baseline transfer errors were large,
+demonstrating the need for comparable sites and matched pre-connection features.
+Validation of Bugesera monthly demand and multi-year growth remains pending."
+
+WHAT WE CANNOT CLAIM
+- A validated 20-feature model or an accurate capacity-sizing recommendation.
+- Validated Bugesera monthly electricity demand, growth or uncertainty bounds.
+- East-Africa-only evaluation: this reference set includes Rwanda, Congo and Haiti.
+- Unconstrained demand or billed energy measured by these short campaigns.
+- Access to Renewvia data or any operator data not actually received.
+
+NEXT DATA GATE
+Obtain multiple comparable sites with de-identified site IDs, consumption units,
+timestamp/timezone, commissioning dates, connection counts and missing/outage
+flags, matched to pre-connection household, business, appliance and tariff data.
+Growth validation needs records covering the intended post-connection years.
+Keep complete sites out of training, tune only within training sites, and assess
+monthly errors plus interval coverage separately. No universal minimum site count
+is claimed here; three heterogeneous sites cannot establish broad generalization.

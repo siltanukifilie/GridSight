@@ -1,0 +1,29 @@
+{
+  "title": "Preliminary held-out-site evaluation of measured power",
+  "protocol_version": "1.0",
+  "target": "Arithmetic mean active power of qualified hourly samples, in kW; not monthly kWh",
+  "sites": ["RW_ECOS", "CD_IDJWI", "HT_BEAUMONT"],
+  "split": "Leave one entire site out, three folds. No random row split.",
+  "models": ["equal_site_constant", "equal_site_local_hour"],
+  "primary_model": "equal_site_local_hour",
+  "training_weight": "Each training site has equal weight; each accepted hour within that site has equal weight",
+  "quality_rules": {
+    "exclude_all_duplicate_timestamp_group_rows": true,
+    "sample_count_ratio_min": 0.9,
+    "sample_count_ratio_max": 1.1,
+    "max_internal_gap_in_cadences": 2,
+    "max_hour_boundary_gap_in_cadences": 2,
+    "cadence_seconds": {"RW_ECOS": 60, "CD_IDJWI": 5, "HT_BEAUMONT": 60},
+    "missing_values": "Exclude nonfinite power samples; do not impute zero",
+    "operating_faults": "Retain measured power under documented operating constraints; do not infer unconstrained demand"
+  },
+  "features": ["local_hour_of_day"],
+  "excluded_predictors": ["test_site_consumption_history", "test_site_mean_or_peak", "frequency", "voltage", "site_id", "country", "Bugesera_sector_features"],
+  "fallback": "If a local-hour profile lacks data from either training site, use the constant baseline",
+  "metrics": ["MAE_kW", "RMSE_kW", "bias_kW_prediction_minus_actual", "WAPE_percent"],
+  "aggregation": "Per-site results primary; macro metrics give each of the three sites equal weight",
+  "uncertainty": "No calibrated intervals or significance claims with three heterogeneous sites",
+  "tuning": "No hyperparameter search or changes based on held-out scores; both baselines reported",
+  "honesty": "Protocol fixed before this evaluation run, not an externally registered or blinded study. Source summaries had already been inspected.",
+  "time_scope": "Retrospective cross-site transfer benchmark, not a chronological deployment backtest; training campaigns may be later than held-out campaigns"
+}

@@ -1,5 +1,21 @@
 # GridSight decision log
 
+## 1 November 2026 — prepared evidence integration (local review)
+
+- Keep the deployed green/light app, roles, eight-country location hierarchy and
+  20-input engineering calculation. This integration is local only: no training,
+  commit, push or Render redeployment.
+- Attach Bugesera sector context after forecasting, not as replacement service-area
+  inputs. Use explicit district/sector hierarchy and mark manually typed names
+  unverified. Missing labels and inventories remain unavailable, not zero.
+- Display the KIT three-site kW benchmark separately from monthly-model validation.
+  Include both baseline models, poor-transfer errors, coverage, faults, attribution
+  and Haiti's non-East-African scope. Never attach KIT outcomes to Bugesera rows.
+- Show hourly-data preparation as completed, real-data prediction-model training
+  as not run, and current-model monthly/growth/confidence validation as pending.
+- Export reviewed compact summaries and source dictionaries only, with mixed rights
+  retained. Preserve all public meter-upload guards. See PREPARED_EVIDENCE.md.
+
 These entries preserve the current working choices. User instructions override proposed defaults. Record later changes with their reason and affected steps.
 
 | ID | Date | Decision | Basis |
@@ -146,3 +162,12 @@ When changing a decision, retain its original meaning here and add a dated entry
 - D105: Make the five brief deliverables a first-class Evidence review and a single downloadable pack, retaining the existing local app and green brand. Reuse final applied feasibility scenarios for all new period/month tables; do not change model or forecast calculations.
 - D106: Artifact availability is not empirical completion. Metered validation stays blocked; range/growth calibration stays pending; forward months for already-connected sites are not relabelled as first years. Blank templates, protocols and the operator-sharing worksheet contain no invented observations or permission. User-attested batch studies remain separate from project certification.
 - D107: Preserve the ordinary export contract and add an explicit deliverables-pack route. Include an offline review and the full existing analysis, exact inputs, finance and provenance. Input fingerprints aid reproduction, not evidence authentication. Browser QA uses a separate synthetic preview, preserving the user's active project.
+# Real hourly evidence integration — 1 November 2026
+
+Add the completed public-data experiment as evidence and downloadable data, not
+as the monthly planning engine. The user requested integration and approved
+publication after tests. Keep model selection fixed to validation MAE; show all
+test comparisons, actual/predicted columns and the limitations of same-site
+hourly testing. Preserve the earlier whole-site benchmark separately. No model
+pickle is loaded, no target is invented and no household/monthly/growth accuracy
+is inferred from the KIT records. See OPERATIONAL_EVIDENCE.md.

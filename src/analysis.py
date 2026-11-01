@@ -9,6 +9,7 @@ from .rwanda_data import location_profile
 from .connection import validate_connection, monthly_connection_outlook, first_year_site, first_year_finance, annual_outlook, first_year_multiplier
 from .deliverables import SHARING_PROPOSAL, deliverable_status, lender_explanation, delivery_summary
 from .detailed_inputs import validate_detailed, apply_detailed
+from .prepared_evidence import summary as prepared_summary
 from .domain import CONFIG, ROOT, FEATURES, LABELS, SECTORS, SITE_LIMITS, SCENARIO_LIMITS, validate_site, validate_numbers, baseline_components, profile, growth, finance
 
 
@@ -19,6 +20,9 @@ def analyze(payload, forecaster, public=None):
     result["productive_sensitivity"] = productive_sensitivity(result)
     result["delivery"] = delivery_summary(result)
     result["deliverables"] = result["delivery"]["items"]
+    # Evidence is attached after all forecasting/finance calculations. Never use
+    # sector totals or unrelated KIT labels to initialise or calibrate the model.
+    result["prepared_evidence"] = prepared_summary(result["context"]["location"])
     return result
 
 

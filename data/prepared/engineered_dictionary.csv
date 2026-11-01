@@ -1,0 +1,13 @@
+feature,unit,formula,limitation
+population_density_per_km2,people/km2,population_2022 / boundary_area_km2 * 1,Different source vintages; sector screening only
+household_density_per_km2,households/km2,households_2022 / boundary_area_km2 * 1,Different source vintages; sector screening only
+building_density_per_km2,detected structures/km2,building_count_google_v3 / boundary_area_km2 * 1,Different source vintages; sector screening only
+mean_household_size_approx,people/household,population_2022 / households_2022 * 1,Approximation: total resident population versus private-household count; not a census-reported private-household mean
+mean_detected_building_area_m2,m2/detection,building_area_m2_google_v3 / building_count_google_v3 * 1,Detected structure area; not floor area or household size
+detected_buildings_per_household,ratio,building_count_google_v3 / households_2022 * 1,Buildings are not households; compare 2023 detections to 2022 census
+estimated_non_grid_households_2022,estimated households,households_2022 * not_grid_connected_households_percent_2022 / 100,Rounded census percentage; not-grid-connected does NOT mean unelectrified or willing to connect
+mapped_schools_per_1000_households,mapped objects/1000 households,school_count_osm / households_2022 * 1000,Zero means none mapped; OSM may be incomplete or contain duplicate representations
+mapped_clinics_per_1000_households,mapped objects/1000 households,clinic_count_osm / households_2022 * 1000,Zero means none mapped; OSM may be incomplete or contain duplicate representations
+mapped_markets_per_1000_households,mapped objects/1000 households,market_count_osm / households_2022 * 1000,Zero means none mapped; OSM may be incomplete or contain duplicate representations
+mapped_major_road_density_km_per_km2,km/km2,mapped_major_road_length_km_eae_osm / boundary_area_km2 * 1,Selected major mapped roads only; not accessibility or route cost
+agricultural_household_share,fraction,agricultural_households_percent_2022 / 100,Household agricultural participation; not irrigation or electric load

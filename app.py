@@ -1,4 +1,4 @@
-"""Local GridSight web application. Run: .venv/bin/python app.py"""
+"""GridSight planning web application. Run: .venv/bin/python app.py"""
 import csv
 import io
 import json
@@ -25,6 +25,8 @@ from src.statistical import (SETTINGS as STATISTICAL_SETTINGS, LABELS as UNCERTA
                              blank_plan, planning_uncertainty, confidence_study, study_csv)
 from src.financial_evidence import CATALOG, template as financial_template, fields as financial_fields, benchmark_check
 from src.maintenance import blank_release, blank_policy, evaluate_candidate
+from src.prepared_evidence import summary as prepared_summary, write_archive as write_prepared_archive
+from src.operational_evidence import summary as operational_summary, write_archive as write_operational_archive
 
 
 def create_app():
@@ -74,7 +76,7 @@ def create_app():
 
     @app.get("/health")
     def health():
-        return jsonify(status="ok", model_version=CONFIG["version"], feature_version="1.10")
+        return jsonify(status="ok", model_version=CONFIG["version"], feature_version="1.11")
 
     @app.get("/api/bootstrap")
     def bootstrap():
@@ -92,6 +94,35 @@ def create_app():
     @app.get("/api/rwanda-data")
     def rwanda_data():
         return jsonify(source_summary())
+
+    @app.get("/api/prepared-evidence")
+    def prepared_evidence():
+        return jsonify(prepared_summary())
+
+    @app.get("/api/operational-models")
+    def operational_models():
+        return jsonify(operational_summary())
+
+    @app.get("/api/operational-models/download")
+    def operational_models_download():
+        evidence = operational_summary()
+        if evidence["status"] != "trained_exploratory":
+            return jsonify(error=evidence["reason"]), 503
+        archive = io.BytesIO()
+        with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
+            write_operational_archive(z, evidence)
+        archive.seek(0)
+        return send_file(archive, mimetype="application/zip", as_attachment=True,
+                         download_name="gridsight-real-hourly-data-and-model-results.zip")
+
+    @app.get("/api/prepared-evidence/download")
+    def prepared_evidence_download():
+        archive = io.BytesIO()
+        with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
+            write_prepared_archive(z, prepared_summary())
+        archive.seek(0)
+        return send_file(archive, mimetype="application/zip", as_attachment=True,
+                         download_name="gridsight-prepared-evidence.zip")
 
     @app.post("/api/location-project")
     def location_project():
@@ -279,6 +310,7 @@ def create_app():
             return out.getvalue()
         with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
             z.writestr("analysis.json", json.dumps(r, indent=2))
+            write_prepared_archive(z, r["prepared_evidence"])
             z.writestr("financial_evidence.json", json.dumps(r["financial_evidence"], indent=2))
             z.writestr("benchmark_sources.json", json.dumps(CATALOG, indent=2))
             z.writestr("productive_use_stress.csv", csv_text(r["productive_sensitivity"]["rows"]))
@@ -309,7 +341,7 @@ def create_app():
                 z.writestr("public_context.json", json.dumps(r["public_data"], indent=2))
             if r.get("location_profile"):
                 z.writestr("location_profile.json", json.dumps(r["location_profile"], indent=2))
-            z.writestr("README.txt", f"GridSight scenario export. Model trained on synthetic data; community inputs are {r['context']['input_origin']}. Open report.html to review or print. analysis.json includes country, location, assumed fields, units and provenance. Public national context is not consumption evidence. Growth is conditional; financial values are {r['context']['currency']}. No real-site accuracy or investment viability is established.\n")
+            z.writestr("README.txt", f"GridSight scenario export. Detailed mode uses engineering scenarios; the legacy reference model was trained on synthetic data. Community inputs are {r['context']['input_origin']}. Open report.html to review or print. analysis.json includes country, location, assumed fields, units and provenance. Public national context is not consumption evidence. Growth is conditional; financial values are {r['context']['currency']}. No accuracy for the current monthly model or investment viability is established. The prepared_evidence folder contains separate public context, KIT power benchmark and source/feature summaries, not forecast validation.\n")
         archive.seek(0)
         return send_file(archive, mimetype="application/zip", as_attachment=True,
                          download_name="gridsight-deliverables.zip" if include_deliverables else "gridsight-analysis.zip")

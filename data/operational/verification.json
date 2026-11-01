@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": [
+    "All imported data hashes match the frozen input manifest",
+    "All 66 candidate fits, 24 family artifacts and 4,216 scored predictions accounted for",
+    "RW_ECOS: chronology, real labels, transforms, validation selection, artifact hashes, train-only refit and independent metrics verified",
+    "CD_IDJWI: chronology, real labels, transforms, validation selection, artifact hashes, train-only refit and independent metrics verified",
+    "HT_BEAUMONT: chronology, real labels, transforms, validation selection, artifact hashes, train-only refit and independent metrics verified",
+    "Improvement scores independently reconciled against matching persistence test rows"
+  ],
+  "test_is_new_blind_external_holdout": false,
+  "app_deployed": false
+}

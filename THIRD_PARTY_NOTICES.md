@@ -1,5 +1,46 @@
 # GridSight third party notices
 
+## Public hourly experiment (v1.11)
+
+`data/operational/` adds 1,540 hourly feature rows, 4,216 saved prediction rows
+and model-comparison summaries derived from the KIT dataset credited below.
+CC BY 4.0 attribution and original source details accompany every download.
+Actual readings and model predictions are separate fields. They are GridSight
+transformations, not source-author-endorsed forecasts. No model executable,
+private operator record or additional dependency is shipped by this integration.
+The preparation-only status in older snapshots describes that earlier stage;
+the separate hourly experiment has now been trained, as documented in
+`docs/OPERATIONAL_EVIDENCE.md`. Monthly/growth validation is still pending.
+
+## Prepared evidence integration (1 November 2026; local review)
+
+The new `data/prepared/` summaries have mixed source rights. Preserve their
+README, field dictionaries, source manifest and original/bundled hash inventory.
+This addition supersedes older blanket "no meter data" / "pending inputs" wording
+for the specific summaries below, not for current monthly-model validation.
+
+- **Luh et al., KIT / RADAR4KIT**: High-Resolution Real-World Electricity Data
+  from Three Microgrids in the Global South, https://doi.org/10.35097/1305,
+  CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Benchmarks, quality
+  summaries and preparation metadata are GridSight transformations; no endorsement.
+  Raw telemetry and model-training matrices are not duplicated in the app.
+- **NISR, RPHC5 Bugesera district profile**: limited factual 2022 census extracts,
+  https://statistics.gov.rw/sites/default/files/2025-05/BUGESERA.pdf. General reuse
+  licence unconfirmed; full PDF omitted. Review before wider redistribution.
+- **Google Research Open Buildings v3**, **geoBoundaries / William & Mary geoLab
+  and original contributors**, **GridFinder / Arderne et al.**, and **World Bank /
+  ESMAP / KTH GEP**: CC BY 4.0. Exact release/source links, dates and transformations
+  are in `data/prepared/source_manifest.csv`. Historical sector summaries only.
+- **OpenStreetMap contributors, WRI/HOT/OSM selected layers**: ODbL 1.0,
+  https://www.openstreetmap.org/copyright. Retain attribution and applicable
+  database share-alike obligations. No restricted EAE ministry/utility layers.
+- **NASA POWER**, underlying MERRA-2/SYN1deg products: acknowledge sources and
+  retain coarse-grid/year limitations; not local weather-station measurements.
+
+No Tanzania noncommercial telemetry, confidential operator records, survey
+microdata or full copyrighted reports are bundled. No blanket open licence or
+current-site electricity-access claim is asserted for the compilation.
+
 The hosted demo also uses **Gunicorn 26.2.0**, Gunicorn contributors,
 MIT licence. [Source and licence](https://github.com/benoitc/gunicorn).
 The published package includes its upstream licence.

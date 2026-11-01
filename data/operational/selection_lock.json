@@ -1,0 +1,283 @@
+{
+  "protocol_sha256": "2736fb83caa8a8b5a056bc27365b7ee82f3fdad5e80258e233c557b634c2325b",
+  "test_read_before_selection": false,
+  "selection_metric": "validation MAE kW",
+  "sites": {
+    "RW_ECOS": {
+      "train_rows": 280,
+      "validation_rows": 64,
+      "input_columns": 35,
+      "training_median_kw": 3.07564888825,
+      "families": {
+        "persistence": {
+          "parameters": {},
+          "validation_mae_kw": 0.04777254223160883,
+          "candidate_index": 0,
+          "artifact": "models/RW_ECOS__persistence.json",
+          "sha256": "ef8043be08a6a34d5823183973ab82d872e2b41e0436d072e2f8f64630c7fde3"
+        },
+        "training_median": {
+          "parameters": {
+            "training_median_kw": 3.07564888825
+          },
+          "validation_mae_kw": 0.14693928803375003,
+          "candidate_index": 0,
+          "artifact": "models/RW_ECOS__training_median.json",
+          "sha256": "1983ffd1048356c74b22cff834669fb16b95cc5cc2467799ad6977f7b5f76d74"
+        },
+        "seasonal_24h": {
+          "parameters": {},
+          "validation_mae_kw": 0.14711079171122918,
+          "candidate_index": 0,
+          "artifact": "models/RW_ECOS__seasonal_24h.json",
+          "sha256": "49371d823ef0c8961d7f4a6cb8ff9674c9b1206e754176075612a0d57e280d60"
+        },
+        "ridge": {
+          "parameters": {
+            "alpha": 0.1
+          },
+          "validation_mae_kw": 0.04158600998701755,
+          "candidate_index": 0,
+          "artifact": "models/RW_ECOS__ridge.joblib",
+          "sha256": "28b18b2ba5856a504bdbfe5aced83d7aa1d686dcf71b196a5888f3ac3f2db486"
+        },
+        "random_forest": {
+          "parameters": {
+            "n_estimators": 200,
+            "max_depth": 6,
+            "min_samples_leaf": 10,
+            "random_state": 42,
+            "n_jobs": 1
+          },
+          "validation_mae_kw": 0.07146555682228695,
+          "candidate_index": 3,
+          "artifact": "models/RW_ECOS__random_forest.joblib",
+          "sha256": "e1db967a27729f404bbc9d948efffcbee9c14e55b033ddb77ee94b8149cac55a"
+        },
+        "extra_trees": {
+          "parameters": {
+            "n_estimators": 200,
+            "max_depth": 6,
+            "min_samples_leaf": 5,
+            "random_state": 42,
+            "n_jobs": 1
+          },
+          "validation_mae_kw": 0.08459826561518374,
+          "candidate_index": 2,
+          "artifact": "models/RW_ECOS__extra_trees.joblib",
+          "sha256": "2dd9cdd9fe0bc45c32c5ccb62399fbae971bc66549390e5933be2615e1daa548"
+        },
+        "gradient_boosting": {
+          "parameters": {
+            "n_estimators": 100,
+            "learning_rate": 0.05,
+            "max_depth": 2,
+            "min_samples_leaf": 5,
+            "random_state": 42
+          },
+          "validation_mae_kw": 0.07874783660839185,
+          "candidate_index": 1,
+          "artifact": "models/RW_ECOS__gradient_boosting.joblib",
+          "sha256": "fc7758e464d65b1c1bb9e52ed4f39e6aed4ec6b27d3c576525bf27c22b3cd480"
+        },
+        "svr": {
+          "parameters": {
+            "C": 0.1,
+            "epsilon": 0.01,
+            "kernel": "rbf",
+            "gamma": "scale"
+          },
+          "validation_mae_kw": 0.12925559866797143,
+          "candidate_index": 0,
+          "artifact": "models/RW_ECOS__svr.joblib",
+          "sha256": "e3fa95a1fb11cfe1650b6727b14e47ba7d0b5516ff5aa4a80f4692d399dafed9"
+        }
+      },
+      "selected_family": "ridge"
+    },
+    "CD_IDJWI": {
+      "train_rows": 215,
+      "validation_rows": 90,
+      "input_columns": 27,
+      "training_median_kw": 3.49303379583,
+      "families": {
+        "persistence": {
+          "parameters": {},
+          "validation_mae_kw": 0.5572811686922029,
+          "candidate_index": 0,
+          "artifact": "models/CD_IDJWI__persistence.json",
+          "sha256": "c1f817a24841df8147d2074cfcd1c7c203eec3b8bd5410683917e91165124649"
+        },
+        "training_median": {
+          "parameters": {
+            "training_median_kw": 3.49303379583
+          },
+          "validation_mae_kw": 0.8124245779926668,
+          "candidate_index": 0,
+          "artifact": "models/CD_IDJWI__training_median.json",
+          "sha256": "8a1d3cd66687eeb61191aa4da177faf695e4e5368a54ef263e9fc1bcd61f48db"
+        },
+        "seasonal_24h": {
+          "parameters": {},
+          "validation_mae_kw": 1.1067602254898905,
+          "candidate_index": 0,
+          "artifact": "models/CD_IDJWI__seasonal_24h.json",
+          "sha256": "05540ba6f6a51a3171f357ba67a17f8872fb6dacda66a133b47a8478e18a54ea"
+        },
+        "ridge": {
+          "parameters": {
+            "alpha": 100
+          },
+          "validation_mae_kw": 0.7023731053656834,
+          "candidate_index": 3,
+          "artifact": "models/CD_IDJWI__ridge.joblib",
+          "sha256": "ac91ddd15f9a36f4e01bad10880f5ec478dc91e7ae5bc7206483d0cff9de0c98"
+        },
+        "random_forest": {
+          "parameters": {
+            "n_estimators": 200,
+            "max_depth": null,
+            "min_samples_leaf": 5,
+            "random_state": 42,
+            "n_jobs": 1
+          },
+          "validation_mae_kw": 0.6255696960943651,
+          "candidate_index": 4,
+          "artifact": "models/CD_IDJWI__random_forest.joblib",
+          "sha256": "cb840007c4652c5c0c8dc7095ec14b28155416d234caba71d618ef11549a1bfd"
+        },
+        "extra_trees": {
+          "parameters": {
+            "n_estimators": 200,
+            "max_depth": null,
+            "min_samples_leaf": 10,
+            "random_state": 42,
+            "n_jobs": 1
+          },
+          "validation_mae_kw": 0.6212807549975768,
+          "candidate_index": 5,
+          "artifact": "models/CD_IDJWI__extra_trees.joblib",
+          "sha256": "aefa89caae9bd2f3d3dd47d1952888de17f68a6f67593ad1eb9172c1a43747bf"
+        },
+        "gradient_boosting": {
+          "parameters": {
+            "n_estimators": 100,
+            "learning_rate": 0.05,
+            "max_depth": 2,
+            "min_samples_leaf": 5,
+            "random_state": 42
+          },
+          "validation_mae_kw": 0.6185684547539054,
+          "candidate_index": 1,
+          "artifact": "models/CD_IDJWI__gradient_boosting.joblib",
+          "sha256": "bd9412e2cb81ac37794726c7f5ec79fefc8f521a34bb34d85186926554a1e79a"
+        },
+        "svr": {
+          "parameters": {
+            "C": 1,
+            "epsilon": 0.01,
+            "kernel": "rbf",
+            "gamma": "scale"
+          },
+          "validation_mae_kw": 0.6608723055887334,
+          "candidate_index": 1,
+          "artifact": "models/CD_IDJWI__svr.joblib",
+          "sha256": "79eea5cb08fdb3d6825536beeaa3ca8432e8f6449e0eed4261a804e5999836d1"
+        }
+      },
+      "selected_family": "persistence"
+    },
+    "HT_BEAUMONT": {
+      "train_rows": 518,
+      "validation_rows": 113,
+      "input_columns": 35,
+      "training_median_kw": 0.0973703775833,
+      "families": {
+        "persistence": {
+          "parameters": {},
+          "validation_mae_kw": 0.05254704939598099,
+          "candidate_index": 0,
+          "artifact": "models/HT_BEAUMONT__persistence.json",
+          "sha256": "a3810a464c897715668bbcb4ea25a55f1e14117d96d79632198e1e2efa919497"
+        },
+        "training_median": {
+          "parameters": {
+            "training_median_kw": 0.0973703775833
+          },
+          "validation_mae_kw": 0.06945239718214513,
+          "candidate_index": 0,
+          "artifact": "models/HT_BEAUMONT__training_median.json",
+          "sha256": "9f7a7b13d6a4cd84ea08326ca0d1ad087647099d6508b918656a118b84ade856"
+        },
+        "seasonal_24h": {
+          "parameters": {},
+          "validation_mae_kw": 0.04896724444046584,
+          "candidate_index": 0,
+          "artifact": "models/HT_BEAUMONT__seasonal_24h.json",
+          "sha256": "e05c4acec1050b3be2f3ddcbd6469b21db68fce0ac4101ed87f8e48d5b2005ed"
+        },
+        "ridge": {
+          "parameters": {
+            "alpha": 10
+          },
+          "validation_mae_kw": 0.04129253529448505,
+          "candidate_index": 2,
+          "artifact": "models/HT_BEAUMONT__ridge.joblib",
+          "sha256": "a0c0b4c455c8f60c346069b2caa76b773185a0e12eda2c52eba16c383d9376b1"
+        },
+        "random_forest": {
+          "parameters": {
+            "n_estimators": 200,
+            "max_depth": null,
+            "min_samples_leaf": 5,
+            "random_state": 42,
+            "n_jobs": 1
+          },
+          "validation_mae_kw": 0.03842734587268649,
+          "candidate_index": 4,
+          "artifact": "models/HT_BEAUMONT__random_forest.joblib",
+          "sha256": "a798a0fe2f2c29e6d4c3cb3fb6cf34a006b100fad4f4bed02000cd859a30110a"
+        },
+        "extra_trees": {
+          "parameters": {
+            "n_estimators": 200,
+            "max_depth": null,
+            "min_samples_leaf": 5,
+            "random_state": 42,
+            "n_jobs": 1
+          },
+          "validation_mae_kw": 0.034002601995130596,
+          "candidate_index": 4,
+          "artifact": "models/HT_BEAUMONT__extra_trees.joblib",
+          "sha256": "46a9fcb250285674f4c66d884570a75a1c4fad38b7bf7a2ad3a10f0e34c5f48f"
+        },
+        "gradient_boosting": {
+          "parameters": {
+            "n_estimators": 100,
+            "learning_rate": 0.05,
+            "max_depth": 2,
+            "min_samples_leaf": 5,
+            "random_state": 42
+          },
+          "validation_mae_kw": 0.038535535023062395,
+          "candidate_index": 1,
+          "artifact": "models/HT_BEAUMONT__gradient_boosting.joblib",
+          "sha256": "0de5793b7dbb29f9b6e73e76c87ef974a142cc18888612dfb8fe84469176b3ad"
+        },
+        "svr": {
+          "parameters": {
+            "C": 0.1,
+            "epsilon": 0.01,
+            "kernel": "rbf",
+            "gamma": "scale"
+          },
+          "validation_mae_kw": 0.03626449500906296,
+          "candidate_index": 0,
+          "artifact": "models/HT_BEAUMONT__svr.joblib",
+          "sha256": "1ad9d022dec30e5e9d0e879c35e9fcb9957a5b3b793e08664fd1c9c21482eb7b"
+        }
+      },
+      "selected_family": "extra_trees"
+    }
+  }
+}

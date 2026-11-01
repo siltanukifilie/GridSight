@@ -1,0 +1,21 @@
+feature,group,unit,definition,uses_no_future_measurements,usable_without_site_history
+hour_sin,known_calendar,unitless,sin(2*pi*target local hour/24),True,True
+hour_cos,known_calendar,unitless,cos(2*pi*target local hour/24),True,True
+weekday_sin,known_calendar,unitless,sin(2*pi*target local weekday/7),True,True
+weekday_cos,known_calendar,unitless,cos(2*pi*target local weekday/7),True,True
+is_weekend,known_calendar,unitless,1 on local Saturday or Sunday; otherwise 0,True,True
+power_lag_1h_kw,past_power,kW,Qualified hourly power 1 hours before target hour,True,False
+power_lag_2h_kw,past_power,kW,Qualified hourly power 2 hours before target hour,True,False
+power_lag_3h_kw,past_power,kW,Qualified hourly power 3 hours before target hour,True,False
+power_lag_6h_kw,past_power,kW,Qualified hourly power 6 hours before target hour,True,False
+power_lag_12h_kw,past_power,kW,Qualified hourly power 12 hours before target hour,True,False
+power_lag_24h_kw,past_power,kW,Qualified hourly power 24 hours before target hour,True,False
+power_mean_3h_kw,past_power,kW,"mean of prior 3h qualified hourly values, excluding target; all hours required",True,False
+power_mean_6h_kw,past_power,kW,"mean of prior 6h qualified hourly values, excluding target; all hours required",True,False
+power_mean_24h_kw,past_power,kW,"mean of prior 24h qualified hourly values, excluding target; all hours required",True,False
+power_std_6h_kw,past_power,kW,"std of prior 6h qualified hourly values, excluding target; all hours required; population standard deviation ddof=0",True,False
+power_std_24h_kw,past_power,kW,"std of prior 24h qualified hourly values, excluding target; all hours required; population standard deviation ddof=0",True,False
+power_min_24h_kw,past_power,kW,"min of prior 24h qualified hourly values, excluding target; all hours required",True,False
+power_max_24h_kw,past_power,kW,"max of prior 24h qualified hourly values, excluding target; all hours required",True,False
+power_change_1h_kw,past_power,kW,Power at t-1 minus power at t-2,True,False
+power_change_6h_kw,past_power,kW,Power at t-1 minus power at t-7 (six elapsed hours),True,False

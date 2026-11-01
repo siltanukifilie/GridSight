@@ -54,7 +54,14 @@ def test_export_matches_analysis_and_contains_provenance(client):
     response = client.post("/api/export", json=body)
     assert response.status_code == 200
     with zipfile.ZipFile(io.BytesIO(response.data)) as archive:
-        assert {name for name in archive.namelist() if not name.startswith(("prepared_evidence/", "operational_models/"))} == {"analysis.json", "central_demand_estimates.csv", "financial_scenarios.csv", "growth_scenarios.csv", "daily_profile.csv", "report.html", "README.txt", "demand_scenarios.csv", "monthly_scenarios.csv", "monthly_growth.csv", "productive_options.csv", "financial_evidence.json", "benchmark_sources.json", "productive_use_stress.csv"}
+        evidence_folders = ("prepared_evidence/", "operational_models/", "kenya_nigeria_uncertainty/", "bugesera_ranking/", "operator_pilot/")
+        assert {name for name in archive.namelist() if not name.startswith(evidence_folders)} == {
+            "analysis.json", "central_demand_estimates.csv", "financial_scenarios.csv", "growth_scenarios.csv",
+            "daily_profile.csv", "report.html", "README.txt", "demand_scenarios.csv", "monthly_scenarios.csv",
+            "monthly_growth.csv", "productive_options.csv", "financial_evidence.json", "benchmark_sources.json",
+            "productive_use_stress.csv", "growth_36_months.csv", "growth_annual_totals.csv",
+            "affordability_scenarios.csv", "productive_growth_monthly.csv", "productive_growth_annual.csv",
+            "assessment_checklist.json"}
         assert "prepared_evidence/summary.json" in archive.namelist()
         assert "operational_models/summary.json" in archive.namelist()
         exported = json.loads(archive.read("analysis.json"))

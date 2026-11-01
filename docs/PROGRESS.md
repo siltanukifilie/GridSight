@@ -1,5 +1,42 @@
 # GridSight progress tracker
 
+## v1.12 publication requested — 1 November 2026
+
+The user requested running the updated app on the existing Render service.
+This supersedes the local-only release decision below. Publication includes
+Bugesera ranking, operator pilot, rubric checklist, measured operational-error
+evidence and growth/productive-use/affordability scenarios. Keep public meter
+uploads disabled and the existing free service settings unchanged. Exclude local
+review bundles, private layers and credentials. Deployment and live checks must
+be verified separately from the prior local tests.
+
+## Latest local changes — Bugesera ranking and operator pilot, 1 November 2026
+
+1. Connected the existing 15-sector ranking to the initial location finder,
+   Locations, an Overview shortcut, analysis JSON and both export packages.
+   Source-checked score reproduction fails closed on stale or missing files.
+   Cell-selection shortcuts preserve the active project's demand/finance inputs.
+2. Preserved the existing ranking, explicitly disclosing shorter historical-grid
+   distance as a positive score and neutral equipment assumptions. Missing mills
+   and generators remain unavailable counts, not observed zeros. Sector totals
+   are not service-area customers and scores are not demand or investment advice.
+3. Added an operator-reviewable pilot proposal, draft request (not sent), approval
+   gates, blank handover and compatible monthly templates. Evidence includes a
+   dedicated download and printable proposal; ordinary exports include the pack.
+4. Added the Brief 03 five-criterion checklist with exact rubric weights,
+   available evidence and remaining gaps. No judge score, partner approval,
+   Rwanda accuracy or realized savings are fabricated.
+5. Verification: 653 Python tests pass, all 12 JavaScript test files pass, changed
+   JavaScript parses and diff whitespace passes. Browser visual acceptance remains
+   open due to the previously observed browser security-check service failure.
+
+Offline artifacts: `reports/screening_review/`. The review uses explicitly
+synthetic demand inputs and separate real public-sector context. These changes
+are local only: no push, hosted deployment or operator outreach was performed.
+Next action: review the new screens in an authorized browser, then decide on
+publication. The main data gate remains operator-approved pre-connection inputs
+paired with independent-site monthly observations.
+
 ## v1.11 release candidate — real hourly data and model comparisons
 
 The user approved publication after tests on 1 November 2026. This entry

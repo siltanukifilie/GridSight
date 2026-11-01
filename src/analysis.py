@@ -23,6 +23,16 @@ def analyze(payload, forecaster, public=None):
     # Evidence is attached after all forecasting/finance calculations. Never use
     # sector totals or unrelated KIT labels to initialise or calibrate the model.
     result["prepared_evidence"] = prepared_summary(result["context"]["location"])
+    from .transfer_uncertainty import summary as transfer_summary
+    from .planning_scenarios import build as build_scenarios
+    result["transfer_uncertainty"] = transfer_summary()
+    result["planning_scenarios"] = build_scenarios(result)
+    from .bugesera_ranking import summary as ranking_summary
+    from .operator_pilot import PILOT
+    from .assessment import summary as assessment_summary
+    result['bugesera_ranking'] = ranking_summary(result['context']['location'])
+    result['operator_pilot'] = PILOT
+    result['assessment'] = assessment_summary(result)
     return result
 
 

@@ -1,0 +1,17 @@
+{% if r.bugesera_ranking is defined %}
+{% set b = r.bugesera_ranking %}
+<h2>Bugesera sector screening</h2><p class="notice">{{ b.notice }}</p>
+{% if b.status == 'available' %}
+<table><thead><tr><th>Rank</th><th>Sector</th><th>Screening score / 100</th><th>Buildings / km²</th><th>Lights · nW/cm²/sr</th><th>Historical grid reference · km</th></tr></thead><tbody>
+{% for row in b.rows %}<tr><td>{{ row.priority_rank }}</td><td>{{ row.site_name }}{{ ' (project sector context)' if row.site_id == b.selected_site_id else '' }}</td><td>{{ '%.1f'|format(row.priority_score) }}</td><td>{{ '%.1f'|format(row.building_density_per_km2) }}</td><td>{{ '%.3f'|format(row.nighttime_light_radiance_gep_mean_nw_cm2_sr) }}</td><td>{{ '%.2f'|format(row.gridfinder_reference_point_distance_km) }}</td></tr>{% endfor %}
+</tbody></table><p>{{ b.method }}</p>
+<p>Weights: {% for c in b.components %}{{ c.label }} {{ '%.0f'|format(c.weight*100) }}%{{ '; ' if not loop.last else '.' }}{% endfor %}</p>
+{% else %}<p>{{ b.reason }}</p>{% endif %}
+<ul>{% for text in b.limitations %}<li>{{ text }}</li>{% endfor %}</ul>
+{% endif %}
+{% if r.assessment is defined %}
+<h2>Brief 03 assessment checklist</h2><p>{{ r.assessment.notice }}</p>
+<table><thead><tr><th>Criterion</th><th>Weight</th><th>Available evidence</th><th>Remaining gap</th></tr></thead><tbody>{% for c in r.assessment.criteria %}<tr><td>{{ c.criterion }}</td><td>{{ c.weight_percent }}%</td><td>{{ c.evidence }}</td><td>{{ c.gap }}</td></tr>{% endfor %}</tbody></table>
+<p>{{ r.assessment.submission }}</p><p class="muted">{{ r.assessment.source }}</p>
+{% endif %}
+{% if r.operator_pilot is defined %}{% set p = r.operator_pilot %}{% include 'operator_pilot_sections.html' %}{% endif %}

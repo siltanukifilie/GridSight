@@ -1,0 +1,19 @@
+{% set u = r.transfer_uncertainty %}
+<h2>Kenya/Nigeria measured-site error ranges</h2>
+<p>{{ u.notice }}</p>
+{% if u.status != 'unavailable' %}
+<table><thead><tr><th>Horizon</th><th>Sites / months</th><th>Reference radius kWh/origin meter</th><th>Nested equal-site coverage</th><th>Model / persistence MAE kWh</th></tr></thead><tbody>
+{% for h in u.horizons %}<tr><td>{{ h.horizon_months }} months</td><td>{{ h.sites }} / {{ h.rows }}</td><td>± {{ '%.2f'|format(h.radius_kwh_per_origin_meter) }}</td><td>{{ '%.1f'|format(h.nested_equal_site_coverage*100) }}%</td><td>{{ '%.1f'|format(h.equal_site_mae_kwh) }} / {{ '%.1f'|format(h.equal_site_persistence_mae_kwh) }}</td></tr>{% endfor %}
+</tbody></table>
+<p>Reference range: prediction ± radius × origin observed meters, lower bound clipped at zero. Nested coverage uses radii calibrated without the tested site; pooled reference radii have no independent coverage evaluation.</p>
+<p>{{ u.method }} {{ u.temporal_scope }} {{ u.source }}. {{ u.license }}.</p>
+{% endif %}
+{% set s = r.planning_scenarios %}
+<h2>Household affordability scenarios</h2>
+<p>{{ s.affordability.notice }}</p>
+<p>Entered income-share screen: {{ '%.1f'|format(s.affordability.income_threshold*100) }}%. All amounts in {{ r.context.currency }}.</p>
+<table><thead><tr><th>Tariff case</th><th>Tariff/kWh</th><th>Bill/month</th><th>Income share</th><th>Budget gap/month</th></tr></thead><tbody>{% for x in s.affordability.rows %}<tr><td>{{ x.case }}</td><td>{{ x.tariff_per_kwh }}</td><td>{{ x.bill_monthly if x.bill_monthly is not none else 'Not assessed' }}</td><td>{{ '%.1f%%'|format(x.income_share*100) if x.income_share is not none else 'Not assessed' }}</td><td>{{ x.budget_gap_monthly if x.budget_gap_monthly is not none else 'Not assessed' }}</td></tr>{% endfor %}</tbody></table>
+<h2>Staged productive use · Years 1–3</h2>
+<p>{{ s.productive_growth.notice }}</p>
+<table><thead><tr><th>Unit / case / year</th><th>Extra demand kWh</th><th>Extra served kWh</th><th>Operating contribution {{ r.context.currency }}</th><th>Cash after support {{ r.context.currency }}</th></tr></thead><tbody>{% for x in s.productive_growth.years %}<tr><td>{{ x.option }} / {{ x.case }} / {{ x.year }}</td><td>{{ '%.1f'|format(x.extra_demand_kwh) }}</td><td>{{ '%.1f'|format(x.extra_served_kwh) }}</td><td>{{ '%.1f'|format(x.extra_operating_contribution) }}</td><td>{{ '%.1f'|format(x.cash_after_support) if x.cash_after_support is not none else 'Support cost missing' }}</td></tr>{% endfor %}</tbody></table>
+<p>Exports include 36 monthly low/base/high values, 9 annual growth totals, 324 productive-use monthly alternatives, 27 annual alternatives and 3 affordability cases. The measured error reference is exported separately with every held-out prediction and split audit.</p>

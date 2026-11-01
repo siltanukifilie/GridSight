@@ -6,12 +6,18 @@ PLANNING_DEFAULTS = {
     "project_capex": None, "capacity_capex": None,
     "mill_support_cost": None, "pump_support_cost": None, "cold_room_support_cost": None,
     "mill_monthly_cost": 0, "pump_monthly_cost": 0, "cold_room_monthly_cost": 0,
+    "household_basket_kwh": None, "household_income_monthly": None,
+    "household_energy_budget_monthly": None, "household_fixed_fee_monthly": 0,
+    "affordability_income_share": .05,
 }
 PLANNING_LIMITS = {
     "low_factor": (0, 1), "high_factor": (1, 3), "discount_rate": (0, .5),
     "project_capex": (0, 1e12), "capacity_capex": (0, 1e12),
     "mill_support_cost": (0, 1e10), "pump_support_cost": (0, 1e10), "cold_room_support_cost": (0, 1e10),
     "mill_monthly_cost": (0, 1e8), "pump_monthly_cost": (0, 1e8), "cold_room_monthly_cost": (0, 1e8),
+    "household_basket_kwh": (0, 10000), "household_income_monthly": (0, 1e10),
+    "household_energy_budget_monthly": (0, 1e10), "household_fixed_fee_monthly": (0, 1e8),
+    "affordability_income_share": (0, 1),
 }
 OPTIONAL_COSTS = [key for key, value in PLANNING_DEFAULTS.items() if value is None]
 PLANNING_LABELS = {
@@ -24,6 +30,11 @@ PLANNING_LABELS = {
     "mill_monthly_cost": "One mill: extra developer operating cost per month",
     "pump_monthly_cost": "One pump: extra developer operating cost per month",
     "cold_room_monthly_cost": "One cold room: extra developer operating cost per month",
+    "household_basket_kwh": "Household energy basket per month · kWh",
+    "household_income_monthly": "Household income per month",
+    "household_energy_budget_monthly": "Household energy budget per month",
+    "household_fixed_fee_monthly": "Household fixed electricity fee per month",
+    "affordability_income_share": "Editable income-share screen · fraction",
 }
 
 

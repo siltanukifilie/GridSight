@@ -1,5 +1,24 @@
 # GridSight third party notices
 
+## Kenya/Nigeria transfer-error study (v1.12)
+
+`data/transfer_uncertainty/` contains GridSight-derived site/month aggregates,
+predictions, residuals and split diagnostics from Nicholas Selby / Renewvia
+Solar Africa, *High-Frequency, Multi-Domain Operational Dataset for Community
+Solar Mini-Grids in Kenya and Nigeria*, Zenodo record 22149102,
+https://doi.org/10.5281/zenodo.22149102. The supplied publisher manifest records
+open access under CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/.
+These derived data are distributed under CC BY-SA 4.0; preserve attribution,
+this transformation notice and applicable share-alike obligations. No endorsement
+by the source author or operator is implied. No customer identities, individual
+meter traces or raw customer files are bundled. Qualified monthly targets can
+include reconstructed intervals; see the study audit and scope notes. These
+operational-history tests are not pre-build Rwanda validation.
+
+The Bugesera ranking is a derived public-context screening table. Its underlying
+source rights and attribution remain those in the prepared evidence section and
+source manifest below. Ranking does not create measured demand observations.
+
 ## Public hourly experiment (v1.11)
 
 `data/operational/` adds 1,540 hourly feature rows, 4,216 saved prediction rows

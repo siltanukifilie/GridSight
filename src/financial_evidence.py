@@ -28,6 +28,11 @@ def fields(r):
         out["planning."+key] = {"value":r["planning"][key],"unit":currency+(" / month" if key.endswith("monthly_cost") else "")}
     for key in ("shops","mills","pumps","cold_rooms","uptake"):
         out["site."+key] = {"value":r["site"][key],"unit":"fraction" if key=="uptake" else "count"}
+    for key in ('household_basket_kwh', 'household_income_monthly', 'household_energy_budget_monthly',
+                'household_fixed_fee_monthly', 'affordability_income_share'):
+        if key in r['planning']:
+            unit = 'kWh / household / month' if key=='household_basket_kwh' else 'fraction' if key=='affordability_income_share' else currency+' / household / month'
+            out['planning.'+key] = {'value': r['planning'][key], 'unit': unit}
     for key in ("additional_mills","additional_pumps","additional_cold_rooms"):
         out["assumptions."+key] = {"value":r["assumptions"][key],"unit":"count"}
     if r["detailed"]["enabled"]:

@@ -1,0 +1,12 @@
+<h2>{{ p.title }}</h2>
+<p class="notice">{{ p.status }}</p>
+<p>{{ p.purpose }}</p>
+<h3>Initial request</h3><p>{{ p.request }}</p>
+<h3>Study scope</h3><p>{{ p.scope }}</p>
+<h3>Minimum data and exclusions</h3>
+<dl>{% for item in p.data_contract %}<dt><strong>{{ item.item }}</strong></dt><dd>{{ item.detail }}</dd>{% endfor %}</dl>
+<h3>Approval gates</h3>
+<ol>{% for gate in p.gates %}<li><strong>{{ gate.stage }} — {{ gate.owner }}</strong><p>{{ gate.exit }}</p></li>{% endfor %}</ol>
+<h3>Value to the operator</h3><p>{{ p.operator_value }}</p>
+<h3>Evaluation</h3><p>{{ p.evaluation }}</p>
+<h3>When to stop</h3><p>{{ p.stop_rules }}</p>

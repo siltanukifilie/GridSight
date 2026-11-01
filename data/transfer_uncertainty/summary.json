@@ -1,0 +1,180 @@
+{
+  "schema": "kenya-nigeria-transfer-errors-v1",
+  "status": "empirical_reference",
+  "runtime_versions": {
+    "duckdb": "2.0.0",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.9.1"
+  },
+  "builder_sha256": "46d56ff0f090519b923c16531143b85a6bb0916dcb5c5566a101adcc2be76218",
+  "nominal_error_quantile": 0.9,
+  "site_metrics": [
+    {
+      "horizon_months": 1,
+      "site_id": "KEN_kalobeyei_settlement_village_3a",
+      "test_rows": 27,
+      "mae_kwh": 397.3622557239002,
+      "persistence_mae_kwh": 318.02221133865714,
+      "coverage": 0.7407407407407407,
+      "mean_width_kwh": 878.4132861296716,
+      "actual_mean_kwh": 1873.6542266635481,
+      "calibration_sites": 3
+    },
+    {
+      "horizon_months": 1,
+      "site_id": "KEN_lomekwi",
+      "test_rows": 35,
+      "mae_kwh": 282.63012603422084,
+      "persistence_mae_kwh": 29.707307110167,
+      "coverage": 1.0,
+      "mean_width_kwh": 1345.2979123676596,
+      "actual_mean_kwh": 224.99520343405163,
+      "calibration_sites": 3
+    },
+    {
+      "horizon_months": 1,
+      "site_id": "KEN_lorengelup",
+      "test_rows": 26,
+      "mae_kwh": 312.7724687519131,
+      "persistence_mae_kwh": 23.7213928998496,
+      "coverage": 1.0,
+      "mean_width_kwh": 1157.0001164011376,
+      "actual_mean_kwh": 105.55220959299793,
+      "calibration_sites": 3
+    },
+    {
+      "horizon_months": 1,
+      "site_id": "NGA_akipelai",
+      "test_rows": 6,
+      "mae_kwh": 1060.8449981935894,
+      "persistence_mae_kwh": 905.0841198021044,
+      "coverage": 0.6666666666666666,
+      "mean_width_kwh": 2151.2757354867986,
+      "actual_mean_kwh": 2627.581266973221,
+      "calibration_sites": 3
+    },
+    {
+      "horizon_months": 3,
+      "site_id": "KEN_kalobeyei_settlement_village_3a",
+      "test_rows": 23,
+      "mae_kwh": 472.17346429635734,
+      "persistence_mae_kwh": 424.0952402147279,
+      "coverage": 0.9565217391304348,
+      "mean_width_kwh": 2202.9675851341103,
+      "actual_mean_kwh": 1793.6026780321222,
+      "calibration_sites": 3
+    },
+    {
+      "horizon_months": 3,
+      "site_id": "KEN_lomekwi",
+      "test_rows": 33,
+      "mae_kwh": 477.25817453652616,
+      "persistence_mae_kwh": 43.35314475971916,
+      "coverage": 1.0,
+      "mean_width_kwh": 3058.4596020628214,
+      "actual_mean_kwh": 231.4070585307398,
+      "calibration_sites": 3
+    },
+    {
+      "horizon_months": 3,
+      "site_id": "KEN_lorengelup",
+      "test_rows": 22,
+      "mae_kwh": 543.0084190932816,
+      "persistence_mae_kwh": 27.40416554777348,
+      "coverage": 1.0,
+      "mean_width_kwh": 1904.3040230641454,
+      "actual_mean_kwh": 108.80537134160535,
+      "calibration_sites": 3
+    },
+    {
+      "horizon_months": 3,
+      "site_id": "NGA_akipelai",
+      "test_rows": 4,
+      "mae_kwh": 3059.99151430806,
+      "persistence_mae_kwh": 2010.2543332209939,
+      "coverage": 0.25,
+      "mean_width_kwh": 1656.9320119484396,
+      "actual_mean_kwh": 3059.99151430806,
+      "calibration_sites": 3
+    },
+    {
+      "horizon_months": 12,
+      "site_id": "KEN_kalobeyei_settlement_village_3a",
+      "test_rows": 17,
+      "mae_kwh": 1335.9563911002758,
+      "persistence_mae_kwh": 925.2737817011696,
+      "coverage": 0.0,
+      "mean_width_kwh": 351.6642996542685,
+      "actual_mean_kwh": 2347.8966335824884,
+      "calibration_sites": 2
+    },
+    {
+      "horizon_months": 12,
+      "site_id": "KEN_lomekwi",
+      "test_rows": 26,
+      "mae_kwh": 313.6467436452189,
+      "persistence_mae_kwh": 109.262797569222,
+      "coverage": 1.0,
+      "mean_width_kwh": 2642.4782866949654,
+      "actual_mean_kwh": 267.17423271446324,
+      "calibration_sites": 2
+    },
+    {
+      "horizon_months": 12,
+      "site_id": "KEN_lorengelup",
+      "test_rows": 18,
+      "mae_kwh": 559.520804182076,
+      "persistence_mae_kwh": 48.97200904723583,
+      "coverage": 1.0,
+      "mean_width_kwh": 2558.786124945428,
+      "actual_mean_kwh": 134.38938829935935,
+      "calibration_sites": 2
+    }
+  ],
+  "horizons": [
+    {
+      "horizon_months": 1,
+      "rows": 94,
+      "sites": 4,
+      "radius_kwh_per_origin_meter": 6.344900385327113,
+      "nested_equal_site_coverage": 0.8518518518518517,
+      "nested_row_coverage": 0.9042553191489362,
+      "equal_site_mae_kwh": 513.4024621759058,
+      "equal_site_persistence_mae_kwh": 319.13375778769455
+    },
+    {
+      "horizon_months": 3,
+      "rows": 82,
+      "sites": 4,
+      "radius_kwh_per_origin_meter": 16.356442600077,
+      "nested_equal_site_coverage": 0.8016304347826086,
+      "nested_row_coverage": 0.9512195121951219,
+      "equal_site_mae_kwh": 1138.1078930585563,
+      "equal_site_persistence_mae_kwh": 626.2767209358036
+    },
+    {
+      "horizon_months": 12,
+      "rows": 61,
+      "sites": 3,
+      "radius_kwh_per_origin_meter": 22.006187284590077,
+      "nested_equal_site_coverage": 0.6666666666666666,
+      "nested_row_coverage": 0.7213114754098361,
+      "equal_site_mae_kwh": 736.3746463091902,
+      "equal_site_persistence_mae_kwh": 361.1695294392091
+    }
+  ],
+  "source": "Renewvia / Zenodo record 22149102; local qualified monthly aggregates",
+  "license": "CC-BY-SA-4.0 according to supplied source manifest; derived results attributed to Renewvia",
+  "model": "Fixed Step 4 normalized Ridge(alpha=1); predictions clipped at zero",
+  "method": "Nested leave-one-site-out; inner calibration excludes the outer test site. Equal total weight per calibration site; absolute error / origin observed-meter count.",
+  "temporal_scope": "Retrospective site transfer. Other-site records may postdate a test origin. Not a chronological deployment backtest.",
+  "reference_radius_scope": "Pooled outer residual quantile for subsequent operational experiments. Nested coverage tests separately fitted radii; no independent evaluation of pooled radii.",
+  "notice": "Empirical operational error ranges from Kenya/Nigeria. Requires observed consumption history and origin meter counts. Does not calibrate Bugesera greenfield demand or 24\u201336 month growth. Months are correlated; only 3\u20134 sites per horizon, and qualified totals can include reconstructed intervals. 90th-percentile errors do not guarantee 90% coverage.",
+  "source_hashes": {
+    "operational_forecasting.parquet": "7127620de1d1d0b58617146fcb6560cdf670ac60f2a45235a8c64ed563667c2d",
+    "site_month_panel.parquet": "017124cf8f250207bad9151285c3f8668dbafbd380f50f0afbb34ce476ec8861"
+  },
+  "synthetic_rows": 0,
+  "rwanda_validation_sites": 0
+}

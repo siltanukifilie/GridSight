@@ -1,0 +1,80 @@
+KENYA/NIGERIA UNCERTAINTY AND THREE-YEAR PLANNING
+
+Open Feasibility in the developer or investor dashboard. The view now includes:
+* Measured-site error ranges, source scope and downloadable prediction audit.
+* The existing 36-month low/base/high curve and annual totals.
+* Household affordability inputs and three flat-tariff comparisons.
+* One additional mill, pump or cold room at no, half or full assumed use,
+  with 36 monthly and three annual results for each alternative.
+The printable report and analysis ZIP contain the same applied calculations.
+
+REPRODUCE THE MEASURED STUDY
+From the app directory, using the analysis environment:
+  .venv/bin/python scripts/build_transfer_uncertainty.py --source "/path/to/data/model_ready/operational_forecasting"
+Requires DuckDB, pandas, numpy and scikit-learn. The web app only reads the
+small saved JSON/CSV evidence and does not require DuckDB at runtime.
+
+Qualification is checked against the monthly panel at both origin and target.
+Observed meter count is not verified active connections. Qualified totals can
+include reconstructed intervals. Predictions use the fixed normalized Ridge
+from Step 4, with negative predictions floored at zero. The 237 forecast pairs
+come from four sites, not 237 independent sites. No synthetic demand is used.
+
+For each outer site/horizon, the other sites are split again: each inner
+calibration site is predicted by a model fitted only on remaining sites.
+The outer site never enters calibration or fitting. The weighted empirical
+90th percentile of absolute errors per origin meter gives the radius; each
+calibration site has equal total weight. Final outer predictions are fitted
+on all other sites. Lower bounds are clipped at zero.
+
+Reported nested coverage evaluates those test-excluded radii. The pooled
+reference radii in summary.json instead describe all outer errors and have
+no further independent test. They must not be claimed to achieve the nested
+coverage themselves. Months are correlated and there are only 3-4 sites.
+This is retrospective site transfer, not a temporal deployment backtest.
+Unseen country effects and all previously inspected data limit inference.
+
+The latest-month persistence baseline has lower average site MAE at every
+horizon. The study does not select or deploy a winning model. Its ranges
+require observed operational history; they are not transferred onto the
+pre-construction Bugesera scenario. No 24/36-month calibrated range exists.
+
+GROWTH
+Uses the app's active monthly engine, including connection/appliance ramp,
+annual growth assumptions, and any entered productive additions. Detailed
+mode retains its engineering/seasonality assumptions. Annual energy is the
+sum of 12 months; monthly average is annual energy / 12. Low/high are entered
+scenario factors, not measured probability bounds. No extra seasonal or
+Rwanda demand-growth coefficient is invented from the Kenya/Nigeria study.
+
+PRODUCTIVE USE
+Each alternative adds one EXTRA unit to the current plan at the selected
+adoption year. Added monthly energy follows the entered business growth;
+no uptake/half/full are stress cases, not estimated probabilities. Energy
+served is limited by entered monthly supply. Fixed support costs continue
+even at zero uptake. Support capital is charged once at launch; unknown
+capital keeps launch-year cash unknown. These are incremental developer
+cash flows, not enterprise profits. Hourly dispatch, power upgrades and
+generation investment remain outside this comparison.
+
+AFFORDABILITY
+Enter one household's monthly kWh basket, income and/or energy budget,
+fixed fee, and income-share screen in the project currency. Bills are
+kWh * tariff + fee at 0.8/1/1.2 times the entered flat tariff. Collection
+rate does not reduce household liability. Income share is unavailable at
+zero income; the threshold check can still flag a positive bill. Unknown
+income, budget or basket remains unknown. The default 5% income screen is
+an editable assumption, not a regulatory or survey finding. No price
+elasticity, change in uptake, or representative household income is inferred.
+
+SOURCE
+Renewvia / Zenodo record 22149102, qualified local monthly aggregates.
+Supplied manifest: CC-BY-SA-4.0. Derived error study by GridSight; no publisher
+endorsement. Source SHA-256 fingerprints and fold audit are in the study ZIP.
+
+REVIEW EXAMPLE
+Run .venv/bin/python scripts/export_planning_review.py.
+The review scenario uses the existing fictional Bugesera farming-community
+demo. Its household income, energy budget, support costs and growth inputs
+are explicit examples, not local survey observations. Files go to
+reports/planning_review/ and do not change saved user projects.

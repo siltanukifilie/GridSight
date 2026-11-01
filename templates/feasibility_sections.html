@@ -1,6 +1,7 @@
 {% macro n(value, digits=0) -%}{{ ('{:,.%df}' % digits).format(value) if value is not none else 'Not assessed' }}{%- endmacro %}
 {% macro debt(value) -%}{{ n(value,2) ~ '×' if value is not none else 'Not applicable' }}{%- endmacro %}
 {% set f = r.feasibility %}
+{% include 'planning_scenarios_sections.html' %}
 <h2>Feasibility findings</h2>
 <p class="notice"><strong>Complete scenario coverage, not verified project feasibility.</strong> This report assesses demand cases, three-year growth, productive uses, sizing risks and cash flow. Real-site engineering, commercial evidence and financing approval remain outside this synthetic screen.</p>
 {% for finding in f.findings %}<h3>{{ finding.title }}</h3><p>{{ finding.detail }} <strong>Next:</strong> {{ finding.action }}</p>{% endfor %}
@@ -34,7 +35,7 @@
 
 {% endif %}
 <h2>Exact feasibility assumptions</h2>
-<table><thead><tr><th>Assumption</th><th>Value</th><th>Unit</th></tr></thead><tbody>{% for key,value in r.planning.items() %}<tr><td>{{ key.replace('_',' ').capitalize() }}</td><td>{{ value if value is not none else 'Not provided' }}</td><td>{{ 'multiplier' if key.endswith('factor') else 'fraction/year' if key=='discount_rate' else r.context.currency ~ '/month' if key.endswith('monthly_cost') else r.context.currency }}</td></tr>{% endfor %}</tbody></table>
+<table><thead><tr><th>Assumption</th><th>Value</th><th>Unit</th></tr></thead><tbody>{% for key,value in r.planning.items() %}<tr><td>{{ key.replace('_',' ').capitalize() }}</td><td>{{ value if value is not none else 'Not provided' }}</td><td>{{ 'kWh/month' if key=='household_basket_kwh' else 'fraction' if key=='affordability_income_share' else 'multiplier' if key.endswith('factor') else 'fraction/year' if key=='discount_rate' else r.context.currency ~ '/month' if key.endswith('monthly_cost') or key.endswith('_monthly') else r.context.currency }}</td></tr>{% endfor %}</tbody></table>
 
 <h2>Evidence needed before commitment</h2>
 <ol>{% for gap in f.evidence_gaps %}<li>{{ gap }} — not verified in this prototype.</li>{% endfor %}</ol>

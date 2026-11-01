@@ -27,6 +27,9 @@ from src.financial_evidence import CATALOG, template as financial_template, fiel
 from src.maintenance import blank_release, blank_policy, evaluate_candidate
 from src.prepared_evidence import summary as prepared_summary, write_archive as write_prepared_archive
 from src.operational_evidence import summary as operational_summary, write_archive as write_operational_archive
+from src.transfer_uncertainty import summary as transfer_summary, write_archive as write_transfer_archive
+from src.bugesera_ranking import summary as ranking_summary, write_archive as write_ranking_archive
+from src.operator_pilot import PILOT, write_archive as write_pilot_archive
 
 
 def create_app():
@@ -76,11 +79,55 @@ def create_app():
 
     @app.get("/health")
     def health():
-        return jsonify(status="ok", model_version=CONFIG["version"], feature_version="1.11")
+        return jsonify(status="ok", model_version=CONFIG["version"], feature_version="1.12")
 
     @app.get("/api/bootstrap")
     def bootstrap():
-        return jsonify(public_sources=source_summary(), roles=WORKSPACES, demos=DEMOS, defaults=CONFIG["default_scenario"], site_limits=SITE_LIMITS, scenario_limits=SCENARIO_LIMITS, data=json.loads((ROOT / "data/metadata.json").read_text()), evaluation=json.loads((ROOT / "reports/evaluation.json").read_text()))
+        return jsonify(bugesera_ranking=ranking_summary(), public_sources=source_summary(), roles=WORKSPACES, demos=DEMOS, defaults=CONFIG["default_scenario"], site_limits=SITE_LIMITS, scenario_limits=SCENARIO_LIMITS, data=json.loads((ROOT / "data/metadata.json").read_text()), evaluation=json.loads((ROOT / "reports/evaluation.json").read_text()))
+
+    @app.get('/api/bugesera-ranking')
+    def bugesera_ranking():
+        packet = ranking_summary()
+        return jsonify(packet), 200 if packet['status'] == 'available' else 503
+
+    @app.get('/api/bugesera-ranking/download')
+    def ranking_download():
+        packet = ranking_summary()
+        if packet['status'] != 'available':
+            return jsonify(error=packet['reason']), 503
+        archive = io.BytesIO()
+        with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
+            write_ranking_archive(z, packet)
+        archive.seek(0)
+        return send_file(archive, mimetype='application/zip', as_attachment=True,
+                         download_name='bugesera-screening-ranking.zip')
+
+    @app.get('/api/operator-pilot')
+    def operator_pilot():
+        return render_template('operator_pilot.html', p=PILOT)
+
+    @app.get('/api/operator-pilot/download')
+    def operator_pilot_download():
+        archive = io.BytesIO()
+        with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
+            write_pilot_archive(z)
+            z.writestr('READ_FIRST.html', render_template('operator_pilot.html', p=PILOT, offline=True))
+        archive.seek(0)
+        return send_file(archive, mimetype='application/zip', as_attachment=True,
+                         download_name='gridsight-operator-pilot.zip')
+
+    @app.get('/api/transfer-uncertainty')
+    def transfer_errors():
+        return jsonify(transfer_summary())
+
+    @app.get('/api/transfer-uncertainty/download')
+    def transfer_errors_download():
+        archive = io.BytesIO()
+        with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
+            write_transfer_archive(z, transfer_summary())
+        archive.seek(0)
+        return send_file(archive, mimetype='application/zip', as_attachment=True,
+                         download_name='kenya-nigeria-empirical-errors.zip')
 
     def result():
         if not request.is_json:
@@ -311,6 +358,17 @@ def create_app():
         with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
             z.writestr("analysis.json", json.dumps(r, indent=2))
             write_prepared_archive(z, r["prepared_evidence"])
+            write_transfer_archive(z, r['transfer_uncertainty'])
+            write_ranking_archive(z, r['bugesera_ranking'])
+            write_pilot_archive(z)
+            z.writestr('operator_pilot/READ_FIRST.html', render_template('operator_pilot.html', p=PILOT, offline=True))
+            z.writestr('assessment_checklist.json', json.dumps(r['assessment'], indent=2))
+            s = r['planning_scenarios']
+            z.writestr('growth_36_months.csv', csv_text(s['growth']['months']))
+            z.writestr('growth_annual_totals.csv', csv_text(s['growth']['years']))
+            z.writestr('affordability_scenarios.csv', csv_text(s['affordability']['rows']))
+            z.writestr('productive_growth_monthly.csv', csv_text(s['productive_growth']['months']))
+            z.writestr('productive_growth_annual.csv', csv_text(s['productive_growth']['years']))
             z.writestr("financial_evidence.json", json.dumps(r["financial_evidence"], indent=2))
             z.writestr("benchmark_sources.json", json.dumps(CATALOG, indent=2))
             z.writestr("productive_use_stress.csv", csv_text(r["productive_sensitivity"]["rows"]))

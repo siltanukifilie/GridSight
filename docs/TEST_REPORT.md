@@ -1,5 +1,28 @@
 # GridSight verification record
 
+## Bugesera ranking and operator pilot — local checks, 1 November 2026
+
+- Full suite: **653 Python tests pass; all 12 JavaScript test files pass.**
+  JavaScript tests use logic/DOM doubles, not a real browser. Changed scripts
+  parse and `git diff --check` passes.
+- Ranking tests reproduce the existing order and weighted component totals,
+  preserve missing counts, require exact country/district/sector matching, and
+  reject changed scores, ranks, values, duplicates, NaN and stale equipment data.
+  Missing ranking files do not break project calculations; downloads return 503.
+- Checked forged client-side ranking/partner claims are ignored, project demand
+  and finance are unchanged, dirty/busy navigation is blocked, and the cell
+  shortcut fills real hierarchy selectors without creating a project or cell.
+- Checked both export routes include ranking/source metadata, assessment weights,
+  operator request/approval gates, and blank monthly templates. Public-demo meter
+  uploads remain blocked. Operator approval and retention fields remain blank.
+- Initial full-suite failure was the older exact export inventory. Updated that
+  expectation for the deliberately added growth/scenario/assessment files and
+  separately tested evidence folders; the subsequent full suite passed.
+- Generated and integrity-checked an 85-entry offline deliverables ZIP plus
+  standalone ranking/operator downloads. The example demand is explicitly
+  synthetic. No browser visual/mobile/print acceptance, live deployment,
+  operator contact or empirical validation was performed in this change.
+
 ## v1.11 prepublication checks — real hourly data and comparisons
 
 - **625 Python tests pass; all ten JavaScript test files pass.** These include

@@ -1,0 +1,34 @@
+{% set d = r.detailed %}
+<h2>Detailed demand inputs · 20-feature screen</h2>
+<p>Country: {{ r.context.country }}. Location: {{ r.context.location.administrative_path | join(' → ') if r.context.location else r.site.district }}. These are user/proxy inputs and illustrative defaults, not verified survey data.</p>
+<table><thead><tr><th>Input</th><th>Applied value</th></tr></thead><tbody>
+<tr><td>Households in service area</td><td>{{ r.site.households }}</td></tr>
+<tr><td>Expected starting household connection rate</td><td>{{ '{:.1%}'.format(r.site.uptake) }}</td></tr>
+<tr><td>Time since connection</td><td>{{ d.months_since_connection }} completed months</td></tr>
+<tr><td>Monthly household income</td><td>{{ d.household_income_monthly if d.household_income_monthly is not none else 'Unknown' }} {{ r.context.currency }}</td></tr>
+<tr><td>Electricity tariff</td><td>{{ r.assumptions.tariff }} {{ r.context.currency }}/kWh</td></tr>
+<tr><td>One-time connection fee per household</td><td>{{ d.connection_fee if d.connection_fee is not none else 'Unknown' }} {{ r.context.currency }}</td></tr>
+<tr><td>Businesses / mills / irrigation pumps / cold rooms</td><td>{{ r.site.shops }} / {{ r.site.mills }} / {{ r.site.pumps }} / {{ r.site.cold_rooms }}</td></tr>
+<tr><td>Schools / clinics</td><td>{{ r.site.schools }} / {{ r.site.clinics }}</td></tr>
+<tr><td>Expected new household connections / year</td><td>{{ d.new_connections_yearly }} (capped by service-area households)</td></tr>
+<tr><td>Appliance adoption rate / year</td><td>{{ '{:.1%}'.format(d.appliance_adoption_rate) }}</td></tr>
+<tr><td>Business growth rate / year</td><td>{{ '{:.1%}'.format(r.assumptions.business_growth) }}</td></tr>
+</tbody></table>
+<h3>Appliance ownership, power and daily operating hours</h3>
+<table><thead><tr><th>Type</th><th>Units / connected household</th><th>Power W</th><th>Effective hours/day</th></tr></thead><tbody>{% for key, item in d.appliances.items() %}<tr><td>{{ key | replace('_',' ') }}</td><td>{{ item.units_per_household }}</td><td>{{ item.power_w }}</td><td>{{ item.hours_per_day }}</td></tr>{% endfor %}</tbody></table>
+<h3>Equipment and service loads</h3>
+<table><thead><tr><th>Type</th><th>Power kW/unit</th><th>Effective hours/day</th></tr></thead><tbody>{% for key, item in d.equipment.items() %}<tr><td>{{ key | replace('_',' ') }}</td><td>{{ item.power_kw }}</td><td>{{ item.hours_per_day }}</td></tr>{% endfor %}</tbody></table>
+<p>Agricultural cycle, service Months 1–12: {{ d.agricultural_seasonality | join(', ') }}. Multipliers repeat every 12 service months for mills and pumps only.</p>
+<h2>Household affordability</h2>
+<p>Average monthly bill per connected household: {{ '{:,.0f}'.format(r.affordability.monthly_bill_per_connected_household) }} {{ r.context.currency }}. Bill / gross income: {{ '{:.1%}'.format(r.affordability.bill_share_of_income) if r.affordability.bill_share_of_income is not none else 'Income needed' }}. Connection fee / monthly gross income: {{ '{:.2f}'.format(r.affordability.connection_fee_income_months) if r.affordability.connection_fee_income_months is not none else 'Inputs needed' }} months.</p>
+<p class="muted">{{ r.affordability.basis }}</p>
+<h2>Demand after connection · next 36 months</h2>
+<p>Forecast covers service Months {{ r.horizon.first_service_month }}–{{ r.horizon.last_service_month }}. Forecast Year 1 covers Months {{ r.horizon.first_service_month }}–{{ r.horizon.first_year_end }}. It does not restart adoption at Month 1 for an older project.</p>
+{% set months = r.feasibility.monthly_growth %}
+{% set top = ([months | map(attribute='upper') | max, 1] | max) * 1.1 %}
+<svg viewBox="0 0 820 240" role="img" aria-label="Detailed demand scenario over 36 forecast months" style="width:100%;height:auto"><title>Low / expected / high demand</title><line x1="60" x2="795" y1="200" y2="200" stroke="#a1b59d"/><text x="60" y="14" font-size="11">kWh/month · maximum axis {{ '{:,.0f}'.format(top) }}</text>
+{% for key in ['lower','central','upper'] %}<polyline fill="none" stroke="{{ '#215d40' if key=='central' else '#91ad71' }}" stroke-width="{{ 3 if key=='central' else 1.5 }}" points="{% for m in months %}{{ 60+(m.month-1)*21 }},{{ 200-m[key]/top*175 }} {% endfor %}"/>{% endfor %}
+{% for index in [0,11,23,35] %}<text x="{{ 60+index*21 }}" y="222" text-anchor="middle" font-size="11">{{ months[index].calendar_month or 'M'~months[index].service_month }}</text>{% endfor %}</svg>
+<p class="muted">{{ r.feasibility.methods.growth }}</p>
+<h3>Feature use checklist</h3>
+<table><thead><tr><th>#</th><th>Feature</th><th>Use</th></tr></thead><tbody>{% for f in r.feature_inventory %}<tr><td>{{ f.number }}</td><td>{{ f.name }}</td><td>{{ f.use }}</td></tr>{% endfor %}</tbody></table>

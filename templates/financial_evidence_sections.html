@@ -1,0 +1,12 @@
+{% if r.financial_evidence %}
+<h2>Financial evidence & productive-use credibility</h2>
+<p>{{ r.financial_evidence.status }} · {{ r.financial_evidence.source_attached }} of {{ r.financial_evidence.input_count }} inputs have a recent source attached. This is documentation coverage, not independent verification.</p>
+{% if r.financial_evidence.stale_project %}<div class="notice">Inputs changed; previous evidence has been detached.</div>{% endif %}
+<div class="report-scroll"><table><thead><tr><th>Applied input</th><th>Value / unit</th><th>Status</th><th>Source / date</th></tr></thead><tbody>
+{% for x in r.financial_evidence.rows %}<tr><td>{{ x.field }}</td><td>{{ x.value if x.value is not none else 'Not supplied' }} {{ x.unit }}</td><td>{{ x.status.replace('_',' ') }}</td><td>{{ x.evidence.source_reference ~ ' / ' ~ x.evidence.observed_on if x.evidence else 'Needed' }}</td></tr>{% endfor %}
+</tbody></table></div><p class="muted">{{ r.financial_evidence.notice }}</p>
+<h3>Historical regional references</h3><ul>{% for b in r.financial_evidence.benchmarks.benchmarks %}<li><a href="{{ b.url }}">{{ b.source }}</a>, {{ b.locator }}: {{ b.value }} {{ b.unit }} · {{ b.scope }}. {{ b.limitation }}</li>{% endfor %}</ul>
+<p class="muted">{{ r.financial_evidence.benchmarks.notice }} No benchmark was automatically applied or converted.</p>
+<h3>Productive-use shortfalls</h3><p>{{ r.productive_sensitivity.notice }}</p><table><thead><tr><th>Option</th><th>Use case</th><th>Extra kWh/month</th><th>Grid contribution {{ r.context.currency }}/month</th></tr></thead><tbody>{% for x in r.productive_sensitivity.rows %}<tr><td>{{ x.option }}</td><td>{{ x.case }}</td><td>{{ '{:,.1f}'.format(x.extra_demand_kwh_month) }}</td><td>{{ '{:,.0f}'.format(x.grid_contribution_amount_month) }}</td></tr>{% endfor %}</tbody></table>
+<p class="notice">Measured capital savings: not established. Unused-capacity allocations and scenario cash differences do not demonstrate that GridSight reduces oversizing or wasted capital. An independently reviewed pilot with comparable service requirements, baseline designs, actual costs and observed reliability is still needed.</p>
+{% endif %}

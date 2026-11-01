@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "seed": 20261030,
+  "origin": "synthetic",
+  "sites": 500,
+  "monthly_observations": 18000,
+  "months_per_site": 36,
+  "partitions": {
+    "train": 300,
+    "calibration": 100,
+    "test": 100
+  },
+  "target": "First 12 months mean customer demand, kWh/month",
+  "real_metered_sites": 0,
+  "assumptions": "All consumption, uptake, cost, tariff, growth and capacity inputs are editable design assumptions. They are not measured Rwanda values."
+}

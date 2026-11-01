@@ -1,0 +1,130 @@
+{
+  "RW": {
+    "name": "Rwanda",
+    "currency": "RWF",
+    "timezone": "Africa/Kigali",
+    "bounds": [
+      -2.85,
+      28.8,
+      -1,
+      31
+    ],
+    "model_status": "Synthetic Rwanda-context model; real-site accuracy unverified",
+    "area_level": 2,
+    "area_label": "District",
+    "local_label": "Sector",
+    "coverage_note": "Public gazetteer, not an official service-area register. Confirm boundaries locally."
+  },
+  "UG": {
+    "name": "Uganda",
+    "currency": "UGX",
+    "timezone": "Africa/Kampala",
+    "bounds": [
+      -1.6,
+      29.5,
+      4.3,
+      35.1
+    ],
+    "model_status": "Transfer demonstration; no local training or calibration",
+    "area_level": 2,
+    "area_label": "District",
+    "local_label": "County / mapped area",
+    "coverage_note": "District and lower-level coverage is incomplete and may use older boundaries."
+  },
+  "KE": {
+    "name": "Kenya",
+    "currency": "KES",
+    "timezone": "Africa/Nairobi",
+    "bounds": [
+      -4.8,
+      33.8,
+      5.1,
+      42
+    ],
+    "model_status": "Transfer demonstration; no local training or calibration",
+    "area_level": 1,
+    "area_label": "County",
+    "local_label": "Mapped local area",
+    "coverage_note": "Lower-level records mix older districts and locations; not a complete current sub-county or ward register."
+  },
+  "TZ": {
+    "name": "Tanzania",
+    "currency": "TZS",
+    "timezone": "Africa/Dar_es_Salaam",
+    "bounds": [
+      -11.8,
+      29.2,
+      -0.9,
+      40.6
+    ],
+    "model_status": "Transfer demonstration; no local training or calibration",
+    "area_level": 2,
+    "area_label": "District",
+    "local_label": "Ward",
+    "coverage_note": "Mapped districts and wards may not reflect the latest boundary changes."
+  },
+  "BI": {
+    "name": "Burundi",
+    "currency": "BIF",
+    "timezone": "Africa/Bujumbura",
+    "bounds": [
+      -4.5,
+      28.9,
+      -2.2,
+      30.9
+    ],
+    "model_status": "Transfer demonstration; no local training or calibration",
+    "area_level": 1,
+    "area_label": "Province (source records)",
+    "local_label": "Commune (source records)",
+    "coverage_note": "This gazetteer contains older province and commune records, not a verified current administrative register. Confirm the current jurisdiction locally."
+  },
+  "SS": {
+    "name": "South Sudan",
+    "currency": "SSP",
+    "timezone": "Africa/Juba",
+    "bounds": [
+      3.4,
+      23.4,
+      12.3,
+      36
+    ],
+    "model_status": "Transfer demonstration; no local training or calibration",
+    "area_level": 1,
+    "area_label": "State (source records)",
+    "local_label": "Mapped local area",
+    "coverage_note": "County and payam coverage is incomplete; some records use older administrative names. Missing places require a surveyed location."
+  },
+  "SO": {
+    "name": "Somalia",
+    "currency": "SOS",
+    "timezone": "Africa/Mogadishu",
+    "bounds": [
+      -1.8,
+      40.8,
+      12.1,
+      51.5
+    ],
+    "model_status": "Transfer demonstration; no local training or calibration",
+    "area_level": 1,
+    "area_label": "Region",
+    "local_label": "District",
+    "coverage_note": "Source names are for geographic search, not a statement about jurisdiction. Confirm local authorities and access."
+  },
+  "CD": {
+    "name": "DR Congo",
+    "currency": "CDF",
+    "timezone": "Africa/Kinshasa",
+    "bounds": [
+      -13.6,
+      12.1,
+      5.5,
+      31.4
+    ],
+    "model_status": "Transfer demonstration; no local training or calibration",
+    "area_level": 1,
+    "area_label": "Province",
+    "local_label": "Territory / mapped area",
+    "coverage_note": "Lower-level coverage is incomplete. Site time zone comes from the selected record; country default is Kinshasa."
+  }
+}

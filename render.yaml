@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: gridsight
+    runtime: python
+    plan: free
+    region: frankfurt
+    branch: main
+    buildCommand: pip install -r requirements-web.txt
+    startCommand: gunicorn --config gunicorn.conf.py 'app:create_app()'
+    healthCheckPath: /health
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.4
+      - key: GRIDSIGHT_PUBLIC_DEMO
+        value: "1"
+      - key: GRIDSIGHT_LOW_MEMORY
+        value: "1"
+      - key: OPENBLAS_NUM_THREADS
+        value: "1"
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: PYTHONUNBUFFERED
+        value: "1"

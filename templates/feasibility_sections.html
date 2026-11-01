@@ -1,0 +1,47 @@
+{% macro n(value, digits=0) -%}{{ ('{:,.%df}' % digits).format(value) if value is not none else 'Not assessed' }}{%- endmacro %}
+{% macro debt(value) -%}{{ n(value,2) ~ '×' if value is not none else 'Not applicable' }}{%- endmacro %}
+{% set f = r.feasibility %}
+<h2>Feasibility findings</h2>
+<p class="notice"><strong>Complete scenario coverage, not verified project feasibility.</strong> This report assesses demand cases, three-year growth, productive uses, sizing risks and cash flow. Real-site engineering, commercial evidence and financing approval remain outside this synthetic screen.</p>
+{% for finding in f.findings %}<h3>{{ finding.title }}</h3><p>{{ finding.detail }} <strong>Next:</strong> {{ finding.action }}</p>{% endfor %}
+
+<h2>Low / expected / high range</h2>
+<p>{{ f.methods.scenarios }}</p>
+<div class="report-scroll"><table><thead><tr><th>Case</th><th>Demand factor</th><th>Year</th><th>Demand kWh/year</th><th>Served kWh/year</th><th>Revenue {{ r.context.currency }}/year</th><th>Cash after debt {{ r.context.currency }}/year</th><th>Debt coverage</th><th>Cash-gap months</th></tr></thead><tbody>
+{% for case in f.scenarios %}{% for y in case.years %}<tr><td>{{ case.label }}</td><td>{{ n(case.factor*100) }}%</td><td>{{ y.year }}</td><td>{{ n(y.demand_kwh) }}</td><td>{{ n(y.served_kwh) }}</td><td>{{ n(y.revenue) }}</td><td>{{ n(y.cash_after_debt) }}</td><td>{{ debt(y.dscr) }}</td><td>{{ y.cash_shortfall_months }}/12</td></tr>{% endfor %}{% endfor %}
+</tbody></table></div>
+<p class="muted">Annual totals sum 12 monthly calculations with monthly energy caps. {{ 'Year 1 totals match the dashboard monthly-average financial results multiplied by 12.' if r.connection.enabled or r.detailed.enabled else 'They can differ from multiplying the earlier average-month financial result by 12 when capacity binds.' }} Unserved energy earns no revenue. Peak shortfalls are warnings; hourly dispatch may reveal further unmet demand.</p>
+
+<h2>Productive-use opportunities</h2>
+<div class="report-scroll"><table><thead><tr><th>Rank / option</th><th>Added demand / served kWh/mo</th><th>Added revenue {{ r.context.currency }}/mo</th><th>Added operating cost {{ r.context.currency }}/mo</th><th>Grid contribution {{ r.context.currency }}/mo</th><th>Support cost {{ r.context.currency }}</th><th>Simple payback years</th><th>Supply check</th></tr></thead><tbody>
+{% for o in f.productive_options %}<tr><td>{{ o.rank }}. {{ o.label }}</td><td>{{ n(o.extra_demand_kwh_month) }} / {{ n(o.extra_served_kwh_month) }}</td><td>{{ n(o.extra_revenue_amount_month) }}</td><td>{{ n(o.extra_operating_cost_amount_month) }}</td><td>{{ n(o.extra_contribution_amount_month) }}</td><td>{{ n(o.developer_support_cost_amount) }}</td><td>{{ n(o.simple_payback_years,2) }}{{ ' (provisional)' if o.simple_payback_years is not none and o.supply_gap else '' }}</td><td>{{ o.screen }}</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="muted">{{ f.methods.productive }}</p>
+<p>Before commitment: verify local crop/service volumes, operating schedules, customers, ability to pay, machinery costs and maintenance. Grid contribution is not the productive enterprise's profit.</p>
+
+<h2>Over-sizing and under-sizing risks</h2>
+<div class="report-scroll"><table><thead><tr><th>Case / year</th><th>Energy used</th><th>Unused capacity kWh/year</th><th>Unserved kWh/year</th><th>Peak gap kW</th><th>Spare power kW</th><th>Lost-sales exposure {{ r.context.currency }}/year</th><th>Idle capital exposure {{ r.context.currency }}</th></tr></thead><tbody>
+{% for case in f.scenarios %}{% for y in case.years %}<tr><td>{{ case.label }} / {{ y.year }}</td><td>{{ n(y.energy_utilization*100,1) ~ '%' if y.energy_utilization is not none else 'Not applicable' }}</td><td>{{ n(y.unused_capacity_kwh) }}</td><td>{{ n(y.unserved_kwh) }}</td><td>{{ n(y.peak_shortfall_kw,1) }}</td><td>{{ n(y.spare_power_kw,1) }}</td><td>{{ n(y.lost_sales_amount) }}</td><td>{{ n(y.idle_capital_exposure_amount) }}</td></tr>{% endfor %}{% endfor %}
+</tbody></table></div>
+<p class="muted">{{ f.methods.sizing }} Capital exposure is a stock, not a yearly expense: do not sum it across years. Lost-sales exposure is unserved energy × tariff × collection, not lost profit.</p>
+
+<h2>Capital and 36-month cash outlook</h2>
+<table><thead><tr><th>Case</th><th>3-year operating surplus {{ r.context.currency }}</th><th>3-year cash after debt {{ r.context.currency }}</th><th>3-year NPV before financing {{ r.context.currency }}</th></tr></thead><tbody>{% for case in f.scenarios %}<tr><td>{{ case.label }}</td><td>{{ n(case.three_year_operating_surplus) }}</td><td>{{ n(case.three_year_cash_after_debt) }}</td><td>{{ n(case.three_year_npv_before_financing) }}</td></tr>{% endfor %}</tbody></table>
+<p class="muted">{{ f.methods.finance }} Productive-use support options are separate comparisons, not automatically added project expenses. No IRR, credit rating or investment recommendation is produced.</p>
+
+{% if r.sensitivities %}<h2>Reasons behind the forecast: local sensitivity</h2>
+<table><thead><tr><th>Input</th><th>Input increase</th><th>Model demand change kWh/month</th></tr></thead><tbody>{% for s in r.sensitivities %}<tr><td>{{ s.label }}</td><td>+{{ n(s.input_change,2) }}</td><td>{{ n(s.change_kwh,1) }}</td></tr>{% endfor %}</tbody></table><p class="muted">One input changes at a time. Local responses are not proven causes or a comparable feature-importance ranking. The baseline contribution table above is not an exact attribution of the model output.</p>
+
+{% endif %}
+<h2>Exact feasibility assumptions</h2>
+<table><thead><tr><th>Assumption</th><th>Value</th><th>Unit</th></tr></thead><tbody>{% for key,value in r.planning.items() %}<tr><td>{{ key.replace('_',' ').capitalize() }}</td><td>{{ value if value is not none else 'Not provided' }}</td><td>{{ 'multiplier' if key.endswith('factor') else 'fraction/year' if key=='discount_rate' else r.context.currency ~ '/month' if key.endswith('monthly_cost') else r.context.currency }}</td></tr>{% endfor %}</tbody></table>
+
+<h2>Evidence needed before commitment</h2>
+<ol>{% for gap in f.evidence_gaps %}<li>{{ gap }} — not verified in this prototype.</li>{% endfor %}</ol>
+<p>Developer: validate the load survey, productive-user commitments and technical design. Investor/lender: verify costs, commercial assumptions, financing terms and downside repayment. Re-run the scenarios with verified inputs; do not treat this synthetic report as financing approval.</p>
+<p class="muted">Method context: <a href="https://www.esmap.org/new_esmap_report_minigrids_for_half_a_billion_people">ESMAP mini-grid handbook</a>; <a href="https://sam.nlr.gov/financial-models">SAM financial-model overview</a>. GridSight implements its own simplified calculations, not SAM dispatch or finance. These references do not supply this project's demand labels, tariff or cost assumptions.</p>
+
+<h2>Appendix: 36-month expected-demand path</h2>
+<p class="muted">{{ f.methods.growth }} {{ 'Bounds use low/high scenario multipliers, not a probability or calibrated prediction range.' if r.detailed.enabled else 'Shading/bounds propagate the initial prediction range, not independently validated monthly uncertainty.' }}</p>
+<table><thead><tr><th>Service month</th><th>Calendar month</th><th>Year</th><th>Expected kWh</th><th>{{ 'Low scenario' if r.detailed.enabled else 'Propagated lower' }}</th><th>{{ 'High scenario' if r.detailed.enabled else 'Propagated upper' }}</th><th>Illustrative peak kW</th></tr></thead><tbody>{% for m in f.monthly_growth %}<tr><td>{{ m.service_month if r.detailed.enabled else m.month }}</td><td>{{ m.calendar_month or 'Not supplied' }}</td><td>{{ m.year }}</td><td>{{ n(m.central,1) }}</td><td>{{ n(m.lower,1) }}</td><td>{{ n(m.upper,1) }}</td><td>{{ n(m.peak_kw,1) }}</td></tr>{% endfor %}</tbody></table>
+<p class="muted">The ZIP contains exact inputs in analysis.json; central_demand_estimates.csv; demand_scenarios.csv (9 annual rows); monthly_scenarios.csv (108 monthly rows); monthly_growth.csv; productive_options.csv; growth_scenarios.csv; financial_scenarios.csv; daily_profile.csv; and this report. Feasibility engine v{{ f.version }}.</p>

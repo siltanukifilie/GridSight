@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "data_origin": "synthetic",
+  "selected_model": "gradient_boosting",
+  "split": {
+    "train": 300,
+    "calibration": 100,
+    "test": 100
+  },
+  "selection": {
+    "source": "60-site internal holdout inside the 300 training sites",
+    "baseline_mae": 2322.022865653686,
+    "model_mae": 1363.7921311185057
+  },
+  "test": {
+    "n_sites": 100,
+    "mae_kwh": 1294.7342644908124,
+    "rmse_kwh": 1843.2109953957342,
+    "wape_pct": 10.553917734085173,
+    "coverage_pct": 91.0,
+    "mean_interval_width_kwh": 5090.698693025043
+  },
+  "baseline_test_mae": 2236.257564307157,
+  "nominal_coverage_pct": 80,
+  "interval_method": "10th/90th quantile regressors with nonnegative normalized split-conformal expansion; point included in bounds before calibration and evaluation.",
+  "calibration_expansion": 0.05597699660430112,
+  "groups": {
+    "Residential": {
+      "n_sites": 40,
+      "mae_kwh": 1189.350903921475,
+      "rmse_kwh": 1598.3305181019325,
+      "wape_pct": 10.964013519192783,
+      "coverage_pct": 87.5,
+      "mean_interval_width_kwh": 4441.693258086453
+    },
+    "Trading": {
+      "n_sites": 37,
+      "mae_kwh": 1417.6091107254613,
+      "rmse_kwh": 2211.687948131843,
+      "wape_pct": 10.107188460795426,
+      "coverage_pct": 94.5945945945946,
+      "mean_interval_width_kwh": 5905.109683671229
+    },
+    "Agricultural": {
+      "n_sites": 23,
+      "mae_kwh": 1280.3414432773984,
+      "rmse_kwh": 1568.278024017909,
+      "wape_pct": 10.75064301455752,
+      "coverage_pct": 91.30434782608695,
+      "mean_interval_width_kwh": 4909.2643775309025
+    }
+  },
+  "stress_test": {
+    "description": "Synthetic held-out outcomes increased by 25%; inputs unchanged. Illustrates sensitivity to generator shift.",
+    "n_sites": 100,
+    "mae_kwh": 3448.174616740169,
+    "rmse_kwh": 4638.329496724262,
+    "wape_pct": 22.486004880483115,
+    "coverage_pct": 36.0,
+    "mean_interval_width_kwh": 5090.698693025043
+  },
+  "limitations": [
+    "No real metered sites were used.",
+    "Test sites come from the same synthetic generator; field accuracy is unknown.",
+    "Growth and finance are conditional scenarios, not validated forecasts.",
+    "Nominal coverage applies under distributional assumptions, not arbitrary new communities."
+  ]
+}

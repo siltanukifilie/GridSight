@@ -1,0 +1,30 @@
+{% if r.detailed.enabled %}
+{% include 'detailed_sections.html' %}
+{% elif r.connection.enabled %}
+<h2>Demand after connection · 36 months</h2>
+<p>Start: {{ r.connection.connection_month or 'Service Month 1 (date not supplied)' }}. Adoption reaches target in Month {{ r.connection.ramp_months }}. Initial connections: {{ '{:.1%}'.format(r.connection.start_household_fraction) }} of target; appliance use: {{ '{:.1%}'.format(r.connection.start_appliance_fraction) }}; existing non-household use: {{ '{:.1%}'.format(r.connection.start_business_fraction) }}.</p>
+<p class="muted">Community uptake and appliance index define the mature target, not first-month uptake. Maturity in Month 1 means immediate full target use. Annual growth adds underlying expansion; do not count adoption twice. Service months use 365/12-day energy equivalents, not exact calendar-day billing totals.</p>
+{% set cases = r.feasibility.scenarios %}
+{% set top = ([cases[2].months | map(attribute='demand_kwh') | max, 1] | max) * 1.1 %}
+<svg viewBox="0 0 820 240" role="img" aria-label="Low, expected and high monthly demand in the first 36 service months" style="width:100%;height:auto">
+<title>Low / expected / high demand after connection</title>
+<line x1="60" x2="795" y1="200" y2="200" stroke="#a1b59d"/>
+<text x="60" y="14" font-size="11" fill="#506b50">kWh/month · maximum axis {{ '{:,.0f}'.format(top) }}</text>
+{% for case in cases %}<polyline fill="none" stroke="{{ '#739581' if loop.index==1 else '#215d40' if loop.index==2 else '#a2ba71' }}" stroke-width="{{ 3 if loop.index==2 else 1.5 }}" {% if loop.index!=2 %}stroke-dasharray="5 4"{% endif %} points="{% for m in case.months %}{{ 60+(m.month-1)*21 }},{{ 200-m.demand_kwh/top*175 }} {% endfor %}"/>{% endfor %}
+{% for index in [0,11,23,35] %}<text x="{{ 60+index*21 }}" y="222" text-anchor="middle" font-size="11" fill="#506b50">{{ r.feasibility.monthly_growth[index].calendar_month or 'M'~(index+1) }}</text>{% endfor %}
+</svg>
+<p class="muted">Dashed: low/high demand cases. Solid: expected. Scenarios are not probabilities. Reference model estimate: {{ '{:,.0f}'.format(r.reference_forecast.central) }} kWh/month, used as an assumed mature reference. Year 1 after the adoption ramp: {{ '{:,.0f}'.format(r.forecast.central) }} kWh/month on average. No authentic post-connection validation has been performed.</p>
+{% endif %}
+
+<h2>Five deliverables · evidence status</h2>
+<table><thead><tr><th>Deliverable</th><th>Status</th><th>Scope and next action</th></tr></thead><tbody>{% for item in r.deliverables %}<tr><td>{{ item.name }}</td><td>{{ item.status }}</td><td>{{ item.detail }}<p><strong>Next:</strong> {{ item.next_action }}</p></td></tr>{% endfor %}</tbody></table>
+<h3>Complete the metered-evidence requirement</h3>
+<p class="notice">{{ r.delivery.validation.status }}. Real-site error and coverage are not available, not zero. {{ r.delivery.validation.batch_notice }}</p>
+<ol>{% for step in r.delivery.validation.steps %}<li><strong>{{ step.owner }}:</strong> {{ step.action }}</li>{% endfor %}</ol>
+<h2>Plain-language lender explanation</h2>
+{% for message in r.lender_explanation %}<p>{{ message }}</p>{% endfor %}
+<h2>{{ r.sharing_proposal.title }}</h2>
+<p class="notice">{{ r.sharing_proposal.status }}.</p>
+<ol>{% for step in r.sharing_proposal.steps %}<li><strong>{{ step.title }}.</strong> {{ step.detail }}</li>{% endfor %}</ol>
+<p>{{ r.sharing_proposal.minimum_data }}</p><p>{{ r.sharing_proposal.future_curve_study }}</p>
+<p class="muted">Proposal references: {% for ref in r.sharing_proposal.references %}<a href="{{ ref.url }}">{{ ref.title }}</a>{{ '; ' if not loop.last else '.' }}{% endfor %}</p>

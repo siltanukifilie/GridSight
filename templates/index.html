@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153b35"><meta name="description" content="GridSight — East Africa mini-grid planning. Country, district, sector and cell selection with 20 transparent demand and affordability inputs.">
+  <title>GridSight · Mini-grid demand intelligence</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/deployment.css"><script src="/static/deployment.js" defer></script>
+  <link rel="stylesheet" href="/static/feasibility.css">
+  <link rel="stylesheet" href="/static/styles.css"><script src="/static/workspaces.js?v=1.10" defer></script><script src="/static/demand-charts.js" defer></script><script src="/static/feasibility.js" defer></script><link rel="stylesheet" href="/static/context.css"><script src="/static/context.js" defer></script><link rel="stylesheet" href="/static/discovery.css"><script src="/static/discovery.js?v=1.10" defer></script><script src="/static/rwanda-data.js" defer></script><script src="/static/connection.js?v=1.10-deliverables" defer></script><link rel="stylesheet" href="/static/detailed-inputs.css?v=1.10-brand"><script src="/static/detailed-inputs.js" defer></script><script src="/static/monthly-validation.js?v=1.10-deliverables" defer></script><script src="/static/statistical.js" defer></script><script src="/static/financial-evidence.js" defer></script><script src="/static/maintenance.js" defer></script><link rel="stylesheet" href="/static/dashboard.css?v=1.10-deliverables"><script src="/static/analytics.js?v=1.10-deliverables" defer></script><script src="/static/app.js?v=1.10-deliverables" defer></script>
+</head>
+<body data-public-demo="{{ 'true' if public_demo else 'false' }}">
+  <a class="skip" href="#main">Skip to dashboard</a>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="GridSight home"><span class="brand-mark" aria-hidden="true">↗</span><span>GridSight<span class="brand-dot">.</span></span></a>
+    <div class="role-picker"><label for="role-select">YOUR ROLE</label><select id="role-select" aria-describedby="role-help" disabled><option value="developer">Mini-grid developer</option><option value="investor">Investor / lender</option></select><small id="role-help">Shared project. No login or access restrictions.</small></div>
+    <div class="workspace-label" id="workspace-label">DEVELOPER WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <button class="nav-item" data-view="locations"><span data-icon="location"></span><span class="nav-label">Locations</span></button>
+      <button class="nav-item active" data-view="overview" aria-current="page"><span data-icon="overview"></span><span class="nav-label">Overview</span></button>
+      <button class="nav-item" data-view="community"><span data-icon="community"></span><span class="nav-label">Community</span></button>
+      <button class="nav-item" data-view="scenarios"><span data-icon="growth"></span><span class="nav-label">Scenarios</span></button>
+      <button class="nav-item" data-view="feasibility"><span data-icon="report"></span><span class="nav-label">Feasibility</span></button>
+      <button class="nav-item" data-view="evidence"><span data-icon="database"></span><span class="nav-label">Evidence</span></button>
+    </nav>
+    <div class="sidebar-context"><span class="context-icon" id="country-badge">RW</span><div><span id="country-workspace">Rwanda workspace</span><small>Mini-grid planning</small></div><span class="context-dot"></span></div>
+    <div class="sidebar-bottom">
+      <div class="side-note"><span class="small-spark">✧</span><strong>See demand before<br>you build.</strong></div>
+      <div class="version"><span class="online-dot"></span>{{ 'Public demo' if public_demo else 'Local prototype' }} <span>v1.10</span></div>
+    </div>
+  </aside>
+  <div class="shell">
+    <header class="topbar"><div class="breadcrumb"><span id="role-label">Mini-grid developer</span> <span>/</span> <b id="crumb">Overview</b></div><div class="topbar-right"><span class="synthetic-pill"><span></span>Unvalidated planning estimates</span><span class="avatar" title="GridSight East Africa workspace">GS</span></div></header>
+    <main id="main" tabindex="-1">
+      {% if public_demo %}<p class="deployment-notice" role="note"><strong>Public planning demo.</strong> Use non-confidential inputs only. Calculations run on the hosting server. Meter uploads are disabled; saved projects stay in this browser. No real-site validation is claimed.</p>{% endif %}
+      <div class="page-heading"><div><div class="eyebrow">ENERGY INTELLIGENCE / EAST AFRICA</div><h1 id="page-title">See demand. Plan smarter.</h1><p id="page-subtitle">Your next mini-grid, in numbers.</p></div><div class="heading-actions"><button class="button secondary" id="save-button"><span data-icon="save"></span>Save</button><button class="button primary" id="export-button"><span data-icon="download"></span>Export report</button></div></div>
+      <section id="discovery-panel" hidden aria-label="Find a mini-grid location"></section>
+      <div class="site-toolbar"><button class="button secondary" id="new-project">Find a site ↗</button><strong id="current-project-label"></strong><div class="site-picker" id="demo-selector"><label for="site-select">SYNTHETIC DEMO</label><select id="site-select" aria-label="Choose demonstration community"></select></div><span class="district-tag" id="district-tag">Rwanda</span><span class="fictional-label" id="input-origin">Synthetic inputs</span><div class="toolbar-end"><span id="analysis-state" role="status" class="status-label">Loading model…</span><button class="text-button" id="edit-button">Edit inputs <span>↗</span></button></div></div>
+      <div id="error-box" role="alert" hidden></div>
+      <div id="loading" class="loading-card"><div class="spinner"></div><h2>Loading your grid…</h2><p>Preparing your East Africa workspace.</p></div>
+      <section id="view-overview" class="view" hidden></section>
+      <section id="view-community" class="view" hidden></section>
+      <section id="view-scenarios" class="view" hidden></section>
+      <section id="view-feasibility" class="view" hidden></section>
+      <section id="view-evidence" class="view" hidden></section>
+      <section id="view-locations" class="view" hidden></section>
+      <footer><span><b>GridSight</b> · See demand before you build.</span><span id="footer-context">Synthetic model · RWF</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" hidden></div>
+</body>
+</html>

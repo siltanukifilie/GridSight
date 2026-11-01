@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "seed": 20261030,
+  "sites": 500,
+  "months": 36,
+  "days_per_month": 30.416666666666668,
+  "currency": "RWF",
+  "origin": "synthetic",
+  "sector_kwh_month": {"households": 15, "shops": 100, "schools": 130, "clinics": 600, "mills": 800, "pumps": 450, "cold_rooms": 500},
+  "default_scenario": {"household_growth": 0.08, "business_growth": 0.12, "additional_mills": 0, "additional_pumps": 0, "additional_cold_rooms": 0, "adoption_year": 2, "tariff": 500, "collection_rate": 0.95, "variable_cost": 55, "fixed_cost": 450000, "debt_payment": 500000, "capacity_kwh": 17000, "firm_power_kw": 80, "loss_rate": 0.1},
+  "note": "All consumption, uptake, cost, tariff, growth and capacity inputs are editable design assumptions. They are not measured Rwanda values."
+}

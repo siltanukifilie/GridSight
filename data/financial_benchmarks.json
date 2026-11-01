@@ -1,0 +1,15 @@
+{
+  "version": "2026-11-01",
+  "reviewed_on": "2026-11-01",
+  "notice": "Historical context, not local quotations or recommended defaults. No automatic currency conversion or input replacement.",
+  "benchmarks": [
+    {"id":"amda-2024-capex-connection","label":"Capital cost","value":1948,"unit":"USD / connection","scope":"Eastern and Southern Africa aggregate","period":"2024 report; regional sample","source":"AMDA Benchmarking Africa's Minigrids 2024","locator":"Figure 12, page 45","url":"https://www.africamda.org/wp-content/uploads/2025/04/Benchmarking-Africas-Minigrids-Report-2024-Online-version.pdf","limitation":"Historical regional average, not a country estimate, price quote or uncertainty range. Confirm included cost items and connection definition."},
+    {"id":"amda-2024-opex-connection","label":"Operating cost","value":26,"unit":"USD / connection / year","scope":"Eastern and Southern Africa aggregate","period":"2024 report; regional sample","source":"AMDA Benchmarking Africa's Minigrids 2024","locator":"Figure 14, page 46","url":"https://www.africamda.org/wp-content/uploads/2025/04/Benchmarking-Africas-Minigrids-Report-2024-Online-version.pdf","limitation":"Reported operating average; not a replacement reserve, debt payment or site-specific maintenance budget."}
+  ],
+  "local_context": [
+    {"country":"RW","label":"Rwanda productive-use field study","date":"2024-06-10","source":"CLASP / EED Advisory","url":"https://www.clasp.ngo/about/insights/field-testing-shows-higher-revenues/","finding":"Field testing involved 12 entrepreneurs in four districts.","limitation":"Small appliance pilot, not a representative mini-grid uptake survey. No transferable operating-hours or business-growth coefficient is adopted."},
+    {"country":"KE","label":"Kenya milling assessment guide","date":"2018","source":"GMG Facility Kenya / Practical Action","url":"https://infohub.practicalaction.org/items/f6785694-aef8-47ed-82b4-83aba122dc5d","finding":"Practical guidance for assessing milling enterprises.","limitation":"A guide, not measured demand at the selected site. Survey crop throughput, competition, runtime, finance and ability to pay."},
+    {"country":"RW","label":"Rwanda tariff reference","date":"2025-10-01","source":"Rwanda Energy Group","url":"https://www.reg.rw/index.php?id=34","finding":"Published utility tariffs have customer categories and consumption blocks.","limitation":"Not automatically the tariff for an independent mini-grid. Obtain the applicable site tariff and approvals; the app uses an entered flat tariff."}
+  ],
+  "missing_local_evidence": ["Current itemised capital quotations, taxes, transport and replacement budget", "Site operating costs and agreed financing terms", "Effective equipment runtime across wet, dry and harvest periods", "Business census, customer commitments and ability-to-pay survey", "Observed outcomes and a credible counterfactual before claiming capital savings"]
+}

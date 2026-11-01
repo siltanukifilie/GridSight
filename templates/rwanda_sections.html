@@ -1,0 +1,11 @@
+{% if r.location_profile %}
+{% set p = r.location_profile %}
+<h2>Local public evidence</h2>
+<p class="notice">{{ p.notice }}</p>
+<p>Profile {{ p.id }}. Building detections in {{ p.radius_m }} m: <b>{{ p.building_detections if p.building_detections is not none else 'Unavailable' }}</b>. Detected footprint area: {{ p.building_area_m2 if p.building_area_m2 is not none else 'Unavailable' }} m². Google Open Buildings v3, 2023 inference. These are not occupied household counts.</p>
+<p>Historical grid context: <b>{{ p.historical_grid.status }}</b>. {{ p.historical_grid.note }}</p>
+<table><thead><tr><th>Input</th><th>Initial suggestion</th><th>Current input</th><th>Basis</th></tr></thead><tbody>{% for b in p.input_basis %}<tr><td>{{ b.field }}</td><td>{{ b.value }}</td><td>{{ r.site[b.field] }}</td><td>{{ b.kind }}. {{ b.basis }}</td></tr>{% endfor %}</tbody></table>
+<h3>Data-pack coverage</h3>
+<table><thead><tr><th>Source</th><th>Status</th><th>Records</th><th>Date / use</th></tr></thead><tbody>{% for s in p.data_pack.layers %}<tr><td>{% if s.url %}<a href="{{ s.url }}">{{ s.provider }}</a>{% else %}{{ s.provider }}{% endif %}<br>{{ s.license }}</td><td>{{ s.status }}</td><td>{{ s.records if s.records is not none else 'Not collected' }}</td><td>{{ s.date or 'Not available' }}. {{ s.use }}</td></tr>{% endfor %}</tbody></table>
+<p class="muted">Google Open Buildings: CC BY 4.0. © OpenStreetMap contributors: ODbL 1.0. Local metadata, fetch dates and source checksums are included in the analysis download. Government records have unspecified reuse terms and are used as historical context only. No remote observation establishes actual consumption or current utility service.</p>
+{% endif %}

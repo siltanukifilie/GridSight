@@ -1,0 +1,51 @@
+{
+  "reviewed_on": "2026-11-01",
+  "scope": ["RW", "UG", "KE", "TZ", "BI", "SS", "SO", "CD"],
+  "status": "No eligible paired metered dataset imported",
+  "genuine_sites_evaluated": 0,
+  "note": "Research register, not a training or validation dataset. Availability, units, input timing and reuse rights must all be checked before evaluation.",
+  "sources": [
+    {
+      "name": "Renewvia mini-grid operational records",
+      "countries": ["KE"],
+      "url": "https://github.com/Renewvia-Energy/minigrid-dataset",
+      "status": "Agreement required",
+      "evidence": "The public repository describes metering and site data. Its README requires a signed DTUA before access to the actual files.",
+      "remaining": "Obtain authorized Kenya records and dated, matching input surveys. Nigeria records are outside this release's scope.",
+      "imported": false
+    },
+    {
+      "name": "Hartvigsson & Ahlgren — measured mini-grid load profiles",
+      "countries": ["TZ"],
+      "url": "https://data.mendeley.com/datasets/bbtn9wxhzm/1",
+      "status": "Public candidate — incompatible units / restricted reuse",
+      "evidence": "The dataset describes measured current in amperes at one Tanzanian mini-grid; licence CC BY-NC 3.0.",
+      "remaining": "Verify measurement duration, customer-side boundary, voltage/power-factor metadata and dated inputs. Not direct monthly kWh or multi-site growth evidence. Commercial reuse needs permission or a suitable licence.",
+      "imported": false
+    },
+    {
+      "name": "Scott & Coley — PowerGen customer study",
+      "countries": ["TZ"],
+      "url": "https://doi.org/10.3390/en14144207",
+      "status": "Published study — paired raw records not obtained",
+      "evidence": "Two Tanzanian mini-grids with 2018–2019 hourly readings; the detailed household survey occurred in June 2020.",
+      "remaining": "Published summary tables cannot replace raw holdout records. Later surveys cannot be treated as pre-connection inputs.",
+      "imported": false
+    },
+    {
+      "name": "Integrated energy in action — Uganda",
+      "countries": ["UG"],
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12799770/",
+      "status": "Proprietary source data",
+      "evidence": "The study's data-availability statement identifies proprietary operator and survey records.",
+      "remaining": "Permissioned site aggregates and matching pre-connection inputs have not been obtained.",
+      "imported": false
+    }
+  ],
+  "excluded_as_validation": [
+    "Building footprints, night lights and grid maps: proxies, not metered consumption.",
+    "Household survey-only datasets and solar-home-system records: not site-level mini-grid ground truth.",
+    "Synthetic Africa mini-grid datasets: useful for software testing, not real-site validation.",
+    "Published archetypal or average daily profiles: not dated first-three-year site outcomes."
+  ]
+}

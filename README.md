@@ -2,6 +2,9 @@
 
 See demand before you build.
 
+**[Open the live GridSight demo](https://gridsight-0al3.onrender.com/)**  
+Free Render hosting may need about a minute to wake after inactivity.
+
 ## Deploy the full app
 
 GitHub repository: [siltanukifilie/GridSight](https://github.com/siltanukifilie/GridSight).

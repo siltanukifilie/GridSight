@@ -4,9 +4,15 @@ Last updated: 1 November 2026.
 
 Current stage: v1.10 deliverables follow-up adds a prominent five-item Evidence review and a single offline deliverables ZIP. **582 Python + 153 interface-logic checks pass (735 total).** Desktop checks cover both roles, the validation link, an actual ZIP download and exported HTML/growth-chart layout. Genuine operator histories remain unavailable; no authentic validation, calibrated real-data coverage/growth or real-data release is claimed. Forecast calculations and frozen model/data remain unchanged.
 
-The Python application, synthetic dataset, trained model, RAMP profiles, analysis exports, and documentation exist. The user has now requested publication to GitHub and the full app on Render. Demo recording, pitch deck, one-page summary and final disclosure remain deferred. The team has three members. Publication is being prepared; no live URL is claimed here.
+The Python application, synthetic dataset, trained model, RAMP profiles, analysis exports, and documentation exist. Published to [GitHub](https://github.com/siltanukifilie/GridSight) and the full planning app runs on [Render Free](https://gridsight-0al3.onrender.com/). Demo recording, pitch deck, one-page summary and final disclosure remain deferred. The team has three members.
 
-## Public release preparation — 1 November 2026
+Live release verified on 1 November 2026: health, both roles' detailed forecasts,
+36-month growth, 27-file deliverables ZIP integrity, public source status and
+all four public meter-upload guards passed. GitHub checks passed for app commit
+`b47a54f`; the first CI run exposed an unsupported newest runner image, fixed
+by pinning Ubuntu 24.04. No model or original synthetic dataset was rebuilt.
+
+## Public release — 1 November 2026
 
 - Added a free Render Blueprint, pinned web runtime, production server, health
   check and GitHub test workflow. No synthetic rebuild during deployment.
@@ -21,7 +27,7 @@ The Python application, synthetic dataset, trained model, RAMP profiles, analysi
   environment and a clean publication checkout with a fresh web-only runtime
   and no government extract. Dependency and production-server configuration
   checks pass; the production preview health endpoint returns OK.
-  Deployed checks are recorded separately when completed. See DEPLOYMENT.md.
+  Live checks are recorded above. See DEPLOYMENT.md.
 
 ## Step checklist — current user sequence
 

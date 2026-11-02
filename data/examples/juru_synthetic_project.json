@@ -1,0 +1,108 @@
+{
+  "schema": "gridsight-synthetic-examination-v1",
+  "version": "1.0.0",
+  "title": "Juru demo",
+  "data_origin": "synthetic",
+  "is_metered": false,
+  "scope": "Demo service area of 300 households associated with Juru, Bugesera, Rwanda; not the entire sector or a surveyed cell.",
+  "notice": "Demo data for examination. Project inputs and demand outputs are generated for testing, not measured consumption. Public Juru sector context is shown separately. Not field validation or an investment recommendation.",
+  "project": {
+    "site": {
+      "id": "RW-JURU-SYNTHETIC-01",
+      "name": "Juru demo",
+      "district": "Bugesera · Juru",
+      "archetype": "Agricultural",
+      "households": 300,
+      "shops": 20,
+      "schools": 2,
+      "clinics": 1,
+      "mills": 2,
+      "pumps": 3,
+      "cold_rooms": 1,
+      "uptake": 0.65,
+      "appliance_index": 1.0
+    },
+    "context": {
+      "country_code": "RW",
+      "input_origin": "synthetic",
+      "assumed_fields": ["households", "shops", "schools", "clinics", "mills", "pumps", "cold_rooms", "uptake", "appliance_index"],
+      "location": {
+        "country_code": "RW",
+        "source": "user_entered_administration",
+        "label": "Demo service area (not a surveyed cell)",
+        "administrative_path": ["Bugesera", "Juru", "Demo service area (not a surveyed cell)"]
+      },
+      "grid": {"status": "unknown", "source": "", "checked_on": null}
+    },
+    "detailed": {
+      "enabled": true,
+      "months_since_connection": 0,
+      "household_income_monthly": 120000,
+      "connection_fee": 25000,
+      "new_connections_yearly": 36,
+      "appliance_adoption_rate": 0.08,
+      "appliances": {
+        "lighting": {"units_per_household": 4, "power_w": 7, "hours_per_day": 5},
+        "phone": {"units_per_household": 1.2, "power_w": 5, "hours_per_day": 3},
+        "radio": {"units_per_household": 0.35, "power_w": 10, "hours_per_day": 4},
+        "television": {"units_per_household": 0.3, "power_w": 60, "hours_per_day": 4},
+        "refrigerator": {"units_per_household": 0.08, "power_w": 100, "hours_per_day": 8},
+        "fan": {"units_per_household": 0.1, "power_w": 40, "hours_per_day": 4},
+        "iron": {"units_per_household": 0.05, "power_w": 1000, "hours_per_day": 0.3},
+        "other": {"units_per_household": 0.1, "power_w": 60, "hours_per_day": 2}
+      },
+      "equipment": {
+        "shops": {"power_kw": 0.35, "hours_per_day": 8},
+        "mills": {"power_kw": 5, "hours_per_day": 4},
+        "pumps": {"power_kw": 2.2, "hours_per_day": 4},
+        "cold_rooms": {"power_kw": 1.5, "hours_per_day": 10},
+        "schools": {"power_kw": 0.8, "hours_per_day": 6},
+        "clinics": {"power_kw": 1, "hours_per_day": 12}
+      },
+      "agricultural_seasonality": [1.0, 0.95, 0.85, 0.8, 0.9, 1.1, 1.2, 1.15, 0.95, 0.85, 1.05, 1.2]
+    },
+    "assumptions": {
+      "household_growth": 0,
+      "business_growth": 0.1,
+      "additional_mills": 1,
+      "additional_pumps": 1,
+      "additional_cold_rooms": 1,
+      "adoption_year": 2,
+      "tariff": 500,
+      "collection_rate": 0.95,
+      "variable_cost": 55,
+      "fixed_cost": 450000,
+      "debt_payment": 500000,
+      "capacity_kwh": 12000,
+      "firm_power_kw": 60,
+      "loss_rate": 0.1
+    },
+    "planning": {
+      "low_factor": 0.75,
+      "high_factor": 1.3,
+      "discount_rate": 0.12,
+      "project_capex": 95000000,
+      "capacity_capex": 60000000,
+      "mill_support_cost": 1200000,
+      "pump_support_cost": 800000,
+      "cold_room_support_cost": 1500000,
+      "mill_monthly_cost": 40000,
+      "pump_monthly_cost": 25000,
+      "cold_room_monthly_cost": 50000,
+      "household_basket_kwh": 15,
+      "household_income_monthly": 120000,
+      "household_energy_budget_monthly": 10000,
+      "household_fixed_fee_monthly": 0,
+      "affordability_income_share": 0.1
+    },
+    "connection": {
+      "enabled": true,
+      "connection_month": "2027-01",
+      "start_household_fraction": 0.35,
+      "start_appliance_fraction": 0.6,
+      "start_business_fraction": 0.5,
+      "ramp_months": 24
+    },
+    "financial_evidence": null
+  }
+}

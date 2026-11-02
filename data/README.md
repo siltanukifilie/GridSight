@@ -6,6 +6,9 @@ archives and confidential operator records are not required to run the app.
 
 ## Start with these tables
 
+For a fully populated interactive example, use the [Juru examination dataset](examples/README.md).
+It keeps synthetic service-area inputs separate from Juru's public sector data.
+
 | File | Rows | Grain / unit | Meaning |
 | --- | ---: | --- | --- |
 | [Bugesera features](processed/bugesera_site_features.csv) | 15 | Administrative sector; 78 fields | Canonical public/derived context, not service-area demand |

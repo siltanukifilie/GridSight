@@ -1,5 +1,21 @@
 # Verification record
 
+## v1.13 local release checks — 2 November 2026
+
+- **728 Python tests and all 13 JavaScript test files passed** from the extracted
+  handover source snapshot, without ignored local datasets or report folders.
+- Added the complete Juru examination preset, both-role calculations, CSV/JSON
+  and HTML exports, saved-label compatibility, and exact Juru administrative
+  selection tests. Same-named locations elsewhere do not load the preset.
+- The Juru public-proxy screen remains separately available. Tests preserve
+  unknown public meter fields, synthetic provenance and unmodified public
+  sector evidence. No financial output is clamped to a positive value.
+- Dashboard wording is shorter; source notes, scenario limitations, grid-arrival
+  warnings and export provenance remain accessible.
+- These results cover the local release candidate, not proof of a completed
+  Render deployment or visual browser acceptance. Check the live `/health`
+  endpoint and GitHub workflow for the deployed release status.
+
 ## Released v1.12 — 1 November 2026
 
 - **653 Python tests and all 12 JavaScript test files passed** before the

@@ -30,6 +30,7 @@ from src.operational_evidence import summary as operational_summary, write_archi
 from src.transfer_uncertainty import summary as transfer_summary, write_archive as write_transfer_archive
 from src.bugesera_ranking import summary as ranking_summary, write_archive as write_ranking_archive
 from src.operator_pilot import PILOT, write_archive as write_pilot_archive
+from src.demo_cases import juru_case, write_archive as write_demo_archive
 
 
 def create_app():
@@ -79,7 +80,7 @@ def create_app():
 
     @app.get("/health")
     def health():
-        return jsonify(status="ok", model_version=CONFIG["version"], feature_version="1.12")
+        return jsonify(status="ok", model_version=CONFIG["version"], feature_version="1.13")
 
     @app.get("/api/bootstrap")
     def bootstrap():
@@ -89,6 +90,21 @@ def create_app():
     def bugesera_ranking():
         packet = ranking_summary()
         return jsonify(packet), 200 if packet['status'] == 'available' else 503
+
+    @app.get('/api/demo-cases/juru')
+    def juru_demo():
+        return jsonify(juru_case())
+
+    @app.get('/api/demo-cases/juru/download')
+    def juru_demo_download():
+        r = analyze(juru_case()['project'], forecaster, public)
+        archive = io.BytesIO()
+        with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
+            write_demo_archive(z, r, prefix='')
+            z.writestr('report.html', render_template('report.html', r=r))
+        archive.seek(0)
+        return send_file(archive, mimetype='application/zip', as_attachment=True,
+                         download_name='gridsight-juru-synthetic-test-data.zip')
 
     @app.get('/api/bugesera-ranking/download')
     def ranking_download():
@@ -357,6 +373,7 @@ def create_app():
             return out.getvalue()
         with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
             z.writestr("analysis.json", json.dumps(r, indent=2))
+            write_demo_archive(z, r)
             write_prepared_archive(z, r["prepared_evidence"])
             write_transfer_archive(z, r['transfer_uncertainty'])
             write_ranking_archive(z, r['bugesera_ranking'])

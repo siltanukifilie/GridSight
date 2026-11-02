@@ -39,11 +39,22 @@ for(const role of ['developer','investor']) {
   test('redesigned overview integrates with all existing workspaces: '+role,()=>{
     const h=harness(role,true);h.context.render();
     const html=h.node('#view-overview').innerHTML;
-    for(const label of ['analytics-explorer','Low / expected / high range','Who uses the power?','Daily demand','Site evidence & forecast explanation'])assert.ok(html.includes(label),label);
+    for(const label of ['analytics-explorer','Low / expected / high range','Demand by customer','Daily demand','Forecast drivers & data notes'])assert.ok(html.includes(label),label);
     assert.ok(!/NaN|undefined|\$\{/.test(html));
     assert.ok(h.node('#analytics-year').events.change);
     assert.ok(h.node('#planning-form').events.submit);
     assert.ok(h.node('#view-evidence').innerHTML.includes('Keep the model accountable'));
+  });
+  test('reference methods are collapsed after the main feasibility results: '+role,()=>{
+    const h=harness(role,true);h.context.render();
+    const html=h.node('#view-feasibility').innerHTML;
+    const heading='<details class="more-details"><summary>Uncertainty methods & measured-site study</summary>';
+    assert.ok(html.includes(heading));
+    assert.ok(html.indexOf(heading)>html.indexOf('Productive-use opportunities'));
+    assert.ok(html.indexOf(heading)<html.indexOf('Capital & cash'));
+    assert.ok(html.includes('not engineering sign-off or lending approval'));
+    assert.ok(html.includes('Real evidence still needed'));
+    assert.deepEqual(h.state().result.feasibility,example.feasibility);
   });
   test('all real view renderers integrate with new feasibility data: '+role,()=>{
     const h=harness(role);

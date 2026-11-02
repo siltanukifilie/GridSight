@@ -33,6 +33,8 @@ def analyze(payload, forecaster, public=None):
     result['bugesera_ranking'] = ranking_summary(result['context']['location'])
     result['operator_pilot'] = PILOT
     result['assessment'] = assessment_summary(result)
+    from .demo_cases import annotate
+    annotate(result)
     return result
 
 

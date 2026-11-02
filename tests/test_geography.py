@@ -151,4 +151,9 @@ def test_landing_has_discovery_not_auto_forecast(client):
     assert 'id="discovery-panel"' in page and '/static/discovery.js' in page
     script = client.get("/static/app.js").text
     boot = script[script.rfind("(async()=>"):]
-    assert "await openDiscovery()" in boot and "await selectSite" not in boot
+    assert "await openInitialWorkspace(window.location.search)" in boot
+    assert "await selectSite" not in boot
+    loader = client.get("/static/demo-cases.js").text
+    startup = loader[loader.index("async function openInitialWorkspace"):loader.index("function juruDemoCardHtml")]
+    assert "await openDiscovery()" in startup
+    assert "if(new URLSearchParams(search).get('demo')==='juru')await loadJuruDemo();" in startup

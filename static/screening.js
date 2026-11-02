@@ -21,13 +21,14 @@ function assessmentHtml(a){
 
 function renderScreeningPanels(){
   const r=state.result;
+  if(typeof renderJuruCasePanels==='function')renderJuruCasePanels();
   $('#view-locations').insertAdjacentHTML('afterbegin',bugeseraRankingHtml(r.bugesera_ranking));
+  if(typeof juruDemoCardHtml==='function'){
+    $('#view-locations').insertAdjacentHTML('afterbegin',juruDemoCardHtml());
+    bindJuruDemoButtons($('#view-locations'));
+  }
   $('#view-evidence').insertAdjacentHTML('afterbegin',assessmentHtml(r.assessment)+operatorPilotHtml(r.operator_pilot));
   const packet=r.bugesera_ranking;
-  if(packet?.status==='available'){
-    const current=packet.rows.find(row=>row.site_id===packet.selected_site_id);
-    $('#view-overview').insertAdjacentHTML('beforeend',`<article class="card"><div class="card-head"><div><h2>Bugesera screening shortlist</h2><p>${current?esc(current.site_name)+' · sector screening rank '+number(current.priority_rank)+' of 15':'15 administrative sectors available for review'}</p></div><button class="button secondary" data-go="locations">Review ranking</button></div><p>Public building, activity and access proxies. Not measured Rwanda demand or an investment recommendation. Sector totals do not change this project.</p><button class="text-button" data-go="evidence">Operator pilot & assessment checklist</button></article>`);
-  }
   bindRankingButtons($('#view-locations'),packet);
 }
 

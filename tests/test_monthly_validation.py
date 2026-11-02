@@ -230,4 +230,4 @@ def test_routes_empty_template_sources_and_no_global_evidence_overwrite():
     assert client.post("/api/validate-monthly",json={}).status_code==400
     assert client.post("/api/validate-monthly",data="bad").status_code==400
     assert client.post("/api/validate-monthly",data="x"*270000,content_type="application/json").status_code==413
-    assert client.get("/health").json["feature_version"]=="1.12"
+    assert client.get("/health").json["feature_version"]=="1.13"

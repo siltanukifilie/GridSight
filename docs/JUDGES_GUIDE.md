@@ -19,6 +19,16 @@ business models, not demonstrated revenue. No paying customer is claimed.
 
 ## Suggested review route
 
+For a complete test case, choose **Load Juru test case** on the starting screen
+or in Locations. All 20 inputs and financial assumptions are populated with
+synthetic test values. Download the [examination dataset](../data/examples/README.md)
+or export your edited report. Public sector observations stay separate.
+
+Selecting **Rwanda → Bugesera District → Juru → Juru** also opens that
+complete demo, not the generic 500 m public-proxy screen. The Juru card's
+**Open public-data screen** button opens the separate public-proxy calculation;
+its financial result may be negative. Neither view is measured-site validation.
+
 | Step | Try | Check |
 | --- | --- | --- |
 | 1. Location | Developer → Rwanda → Bugesera District → Gashora → a listed cell | District/sector/cell hierarchy and dated sources; no map required |

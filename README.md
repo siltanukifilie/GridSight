@@ -18,7 +18,7 @@ needs, explore growth and productive use, and understand financial risks before
 committing to a project.
 
 Built for the **Global Energy Hackathon, Brief 03: Predict mini-grid demand before
-building**. The current release is **v1.12**. Rwanda has the richest public-data
+building**. The current release is **v1.13**. Rwanda has the richest public-data
 coverage, including all **15 Bugesera sectors**. Location selectors cover the eight
 EAC countries; data depth and local validation are not equal across them.
 
@@ -37,6 +37,12 @@ EAC countries; data depth and local validation are not equal across them.
 4. Compare daily, weekly, monthly and yearly energy, the 36-month demand curve,
    productive-use scenarios and financial stress in **Overview / Feasibility**.
 5. Switch to **Investor / lender**, inspect **Evidence**, then download a report.
+
+For a fully populated example, [open the Juru demo](https://gridsight-0al3.onrender.com/?demo=juru)
+or select **Rwanda → Bugesera District → Juru → Juru**. Its 300-household service
+area, all 20 inputs and financial assumptions are synthetic. The separate
+**Open public-data screen** preserves source-backed context. Read the
+[Juru dataset notes](data/examples/README.md) or download the test dataset in the app.
 
 Use non-confidential inputs only. This public demo has no secure user accounts;
 the role switch changes the workspace, not access permissions.

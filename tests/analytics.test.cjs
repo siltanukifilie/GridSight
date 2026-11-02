@@ -65,7 +65,7 @@ function harness(role='developer'){
 
 for(const role of ['developer','investor'])test(role+' overview renders complete data without missing values',()=>{
   const h=harness(role);h.context.renderAnalyticsOverview();const html=h.node('#view-overview').innerHTML;
-  for(const label of ['Demand scenario','Low / expected / high range','Monthly','36 months','MONTH IN FOCUS','Debt coverage','Explore feasibility','NOT LINKED TO FILTERS','Scenarios, not confidence bounds'])assert.ok(html.includes(label),label);
+  for(const label of ['Demand scenario','Low / expected / high range','Monthly','36 months','MONTH IN FOCUS','Debt coverage','Explore feasibility','independent of filters','Scenarios, not confidence bounds'])assert.ok(html.includes(label),label);
   assert.equal((html.match(/data-analytics-month=/g)||[]).length,36);
   assert.equal((html.match(/class="curve-target" role="button" tabindex="0"/g)||[]).length,1);
   assert.ok(!/NaN|undefined|\$\{/.test(html));
@@ -100,6 +100,31 @@ test('negative cash is explicit and grid-connected sites keep their status',()=>
   assert.match(h.node('#view-overview').innerHTML,/Not an unserved-site candidate/);
   h.state.result.horizon={first_service_month:19,last_service_month:54};
   assert.match(h.context.analyticsExplorerContents(h.state.result),/service M19–M54/);
+});
+
+test('overview removes the preliminary banner and keeps provenance in expandable notes',()=>{
+  const h=harness();h.state.result.context.input_origin='synthetic';
+  h.context.renderAnalyticsOverview();
+  let html=h.node('#view-overview').innerHTML;
+  assert.ok(!html.includes('analytics-disclosure'));
+  assert.ok(!html.includes('PRELIMINARY ESTIMATE'));
+  assert.ok(html.includes('Demo data: generated test values, not measured consumption.'));
+  assert.ok(html.indexOf('generated test values')>html.indexOf('<details class="more-details overview-evidence">'));
+  assert.ok(!html.includes('SYNTHETIC DEMO'));
+  h.state.result.context.input_origin='public_proxy';
+  h.context.renderAnalyticsOverview();html=h.node('#view-overview').innerHTML;
+  assert.ok(!html.includes('generated test values, not measured consumption.'));
+  assert.ok(!html.includes('PRELIMINARY ESTIMATE'));
+  assert.ok(!html.includes('analytics-disclosure'));
+  assert.ok(html.includes('Estimates use entered assumptions. Verify grid access and costs.'));
+});
+
+test('planned-grid warnings remain visible independently of the removed banner',()=>{
+  const h=harness();h.state.result.context.grid={status:'planned'};
+  h.context.renderAnalyticsOverview();const html=h.node('#view-overview').innerHTML;
+  assert.ok(html.includes('Grid expansion reported. Review grid-arrival risk before committing.'));
+  assert.ok(html.indexOf('Grid expansion reported.')<html.indexOf('id="analytics-explorer"'));
+  assert.ok(!html.includes('analytics-disclosure'));
 });
 
 test('site and calendar strings are escaped',()=>{

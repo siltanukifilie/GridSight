@@ -94,6 +94,39 @@ test('choosing a canonical cell opens the detailed input review',async()=>{
   assert.equal(applied.site.households,99);assert.equal(applied.detailed.enabled,true);
   assert.equal(h.state.view,'community');assert.equal(h.discovery.active,false);assert.equal(h.discovery.busy,false);
 });
+
+test('normal Juru selection opens the complete demo overview, not a public-proxy project',async()=>{
+  const h=harness();let applied;
+  const preset=JSON.parse(read('data/examples/juru_synthetic_project.json')).project;
+  const location={id:'11186926',country_code:'RW',source:'GeoNames',label:'Juru'};
+  h.context.api=async(url,body)=>{
+    assert.equal(url,'/api/location-project');assert.equal(body.project_mode,'auto');
+    assert.equal(body.location,location);return {json:async()=>structuredClone(preset)};
+  };
+  h.context.updateProjectContext=async p=>{applied=p;return true;};h.context.render=()=>{};h.context.ensureCustomOption=()=>{};
+  await h.context.openLocationDashboard(location);
+  assert.equal(applied.site.id,'RW-JURU-SYNTHETIC-01');assert.equal(applied.site.households,300);
+  assert.equal(applied.financialEvidence,null);assert.equal(applied.context.input_origin,'synthetic');
+  assert.equal(h.state.view,'overview');assert.equal(h.discovery.active,false);
+  assert.match(h.node('#toast').textContent,/Juru demo loaded/);
+});
+
+test('explicit public-screen request does not silently select the Juru demo',async()=>{
+  const h=harness();let applied;
+  h.context.api=async(url,body)=>{
+    assert.equal(body.project_mode,'public_proxy');
+    return {json:async()=>({site:{id:'CUSTOM',households:99},context:{input_origin:'public_proxy'}})};
+  };
+  h.context.updateProjectContext=async p=>{applied=p;return true;};h.context.render=()=>{};h.context.ensureCustomOption=()=>{};
+  await h.context.openLocationDashboard({id:'11186926'},{projectMode:'public_proxy'});
+  assert.equal(applied.context.input_origin,'public_proxy');assert.equal(h.state.view,'community');
+});
+
+test('location opening does not overwrite dirty project inputs',async()=>{
+  const h=harness(),previous=h.state.site;h.state.dirty=true;
+  await h.context.openLocationDashboard({id:'11186926'});
+  assert.equal(h.state.site,previous);assert.equal(h.requests.length,0);
+});
 test('failed location preparation preserves project and offers administrative fallback',async()=>{
   const h=harness(),oldSite=h.state.site;h.context.api=async()=>{throw Error('Source unavailable');};
   await h.context.openLocationDashboard({country_code:'RW',label:'Cell'});

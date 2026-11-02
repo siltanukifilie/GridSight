@@ -5,24 +5,24 @@ const WORKSPACES = {
     label: 'Mini-grid developer',
     nav: {overview: 'Overview', community: 'Community', scenarios: 'Scenarios', feasibility: 'Feasibility', evidence: 'Evidence', locations: 'Locations'},
     titles: {
-      overview: ['See demand. Build with clarity.', 'One place to explore demand, capacity and cash.'],
-      community: ['Start with people.', 'Add customers, connections and equipment.'],
-      scenarios: ['What if?', 'Test growth, capacity and costs.'],
-      feasibility: ['Build the full picture.', 'Compare demand, opportunities, capacity and cash.'],
-      evidence: ['Behind the numbers.', 'Check the data. Know the limits.'],
-      locations: ['Know your site.', 'Location, grid access and public context.']
+      overview: ['Demand overview', 'Demand, capacity and cash.'],
+      community: ['Site inputs', 'Customers, connections and equipment.'],
+      scenarios: ['Scenarios', 'Growth, capacity and costs.'],
+      feasibility: ['Feasibility', 'Supply, costs and repayment.'],
+      evidence: ['Evidence', 'Sources, methods and validation status.'],
+      locations: ['Location', 'Grid access and public data.']
     }
   },
   investor: {
     label: 'Investor / lender',
     nav: {overview: 'Overview', community: 'Project', scenarios: 'Finance', feasibility: 'Feasibility', evidence: 'Evidence', locations: 'Locations'},
     titles: {
-      overview: ['See the upside. Know the risk.', 'Explore the demand. Stress-test the investment.'],
-      community: ['Know the project.', 'Review its customers and assumptions.'],
-      scenarios: ['Stress-test the numbers.', 'Change costs. See the impact.'],
-      feasibility: ['Check the complete case.', 'Compare scenarios and download the feasibility screen.'],
-      evidence: ['Trust needs evidence.', 'Published evidence. Current-model validation still needed.'],
-      locations: ['Know the location.', 'Review the site and public country context.']
+      overview: ['Investment overview', 'Demand and financial risk.'],
+      community: ['Project inputs', 'Customers and assumptions.'],
+      scenarios: ['Financial scenarios', 'Costs, revenue and repayment.'],
+      feasibility: ['Feasibility', 'Scenarios and financial checks.'],
+      evidence: ['Evidence', 'Published studies; current-model validation pending.'],
+      locations: ['Location', 'Site and public data.']
     }
   }
 };

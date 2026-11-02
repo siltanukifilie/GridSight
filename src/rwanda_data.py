@@ -2,6 +2,7 @@
 
 No provider calls on selection. The original synthetic model remains frozen.
 Public point objects are NOT a census or a verified mini-grid catchment.
+The Juru examination preset is a separate synthetic project, not a public layer.
 """
 import hashlib
 import json
@@ -170,8 +171,12 @@ def location_profile(location):
 def initial_project(raw):
     from .context import validate_context, scenario_defaults
     from .feasibility import PLANNING_DEFAULTS
+    from .demo_cases import is_juru_demo_location, juru_case
     if not isinstance(raw, dict) or not isinstance(raw.get("location"), dict):
         raise ValueError("Choose an East African location.")
+    mode = raw.get("project_mode", "auto")
+    if mode not in ("auto", "public_proxy"):
+        raise ValueError("Choose auto or public_proxy project mode.")
     loc = raw["location"]
     code = loc.get("country_code")
     public_proxy = code == "RW" and loc.get("source") != "user_entered_administration"
@@ -184,6 +189,11 @@ def initial_project(raw):
         loc = context["location"]
         if not any(shape(f["geometry"]).covers(Point(loc["longitude"], loc["latitude"])) for f in boundary["features"]):
             raise ValueError("Point is outside the imported Rwanda land boundary. Check the coordinates or choose a nearby Rwanda settlement.")
+    # Juru's requested examination case is distinct from the public 500 m screen.
+    # Use its own demo-area label and synthetic provenance, never relabel generated
+    # customers as observations of the selected administrative cell.
+    if mode == "auto" and is_juru_demo_location(context["location"]):
+        return juru_case()["project"]
     profile = location_profile(context["location"])
     suggested = profile["suggested_inputs"] if profile else {"households": 150, "shops": 8, "schools": 1, "clinics": 0, "mills": 0, "pumps": 0, "cold_rooms": 0, "uptake": .75, "appliance_index": 1}
     site = validate_site({**suggested, "id": "CUSTOM", "name": context["location"]["label"][:100],

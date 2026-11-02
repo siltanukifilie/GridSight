@@ -1,15 +1,16 @@
 /* Public evidence initializes a preliminary screen; it does not validate demand. */
-async function openLocationDashboard(location){
-  if(discovery.opening)return;
+async function openLocationDashboard(location,{projectMode='auto'}={}){
+  if(discovery.opening||!contextReady())return;
   discovery.opening=true;const token=discovery.epoch,previousView=state.view;
   discoveryLock(true);$('#finder-status').textContent='Preparing this location’s evidence and dashboard…';
   try{
-    const project=await(await api('/api/location-project',{location})).json();
+    const {financial_evidence,...project}=await(await api('/api/location-project',{location,project_mode:projectMode})).json();
     if(token!==discovery.epoch)return;
-    state.view='community';
-    if(await updateProjectContext(project)){
+    const juruDemo=project.site?.id==='RW-JURU-SYNTHETIC-01';
+    state.view=juruDemo?'overview':'community';
+    if(await updateProjectContext({...project,financialEvidence:financial_evidence||null})){
       discovery.location=location;discoveryMode(false);ensureCustomOption();render();
-      toast('Location ready. Review the 20 inputs and financial assumptions.');
+      toast(juruDemo?'Juru demo loaded · 20 inputs. Public data stays separate.':'Location ready. Review the 20 inputs and financial assumptions.');
     }else{
       state.view=previousView;$('#finder-status').textContent=$('#error-box').textContent||'Dashboard could not be prepared. Your previous project is unchanged.';
     }

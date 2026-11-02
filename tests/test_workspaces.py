@@ -23,7 +23,7 @@ def test_exactly_two_roles_and_visible_local_mvp_limits(client):
     page = client.get("/").get_data(as_text=True)
     assert 'id="role-select"' in page
     assert 'value="developer"' in page and 'value="investor"' in page
-    assert 'No login or access restrictions' in page
+    assert 'Shared project · no login or access control.' in page
     assert '/static/workspaces.js' in page
     assert client.get("/static/workspaces.js").status_code == 200
 

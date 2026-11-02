@@ -36,7 +36,7 @@ function contextChrome(){
   $('#district-tag').textContent=state.site.district+' · '+c.country_code;
   $('#country-badge').textContent=c.country_code;$('#country-workspace').textContent=c.country+' workspace';
   $('#footer-context').textContent=(state.result.detailed?.enabled?'Engineering scenario · ':'Synthetic model · ')+c.currency;
-  $('#input-origin').textContent=c.input_origin==='synthetic'?'Synthetic inputs':c.input_origin==='public_proxy'?'Public proxies + assumptions':'Planning inputs';
+  $('#input-origin').textContent=c.input_origin==='synthetic'?'Demo data':c.input_origin==='public_proxy'?'Public proxies + assumptions':'Planning inputs';
 }
 
 function thinDataIntro(){return `<div class="thin-intro"><label class="check-line"><input type="checkbox" id="thin-mode"> I don’t know every input yet.</label><p class="subtle-note">Keep the household count. Leave other unknown values blank, review suggestions, then apply. Zero means you know there are none.</p><div id="thin-proposals" aria-live="polite"></div></div>`;}

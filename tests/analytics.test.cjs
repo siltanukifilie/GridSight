@@ -102,21 +102,25 @@ test('negative cash is explicit and grid-connected sites keep their status',()=>
   assert.match(h.context.analyticsExplorerContents(h.state.result),/service M19–M54/);
 });
 
-test('overview removes the preliminary banner and keeps provenance in expandable notes',()=>{
+test('overview uses concise method wording and links to evidence without relabeling its data',()=>{
   const h=harness();h.state.result.context.input_origin='synthetic';
   h.context.renderAnalyticsOverview();
   let html=h.node('#view-overview').innerHTML;
   assert.ok(!html.includes('analytics-disclosure'));
   assert.ok(!html.includes('PRELIMINARY ESTIMATE'));
-  assert.ok(html.includes('Demo data: generated test values, not measured consumption.'));
-  assert.ok(html.indexOf('generated test values')>html.indexOf('<details class="more-details overview-evidence">'));
+  assert.ok(html.includes('Demand combines customer counts, equipment use and growth assumptions.'));
+  assert.ok(html.includes('Data sources & methods'));
+  assert.ok(html.includes('data-go="evidence"'));
+  assert.equal(h.state.result.context.input_origin,'synthetic');
   assert.ok(!html.includes('SYNTHETIC DEMO'));
+  assert.ok(!html.includes('from your inputs'));
   h.state.result.context.input_origin='public_proxy';
   h.context.renderAnalyticsOverview();html=h.node('#view-overview').innerHTML;
   assert.ok(!html.includes('generated test values, not measured consumption.'));
   assert.ok(!html.includes('PRELIMINARY ESTIMATE'));
   assert.ok(!html.includes('analytics-disclosure'));
-  assert.ok(html.includes('Estimates use entered assumptions. Verify grid access and costs.'));
+  assert.ok(html.includes('growth assumptions.'));
+  assert.equal(h.state.result.context.input_origin,'public_proxy');
 });
 
 test('planned-grid warnings remain visible independently of the removed banner',()=>{
@@ -125,6 +129,21 @@ test('planned-grid warnings remain visible independently of the removed banner',
   assert.ok(html.includes('Grid expansion reported. Review grid-arrival risk before committing.'));
   assert.ok(html.indexOf('Grid expansion reported.')<html.indexOf('id="analytics-explorer"'));
   assert.ok(!html.includes('analytics-disclosure'));
+});
+
+for(const role of ['developer','investor'])test(role+' overview omits the yellow planning-check stack without changing the analysis',()=>{
+  const h=harness(role);
+  h.state.result.warnings=['Full project assumption details belong in Evidence.'];
+  const before=JSON.stringify(h.state.result);
+  h.context.alertHtml=()=>assert.fail('The overview must not render the yellow warning stack.');
+  h.context.renderAnalyticsOverview();
+  const html=h.node('#view-overview').innerHTML;
+  assert.ok(!html.includes('alert-stack'));
+  assert.ok(!html.includes('planning checks · review before committing'));
+  assert.ok(!html.includes(h.state.result.warnings[0]));
+  assert.ok(html.includes('Forecast drivers & methodology'));
+  assert.ok(html.includes('data-go="evidence"'));
+  assert.equal(JSON.stringify(h.state.result),before);
 });
 
 test('site and calendar strings are escaped',()=>{
@@ -140,4 +159,15 @@ test('template loads theme last and explorer before app; no Microsoft integratio
   assert.ok(html.indexOf('/static/dashboard.css')>html.indexOf('/static/detailed-inputs.css'));
   assert.ok(html.indexOf('/static/analytics.js')<html.indexOf('/static/app.js'));
   assert.ok(!html.includes('app.powerbi.com'));assert.ok(!script.includes('fetch('));
+});
+
+test('polished app chrome keeps source and privacy context with fresh assets',()=>{
+  const html=read('templates/index.html');
+  assert.ok(html.includes('Planning estimates'));
+  assert.ok(!html.includes('Unvalidated planning estimates'));
+  assert.ok(html.includes('Demo data'));
+  assert.ok(html.includes('Use non-confidential data only.'));
+  assert.ok(html.includes('Calculations run on the hosting server.'));
+  assert.ok(html.includes('Meter uploads are disabled'));
+  for(const asset of ['analytics','screening','workspaces','discovery'])assert.ok(html.includes('/static/'+asset+'.js?v=1.13-polish'));
 });

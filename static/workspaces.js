@@ -6,7 +6,7 @@ const WORKSPACES = {
     nav: {overview: 'Overview', community: 'Community', scenarios: 'Scenarios', feasibility: 'Feasibility', evidence: 'Evidence', locations: 'Locations'},
     titles: {
       overview: ['Demand overview', 'Demand, capacity and cash.'],
-      community: ['Site inputs', 'Customers, connections and equipment.'],
+      community: ['Site data', 'Customers, connections and equipment.'],
       scenarios: ['Scenarios', 'Growth, capacity and costs.'],
       feasibility: ['Feasibility', 'Supply, costs and repayment.'],
       evidence: ['Evidence', 'Sources, methods and validation status.'],
@@ -18,10 +18,10 @@ const WORKSPACES = {
     nav: {overview: 'Overview', community: 'Project', scenarios: 'Finance', feasibility: 'Feasibility', evidence: 'Evidence', locations: 'Locations'},
     titles: {
       overview: ['Investment overview', 'Demand and financial risk.'],
-      community: ['Project inputs', 'Customers and assumptions.'],
+      community: ['Project profile', 'Customers, equipment and growth.'],
       scenarios: ['Financial scenarios', 'Costs, revenue and repayment.'],
       feasibility: ['Feasibility', 'Scenarios and financial checks.'],
-      evidence: ['Evidence', 'Published studies; current-model validation pending.'],
+      evidence: ['Evidence', 'Sources, methods and validation status.'],
       locations: ['Location', 'Site and public data.']
     }
   }
@@ -41,14 +41,14 @@ function applyWorkspace() {
   document.querySelectorAll('.nav-item').forEach(button => {
     button.querySelector('.nav-label').textContent = role.nav[button.dataset.view];
   });
-  $('#edit-button').textContent = state.role === 'developer' ? 'Edit inputs ↗' : 'Review project ↗';
+  $('#edit-button').textContent = state.role === 'developer' ? 'Edit project ↗' : 'Review project ↗';
   $('#export-button').innerHTML = icon('download') + 'Export report';
 }
 
 function switchWorkspace(role) {
   if (!canSwitchWorkspace(state)) {
     $('#role-select').value = state.role;
-    toast(state.busy ? 'Wait for the analysis to finish.' : 'Run your current changes before switching roles. Your inputs have been kept.');
+    toast(state.busy ? 'Wait for the analysis to finish.' : 'Apply changes before switching roles. Project values have been kept.');
     return;
   }
   state.role = normalizedRole(role);

@@ -20,6 +20,30 @@ test('absent ranking has no selectable fallback',()=>{
   assert.ok(!c.bugeseraRankingHtml({status:'unavailable',reason:'Changed'}).includes('data-review-sector'));
   assert.equal(c.operatorPilotHtml(null),'');assert.equal(c.assessmentHtml(null),'');
 });
+test('planning notes remain complete, escaped and collapsed in a neutral evidence panel',()=>{
+  const c=make(),result={warnings:['Generated inputs, not meter readings.','Grid access unknown.','<img src=x onerror=alert(1)>']};
+  const before=JSON.stringify(result),html=c.planningAssumptionsHtml(result);
+  assert.match(html,/Planning assumptions & data notes/);
+  assert.match(html,/Generated inputs, not meter readings\./);
+  assert.match(html,/Grid access unknown\./);
+  assert.equal((html.match(/<li>/g)||[]).length,3);
+  assert.ok(html.includes('&lt;img'));
+  assert.ok(!html.includes('<img'));
+  assert.ok(!html.includes('alert-stack'));
+  assert.ok(!/<details[^>]*\bopen\b/.test(html));
+  assert.equal(JSON.stringify(result),before);
+  for(const empty of [undefined,{}, {warnings:[]}])assert.equal(c.planningAssumptionsHtml(empty),'');
+});
+for(const role of ['developer','investor'])test(role+' receives project assumptions in Evidence, not the overview',()=>{
+  const nodes=new Map();
+  const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',insertAdjacentHTML(position,html){assert.equal(position,'afterbegin');this.innerHTML=html+this.innerHTML;},querySelectorAll:()=>[]});return nodes.get(id);};
+  const state={role,result:{warnings:['Retained project note.']}};
+  make({state,$:node}).renderScreeningPanels();
+  assert.match(node('#view-evidence').innerHTML,/Retained project note\./);
+  assert.match(node('#view-evidence').innerHTML,/planning-assumptions/);
+  assert.equal(node('#view-overview').innerHTML,'');
+  assert.ok(!node('#view-locations').innerHTML.includes('Retained project note.'));
+});
 test('sector review prepares real hierarchy but never replaces project inputs',async()=>{
   const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,{value:'',textContent:'',focus(){}});return nodes.get(id);};
   const state={busy:false,site:{households:25},assumptions:{tariff:100}};

@@ -55,7 +55,7 @@ function analyticsMixHtml(r) {
   const rows=r.components.filter(c=>c.kwh>0).sort((a,b)=>b.kwh-a.kwh);
   return `<article class="card mix-card"><div class="card-head"><div><span class="section-kicker">DEMAND DRIVERS</span><h2>Demand by customer</h2></div><span class="tag">Expected · Year 1</span></div>
     <div class="mix-bars">${rows.map((c,i)=>`<div class="mix-row"><div><span><i style="background:${colors[i%colors.length]}"></i>${esc(c.label)}</span><strong>${number(c.share*100,1)}<small>%</small></strong></div><div class="mix-track"><span style="width:${Math.min(100,c.share*100)}%;background:${colors[i%colors.length]}"></span></div></div>`).join('')||'<p>No demand inputs yet.</p>'}</div>
-    <p class="subtle-note">${r.detailed?.enabled?'Calculated contributions from your inputs.':'Baseline shares, not an exact model decomposition.'} Not measured consumption.</p><button class="inline-link" data-go="community">Review customers & equipment ↗</button></article>`;
+    <p class="subtle-note">${r.detailed?.enabled?'Estimated energy by customer group.':'Customer-group shares from the baseline calculation.'}</p><button class="inline-link" data-go="community">Review customers & equipment ↗</button></article>`;
 }
 
 function analyticsExplorerContents(r) {
@@ -66,7 +66,7 @@ function analyticsExplorerContents(r) {
   return `<div class="analytics-filters" aria-label="Dashboard display filters"><div class="filter-group"><span>Demand scenario</span><div class="segmented" role="group" aria-label="Demand scenario">${caseButtons}</div></div>
     <div class="filter-group"><label for="analytics-year">Forecast year</label><select id="analytics-year">${[1,2,3].map(y=>`<option value="${y}" ${s.year===y?'selected':''}>Year ${y}</option>`).join('')}</select></div>
     <div class="filter-group period-filter"><span>Energy view</span><div class="segmented" role="group" aria-label="Energy view">${periodButtons}</div></div><button type="button" class="text-button" id="analytics-reset">Reset view ↺</button></div>
-    <div class="analytics-scope" role="status"><span><i class="live-dot"></i>${esc(s.scenario.label)} scenario · Year ${s.year}</span><span>View only · inputs unchanged</span></div>
+    <div class="analytics-scope" role="status"><span><i class="live-dot"></i>${esc(s.scenario.label)} scenario · Year ${s.year}</span><span>Display filters · project unchanged</span></div>
     <div class="kpi-grid analytics-kpis">
       ${analyticsKpi('Demand · '+ANALYTICS_PERIODS[s.period][0].toLowerCase(),number(s.energy,1),s.unit,`Low ${number(s.low,1)} — High ${number(s.high,1)}`,'energy','demand-kpi')}
       ${state.role==='investor'?analyticsKpi('Collected revenue',compact(a.revenue/12),currency+'/mo','Monthly average · supply-limited','money'):analyticsKpi('Typical peak',number(a.peak_kw,1),'kW','Highest illustrative peak in this year','clock')}
@@ -92,7 +92,7 @@ function renderAnalyticsOverview() {
     <div id="analytics-explorer">${analyticsExplorerContents(r)}</div>
     <div class="analytics-secondary-grid"><div class="profile-section"><p class="section-kicker fixed-scope">Expected · Year 1 · independent of filters</p>${demandChartHtml(r)}</div>${analyticsMixHtml(r)}</div>
     <div class="analytics-actions"><div><h2>Feasibility</h2><p>Costs, supply and repayment.</p></div><button class="button primary" data-go="feasibility">Explore feasibility ${icon('arrow')}</button></div>
-    ${alertHtml()}<details class="more-details overview-evidence"><summary>Forecast drivers & data notes</summary><div class="details-body"><p>${c.input_origin==='synthetic'?'Demo data: generated test values, not measured consumption. ':''}Estimates use entered assumptions. Verify grid access and costs.</p><button class="inline-link" data-go="evidence">Data & methods ↗</button>${publicProfileSummaryHtml()}${typeof lenderExplanationHtml==='function'?lenderExplanationHtml(r):''}${typeof affordabilityHtml==='function'?affordabilityHtml(r):''}</div></details>`;
+    <details class="more-details overview-evidence"><summary>Forecast drivers & methodology</summary><div class="details-body"><p>Demand combines customer counts, equipment use and growth assumptions.</p><button class="inline-link" data-go="evidence">Data sources & methods ↗</button>${publicProfileSummaryHtml()}${typeof lenderExplanationHtml==='function'?lenderExplanationHtml(r):''}${typeof affordabilityHtml==='function'?affordabilityHtml(r):''}</div></details>`;
 }
 
 function refreshAnalytics(focusSelector) {

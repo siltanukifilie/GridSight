@@ -8,8 +8,27 @@
   <link rel="stylesheet" href="/static/deployment.css"><script src="/static/deployment.js" defer></script>
   <link rel="stylesheet" href="/static/feasibility.css">
   <script src="/static/demo-cases.js?v=1.13-juru-select" defer></script>
-  <script src="/static/screening.js?v=1.13-copy" defer></script>
-  <link rel="stylesheet" href="/static/styles.css"><script src="/static/workspaces.js?v=1.13-copy" defer></script><script src="/static/demand-charts.js" defer></script><script src="/static/feasibility.js?v=1.13-copy" defer></script><link rel="stylesheet" href="/static/context.css"><script src="/static/context.js?v=1.13-labels" defer></script><link rel="stylesheet" href="/static/discovery.css"><script src="/static/discovery.js?v=1.13-copy" defer></script><script src="/static/rwanda-data.js?v=1.13-juru-select" defer></script><script src="/static/prepared-evidence.js?v=1.11" defer></script><script src="/static/connection.js?v=1.10-deliverables" defer></script><link rel="stylesheet" href="/static/detailed-inputs.css?v=1.10-brand"><script src="/static/detailed-inputs.js?v=1.13-copy" defer></script><script src="/static/monthly-validation.js?v=1.10-deliverables" defer></script><script src="/static/statistical.js?v=1.11" defer></script><script src="/static/financial-evidence.js" defer></script><script src="/static/maintenance.js?v=1.11" defer></script><link rel="stylesheet" href="/static/dashboard.css?v=1.10-deliverables"><script src="/static/analytics.js?v=1.13-banner" defer></script><script src="/static/app.js?v=1.13-juru-link" defer></script>
+  <script src="/static/screening.js?v=1.13-polish" defer></script>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/workspaces.js?v=1.13-polish" defer></script>
+  <script src="/static/demand-charts.js" defer></script>
+  <script src="/static/feasibility.js?v=1.13-copy" defer></script>
+  <link rel="stylesheet" href="/static/context.css">
+  <script src="/static/context.js?v=1.13-labels" defer></script>
+  <link rel="stylesheet" href="/static/discovery.css">
+  <script src="/static/discovery.js?v=1.13-polish" defer></script>
+  <script src="/static/rwanda-data.js?v=1.13-juru-select" defer></script>
+  <script src="/static/prepared-evidence.js?v=1.11" defer></script>
+  <script src="/static/connection.js?v=1.10-deliverables" defer></script>
+  <link rel="stylesheet" href="/static/detailed-inputs.css?v=1.10-brand">
+  <script src="/static/detailed-inputs.js?v=1.13-copy" defer></script>
+  <script src="/static/monthly-validation.js?v=1.10-deliverables" defer></script>
+  <script src="/static/statistical.js?v=1.11" defer></script>
+  <script src="/static/financial-evidence.js" defer></script>
+  <script src="/static/maintenance.js?v=1.11" defer></script>
+  <link rel="stylesheet" href="/static/dashboard.css?v=1.10-deliverables">
+  <script src="/static/analytics.js?v=1.13-polish" defer></script>
+  <script src="/static/app.js?v=1.13-juru-link" defer></script>
 </head>
 <body data-public-demo="{{ 'true' if public_demo else 'false' }}">
   <a class="skip" href="#main">Skip to dashboard</a>
@@ -32,12 +51,12 @@
     </div>
   </aside>
   <div class="shell">
-    <header class="topbar"><div class="breadcrumb"><span id="role-label">Mini-grid developer</span> <span>/</span> <b id="crumb">Overview</b></div><div class="topbar-right"><span class="synthetic-pill"><span></span>Unvalidated planning estimates</span><span class="avatar" title="GridSight East Africa workspace">GS</span></div></header>
+    <header class="topbar"><div class="breadcrumb"><span id="role-label">Mini-grid developer</span> <span>/</span> <b id="crumb">Overview</b></div><div class="topbar-right"><span class="synthetic-pill"><span></span>Planning estimates</span><span class="avatar" title="GridSight East Africa workspace">GS</span></div></header>
     <main id="main" tabindex="-1">
-      {% if public_demo %}<p class="deployment-notice" role="note"><strong>Public planning demo.</strong> Use non-confidential inputs only. Calculations run on the hosting server. Meter uploads are disabled; saved projects stay in this browser. No real-site validation is claimed.</p>{% endif %}
+      {% if public_demo %}<p class="deployment-notice" role="note"><strong>Public workspace.</strong> Use non-confidential data only. Calculations run on the hosting server. Meter uploads are disabled; saved projects stay in this browser.</p>{% endif %}
       <div class="page-heading"><div><div class="eyebrow">ENERGY INTELLIGENCE / EAST AFRICA</div><h1 id="page-title">Demand overview</h1><p id="page-subtitle">Demand, capacity and cash.</p></div><div class="heading-actions"><button class="button secondary" id="save-button"><span data-icon="save"></span>Save</button><button class="button primary" id="export-button"><span data-icon="download"></span>Export report</button></div></div>
       <section id="discovery-panel" hidden aria-label="Find a mini-grid location"></section>
-      <div class="site-toolbar"><button class="button secondary" id="new-project">Find a site ↗</button><strong id="current-project-label"></strong><div class="site-picker" id="demo-selector"><label for="site-select">DEMO DATA</label><select id="site-select" aria-label="Choose demonstration community"></select></div><span class="district-tag" id="district-tag">Rwanda</span><span class="fictional-label" id="input-origin">Demo data</span><div class="toolbar-end"><span id="analysis-state" role="status" class="status-label">Loading model…</span><button class="text-button" id="edit-button">Edit inputs <span>↗</span></button></div></div>
+      <div class="site-toolbar"><button class="button secondary" id="new-project">Find a site ↗</button><strong id="current-project-label"></strong><div class="site-picker" id="demo-selector"><label for="site-select">DEMO DATA</label><select id="site-select" aria-label="Choose demonstration community"></select></div><span class="district-tag" id="district-tag">Rwanda</span><span class="fictional-label" id="input-origin">Demo data</span><div class="toolbar-end"><span id="analysis-state" role="status" class="status-label">Loading model…</span><button class="text-button" id="edit-button">Edit project <span>↗</span></button></div></div>
       <div id="error-box" role="alert" hidden></div>
       <div id="loading" class="loading-card"><div class="spinner"></div><h2>Loading your grid…</h2><p>Preparing your East Africa workspace.</p></div>
       <section id="view-overview" class="view" hidden></section>

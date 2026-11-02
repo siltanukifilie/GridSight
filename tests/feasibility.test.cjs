@@ -39,7 +39,7 @@ for(const role of ['developer','investor']) {
   test('redesigned overview integrates with all existing workspaces: '+role,()=>{
     const h=harness(role,true);h.context.render();
     const html=h.node('#view-overview').innerHTML;
-    for(const label of ['analytics-explorer','Low / expected / high range','Demand by customer','Daily demand','Forecast drivers & data notes'])assert.ok(html.includes(label),label);
+    for(const label of ['analytics-explorer','Low / expected / high range','Demand by customer','Daily demand','Forecast drivers & methodology'])assert.ok(html.includes(label),label);
     assert.ok(!/NaN|undefined|\$\{/.test(html));
     assert.ok(h.node('#analytics-year').events.change);
     assert.ok(h.node('#planning-form').events.submit);

@@ -19,6 +19,12 @@ function assessmentHtml(a){
   return `<article class="card"><h2>Brief 03 assessment checklist</h2><p>${esc(a.notice)}</p><div class="table-wrap"><table><thead><tr><th>Criterion</th><th>Weight</th><th>Evidence to demonstrate</th><th>Remaining gap</th></tr></thead><tbody>${a.criteria.map(c=>`<tr><th scope="row">${esc(c.criterion)}</th><td>${number(c.weight_percent)}%</td><td>${esc(c.evidence)}<br><button class="text-button" data-go="${esc(c.view)}">Open evidence</button></td><td>${esc(c.gap)}</td></tr>`).join('')}</tbody></table></div><p>${esc(a.submission)}</p><p class="subtle-note">${esc(a.source)}</p></article>`;
 }
 
+function planningAssumptionsHtml(result){
+  const notes=result?.warnings||[];
+  if(!notes.length)return '';
+  return `<details class="card more-details planning-assumptions"><summary>Planning assumptions & data notes</summary><div class="details-body"><ul>${notes.map(note=>`<li>${esc(note)}</li>`).join('')}</ul></div></details>`;
+}
+
 function renderScreeningPanels(){
   const r=state.result;
   if(typeof renderJuruCasePanels==='function')renderJuruCasePanels();
@@ -27,7 +33,7 @@ function renderScreeningPanels(){
     $('#view-locations').insertAdjacentHTML('afterbegin',juruDemoCardHtml());
     bindJuruDemoButtons($('#view-locations'));
   }
-  $('#view-evidence').insertAdjacentHTML('afterbegin',assessmentHtml(r.assessment)+operatorPilotHtml(r.operator_pilot));
+  $('#view-evidence').insertAdjacentHTML('afterbegin',planningAssumptionsHtml(r)+assessmentHtml(r.assessment)+operatorPilotHtml(r.operator_pilot));
   const packet=r.bugesera_ranking;
   bindRankingButtons($('#view-locations'),packet);
 }

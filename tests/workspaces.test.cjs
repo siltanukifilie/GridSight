@@ -65,7 +65,7 @@ test('real switch handler preserves dirty form view and resets role selector', (
   assert.equal(h.state.view, 'community');
   assert.equal(h.select.value, 'developer');
   assert.equal(h.renderCount(), 0);
-  assert.match(h.messages[0], /inputs have been kept/);
+  assert.match(h.messages[0], /Project values have been kept/);
 });
 
 test('role switch still works when browser storage is unavailable', () => {
